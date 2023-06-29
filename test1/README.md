@@ -2,11 +2,11 @@
 
 A proof-of-concept demo for using RFID/NFC tags for position sensing within a room.
 
-The idea is to place RFID tag stickers under flooring.
+The idea is to place RFID tag stickers under flooring at known locations.
 Since the stickers each report a unique ID number, an RFID sensor above the floor can know
 where it is by mapping the ID to the tag's known physical position.
 
-In the demo, a 3/4" piece of wood was a standin for the flooring surface.
+In the demo, a 3/4" piece of wood was a standin for the flooring surface between the tags and the sensor.
 
 The hardware consists of a
 [Raspberry Pi Pico MCU](https://www.raspberrypi.com/products/raspberry-pi-pico/),
