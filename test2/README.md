@@ -15,6 +15,8 @@ The sensors are packed snuggly without overlapping.
 The resulting center-to-center spacing of the three sensors is 52, 49, 50 mm, for a
 triangular area of 1095 mm^2
 
+![sensor deck](rfidtest2.png)
+
 The circuit consists of a
 [Raspberry Pi Pico MCU](https://www.raspberrypi.com/products/raspberry-pi-pico/),
 running [CircuitPython 8](https://circuitpython.org/),
