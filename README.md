@@ -23,3 +23,10 @@ using SPI.  Data is reported via Pico's USB serial port.
 - include area of perimeter of test2 sensors.
 - include dimensions of my sample tag stickers.
 
+## About the radio spectrum we're using
+- The ISM band of ITU Region 2
+- The numbers: 902-928 MHz, center 915 MHz, bandwidth 26 MHz, UHF, wavelength 33 cm
+- https://en.wikipedia.org/wiki/ISM_radio_band
+- https://en.wikipedia.org/wiki/33-centimeter_band
+- https://en.wikipedia.org/wiki/ITU_Region (US is in Region 2)
+
