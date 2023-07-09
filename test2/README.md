@@ -11,9 +11,9 @@ The tag cost could be significant for position sensing in a large room.
 
 The sensor consists of a circular foamcore "sensor deck" with three PN532 RFID sensors
 arranged in an equilateral triangle with radially-symmetric orientation for areal coverage.
-The sensors are packed snuggly without overlapping.
+The sensors are packed tightly without overlapping.
 The resulting center-to-center spacing of the three sensors is 52, 49, 50 mm, for a
-triangular area of 1095 mm^2
+triangular area of 1095 mm^2.
 
 ![sensor deck](rfidtest2.png)
 
@@ -39,3 +39,15 @@ signal   direction   color   color  signal   pin     gpio
  ss2        <--       wht     red    cs       27     GP21
  ss3        <--       wht     brn    cs        7     GP5
 ```
+
+## Experimental notes
+
+At this sensor packing (1095 mm^2), there seems some crosstalk between sensors.
+
+1 sqft = 93k mm^2.  93k/1095 = 85 sensor areas at this sensor packing,
+which is an upper bound on tag density.
+
+Testing tag density of 101mm/side equalateral triangle = 4400 mm^2 = 21 tags/sqft.
+
+There was a dead tag discovered during the experiment.
+Be sure to test tags before permanent placement.
