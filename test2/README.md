@@ -23,8 +23,6 @@ running [CircuitPython 8](https://circuitpython.org/),
 connected to three [PN532 RFID sensor boards](https://www.ebay.com/sch/i.html?_nkw=pn532)
 using SPI.  Data is reported via Pico's USB serial port.
 
-[PN532 CircuitPython API documentation](https://docs.circuitpython.org/projects/pn532/en/latest/api.html)
-
 ## Wiring
 ```
 PN532                deck    cable   pico    pico    pico
@@ -44,10 +42,10 @@ signal   direction   color   color  signal   pin     gpio
 
 At this sensor packing (1095 mm^2), there seems some crosstalk between sensors.
 
-1 sqft = 93k mm^2.  93k/1095 = 85 sensor areas at this sensor packing,
-which is an upper bound on tag density.
+1 sqft = 93k mm^2.
+
+93k/1095 = 85 sensor areas at this sensor packing, which is an upper bound on tag density.
 
 Testing tag density of 101mm/side equalateral triangle = 4400 mm^2 = 21 tags/sqft.
 
-There was a dead tag discovered during the experiment.
-Be sure to test tags before permanent placement.
+There was a dead tag discovered during the experiment.  Be sure to test tags before permanent placement.

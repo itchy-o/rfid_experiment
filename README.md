@@ -10,13 +10,15 @@ where it is by mapping the ID to the tag's known physical position.
 
 -------
 
-## TODO raw notes to be refined...
+## TODO raw notes to be integrated/refined...
 
 The circuit consists of a
 [Raspberry Pi Pico MCU](https://www.raspberrypi.com/products/raspberry-pi-pico/),
 running [CircuitPython 8](https://circuitpython.org/),
 connected to three [PN532 RFID sensor boards](https://www.ebay.com/sch/i.html?_nkw=pn532)
 using SPI.  Data is reported via Pico's USB serial port.
+
+[PN532 CircuitPython API documentation](https://docs.circuitpython.org/projects/pn532/en/latest/api.html)
 
 - must set RFID switches to enable SPI interface.
 - include pix and refs to "NTAG216 – NFC Transparent Label RFID tag sticker"
