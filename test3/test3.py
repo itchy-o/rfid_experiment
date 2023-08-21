@@ -36,21 +36,6 @@ leds.fill(BLACK)
 # Configure GPIO for Serial Peripheral Interface (SPI).
 spi = busio.SPI(clock=board.GP18, MOSI=board.GP19, MISO=board.GP20)
 
-# The GPIO pins controling each sensor's SPI chip-select (CS).
-CS_GPIOS = (
-        board.GP9,
-        board.GP10,
-        board.GP11,
-        board.GP12,
-        board.GP13,
-        board.GP14,
-        board.GP15,
-)
-
-# List of handles to initialized/configured sensor instances.
-# Contents are generated during sensor_init().
-SENSORS = []
-
 def sensor_init(i, cs_gpio):
     """Initialize a PN532 RFID sensor.
     Show progress on-screen and the sensor's LED
@@ -58,13 +43,14 @@ def sensor_init(i, cs_gpio):
     # Create a SPI driver instance for the PN532 sensor.
     leds[i] = GREEN
     dio = DigitalInOut(cs_gpio)
+    # TODO: try; use kwargs
+    sensor = None
     sensor = PN532_SPI(spi, dio, debug=False)
     print("firmware_version ", i, " = ", sensor.firmware_version)
 
     # Configure the sensor
     leds[i] = BLUE
     sensor.SAM_configuration()
-    SENSORS.append(sensor)
     leds[i] = BLACK
 
 def sensor_read(i, sensor):
@@ -77,9 +63,24 @@ def sensor_read(i, sensor):
     sensor.power_down()
     #time.sleep(0.1)
 
+# The GPIO pins controling each sensor's SPI chip-select (CS).
+CS_GPIOS = (
+        board.GP9,
+        board.GP10,
+        board.GP11,
+        board.GP12,
+        board.GP13,
+        board.GP14,
+        board.GP15,
+)
+
+# List of handles to initialized/configured sensor instances.
+SENSORS = []
+
 def init_all():
+    SENSORS = list(len(CS_GPIOS), None)
     for i, cs_gpio in enumerate(CS_GPIOS):
-        sensor_init(i, cs_gpio)
+        SENSORS[i] = sensor_init(i, cs_gpio)
 
 def read_all():
     for i, sensor in enumerate(SENSORS):
