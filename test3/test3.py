@@ -17,8 +17,12 @@ from digitalio import DigitalInOut
 from adafruit_pn532.spi import PN532_SPI
 from adafruit_dotstar import DotStar
 
+# about this code:
 __repo__ = "https://github.com/itchy-o/rfid_experiment"
 __version__ = "0.3.1.0"
+# for what hardware was this code was developed:
+__cpy_dev__ = "raspberry_pi_pico"       # from board.board_id
+__cpy_ver__ = "8.2.2"                   # from os.uname().release
 
 # Configure GPIO for 8-LED strip, turn all LEDs off.
 leds  = DotStar(clock=board.GP26, data=board.GP27, n=8, brightness=0.5)
