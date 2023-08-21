@@ -19,7 +19,7 @@ from adafruit_dotstar import DotStar
 
 # about this code:
 __repo__ = "https://github.com/itchy-o/rfid_experiment"
-__version__ = "0.3.1.0"
+__version__ = "0.3.2.0"
 # for what hardware was this code was developed:
 __cpy_dev__ = "raspberry_pi_pico"       # from board.board_id
 __cpy_ver__ = "8.2.2"                   # from os.uname().release
@@ -44,24 +44,27 @@ def sensor_init(i, cs_gpio):
     leds[i] = GREEN
     dio = DigitalInOut(cs_gpio)
     # TODO: try; use kwargs
-    sensor = None
     sensor = PN532_SPI(spi, dio, debug=False)
-    print("firmware_version ", i, " = ", sensor.firmware_version)
-
-    # Configure the sensor
-    leds[i] = BLUE
-    sensor.SAM_configuration()
-    leds[i] = BLACK
+    if sensor is not None:
+        print(i, " : ", sensor, ", firmware_version ", sensor.firmware_version)
+        leds[i] = BLUE
+        sensor.SAM_configuration()
+        leds[i] = BLACK
+    else:
+        leds[i] = RED
+    return sensor
 
 def sensor_read(i, sensor):
-    """Set the sensor's LED to indicate if the sensor detected a
-    tag or not.
+    """Set the sensor's LED to indicate if the sensor detected a tag or not.
     """
+    if sensor is None:
+        return None
     leds[i] = WHITE
-    uid = sensor.read_passive_target(timeout=0.3)
-    leds[i] = BLUE if uid is None else RED
+    tag_uid = sensor.read_passive_target(timeout=0.2)
+    leds[i] = GREEN if tag_uid is not None else BLUE
     sensor.power_down()
     #time.sleep(0.1)
+    return tag_uid
 
 # The GPIO pins controling each sensor's SPI chip-select (CS).
 CS_GPIOS = (
@@ -74,11 +77,11 @@ CS_GPIOS = (
         board.GP15,
 )
 
-# List of handles to initialized/configured sensor instances.
+# List of handles to initialized sensor instances (or None).
 SENSORS = []
 
 def init_all():
-    SENSORS = list(len(CS_GPIOS), None)
+    global SENSORS = list(len(CS_GPIOS), None)
     for i, cs_gpio in enumerate(CS_GPIOS):
         SENSORS[i] = sensor_init(i, cs_gpio)
 
