@@ -17,10 +17,10 @@ from digitalio import DigitalInOut
 from adafruit_pn532.spi import PN532_SPI
 from adafruit_dotstar import DotStar
 
-# about this code:
+# About this code:
 __repo__ = "https://github.com/itchy-o/rfid_experiment"
 __version__ = "0.3.2.0"
-# for what hardware was this code was developed:
+# For what hardware was this code was developed:
 __cpy_dev__ = "raspberry_pi_pico"       # from board.board_id
 __cpy_ver__ = "8.2.2"                   # from os.uname().release
 
@@ -40,17 +40,16 @@ def sensor_init(i, cs_gpio):
     """Initialize a PN532 RFID sensor.
     Show progress on-screen and the sensor's LED
     """
-    # Create a SPI driver instance for the PN532 sensor.
     leds[i] = GREEN
     dio = DigitalInOut(cs_gpio)
-    # TODO: try; use kwargs
-    sensor = PN532_SPI(spi, dio, debug=False)
-    if sensor is not None:
+    try:
+        sensor = PN532_SPI(spi=spi, cs_pin=dio, irq=None, reset=None, debug=False)
         print(i, " : ", sensor, ", firmware_version ", sensor.firmware_version)
         leds[i] = BLUE
         sensor.SAM_configuration()
         leds[i] = BLACK
-    else:
+    except:
+        sensor = None
         leds[i] = RED
     return sensor
 
@@ -78,10 +77,9 @@ CS_GPIOS = (
 )
 
 # List of handles to initialized sensor instances (or None).
-SENSORS = []
+SENSORS = [None] * len(CS_GPIOS)
 
 def init_all():
-    global SENSORS = list(len(CS_GPIOS), None)
     for i, cs_gpio in enumerate(CS_GPIOS):
         SENSORS[i] = sensor_init(i, cs_gpio)
 
@@ -90,6 +88,7 @@ def read_all():
         sensor_read(i, sensor)
 
 def main():
+    leds.fill(BLACK)
     init_all()
     while True:
         read_all()
