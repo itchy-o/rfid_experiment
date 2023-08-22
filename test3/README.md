@@ -1,6 +1,6 @@
 # itchy-o/rfid_experiment/test3
 
-test3 supports exploration of RFID sensor placement.
+test3 focuses on exploring RFID sensor placement.
 
 The sensor deck consists of seven PN532 sensors arranged on at 13-inch hexagon of particleboard.
 One sensor is in the center, the other six are in radial slots of the hexagon, allowing positional adjustment.
@@ -10,10 +10,9 @@ There is also a strip of 8 APA102 RGB LEDs for visual status of tag detection,
 to support operation without connecting the serial port to a PC.
 
 There are three ribbon cables:
-- per-sensor "bus" cables.
-- a "select" cable, with all the sensors' select lines.
+- the seven per-sensor "bus" cables.
+- a single "select" cable, with all the sensors' select lines.
 - the "led" control cable.
-
 
 ## Summary of design
 The hardware consists of a
@@ -27,15 +26,6 @@ connected to
 using
 [SPI](https://en.wikipedia.org/wiki/Serial_Peripheral_Interface).
 
-
-
-Description
-
-test3 will build a larger “sensor deck” that adds more PN532 sensors (beyond the three used on test2), and will allow adjustable placement of those sensors (velcro?)
-
-Make another panel of RFID tags with a larger spacing than the 4” spacing from test2.
-
-Add status LEDs so the sensor deck can be operated without communication with a PC, to allow easier exploration of sensor/tag layouts. It will still need USB power.
 
 ## test3 Wiring
 
