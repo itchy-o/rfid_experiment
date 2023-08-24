@@ -19,12 +19,14 @@ connected to
 using
 [SPI](https://en.wikipedia.org/wiki/Serial_Peripheral_Interface).
 
+The tags and sensors follow the ISO 14443-A standard.
+
 ## About the RFID tags
 The preferred RFID tags are of the
 [NTAG21x](https://www.nxp.com/products/rfid-nfc/nfc-hf/ntag-for-tags-and-labels/ntag-213-215-216-nfc-forum-type-2-tag-compliant-ic-with-144-504-888-bytes-user-memory:NTAG213_215_216)
 series.
-We only depend upon a tag's unique identifier.
-We do not use the tag's memory, so the smallest (and cheapest) NTAG213 tags are sufficient.
+We only require a tag's unique identifier, which is used to look up its physical location in a table.
+We do not require any of the tag's memory, so the smallest (and cheapest) NTAG213 tags are sufficient.
 
 ## Summary of tests
 - test1 - Proof of concept for a PN532 sensor reading tags through a block of wood.
@@ -33,7 +35,7 @@ We do not use the tag's memory, so the smallest (and cheapest) NTAG213 tags are 
 
 ## Summary of branches
 - `main` - The current runtime version.  Intended to be installed verbatim on the CircuitPython device.
-- `photos` - Detailed photographs (and other large files) supporting the tests.  _Not_ intended to be installed on the devices.
+- `photos` - Detailed photographs (and other large files e.g. PDFs) supporting the tests.  _Not_ intended to be installed on the devices.
 
 ## Misc
 - [PN532 CircuitPython API documentation](https://docs.circuitpython.org/projects/pn532/en/latest/api.html)
