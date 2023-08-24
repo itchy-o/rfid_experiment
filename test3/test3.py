@@ -8,7 +8,8 @@
 # Read NTAG21x RFID tags using up to seven PN532 sensor modules.
 # Indicate which sensors are detecting tags using an LED strip.
 # Part of the Sono Chapel position-sensing experiments.
-# Demonstrated at iOHQ 2023-08-13
+
+# TODO convert to class
 
 import board
 import busio
@@ -21,10 +22,11 @@ from adafruit_dotstar import DotStar
 __repo__ = "https://github.com/itchy-o/rfid_experiment"
 __version__ = "0.3.2.0"
 # For what hardware was this code was developed:
-__cpy_dev__ = "raspberry_pi_pico"       # from board.board_id
-__cpy_ver__ = "8.2.2"                   # from os.uname().release
+# TODO be compatible with MicroPython...
+__cpy_dev__ = "raspberry_pi_pico"       # board.board_id
+__cpy_ver__ = "8.2.2"                   # os.uname().release
 
-# Configure GPIO for 8-LED strip, turn all LEDs off.
+# Configure SPI1 GPIO for 8-LED APA102 strip.  Turn all LEDs off.
 leds  = DotStar(clock=board.GP26, data=board.GP27, n=8, brightness=0.5)
 WHITE = 0xffffff
 RED   = 0xff0000
@@ -33,24 +35,23 @@ BLUE  = 0x0000ff
 BLACK = 0
 leds.fill(BLACK)
 
-# Configure GPIO for Serial Peripheral Interface (SPI).
+# Configure SPI0 GPIO for Serial Peripheral Interface (SPI).
 spi = busio.SPI(clock=board.GP18, MOSI=board.GP19, MISO=board.GP20)
 
 def sensor_init(i, cs_gpio):
     """Initialize a PN532 RFID sensor.
-    Show progress on-screen and the sensor's LED
     """
     leds[i] = GREEN
     dio = DigitalInOut(cs_gpio)
     try:
         sensor = PN532_SPI(spi=spi, cs_pin=dio, irq=None, reset=None, debug=False)
-        print(i, " : ", sensor, ", firmware_version ", sensor.firmware_version)
-        leds[i] = BLUE
-        sensor.SAM_configuration()
-        leds[i] = BLACK
     except:
-        sensor = None
         leds[i] = RED
+        return None
+    print(i, " : ", sensor, ", firmware_version ", sensor.firmware_version)
+    leds[i] = BLUE
+    sensor.SAM_configuration()
+    leds[i] = BLACK
     return sensor
 
 def sensor_read(i, sensor):
