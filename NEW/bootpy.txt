@@ -1,0 +1,160 @@
+Hard Reset Required After Changing boot.py
+hard-reset: power cycle or microprocessor.reset()
+soft-reset: ctrl-D or supervisor.reload()
+
+
+---------------------------------------------------------------
+supervisor.set_usb_identification()
+
+---------------------------------------------------------------
+CIRCUITPY Mass Storage Device
+
+The CIRCUITPY drive is normally visible on the host computer.
+To disable it showing up as a USB device, use code like this in boot.py:
+
+import storage
+storage.disable_usb_drive()  # prevent host enumeration
+storage.enable_usb_drive()   # restore host enumeration
+
+Note that disabling the USB device enumeration does not make the drive not work.
+It's still available for use by your program, and is still read-only for CPy.
+
+# writable by CPy
+storage.remount("/", readonly=False)
+
+---------------------------------------------------------------------
+import usb_midi
+usb_midi.disable()
+---------------------------------------------------------------------
+
+import usb_hid, usb_midi
+usb_hid.disable()
+usb_midi.enable()
+---------------------------------------------------------------------
+import usb_cdc
+
+usb_cdc.disable()   # Disable both serial devices.
+usb_cdc.enable(console=True, data=False)   # Enable just console
+usb_cdc.enable(console=True, data=True)    # Enable both console and data
+usb_cdc.enable(console=False, data=False)  # Same as usb_cdc.disable()
+---------------------------------------------------------------------
+import storage, usb_cdc
+
+# DON'T DO THIS!
+storage.disable_usb_drive()
+usb_cdc.disable()
+---------------------------------------------------------------------
+# This example is for the MacroPad,
+# or any board with buttons that are connected to ground when pressed.
+
+import storage
+import board, digitalio
+
+# On the Macropad, pressing a key grounds it. You need to set a pull-up.
+# If not pressed, the key will be at +V (due to the pull-up).
+button = digitalio.DigitalInOut(board.KEY12)
+button.pull = digitalio.Pull.UP
+
+# Disable devices only if button is not pressed.
+if button.value:
+   storage.disable_usb_drive()
+---------------------------------------------------------------------
+---------------------------------------------------------------------
+import usb_hid
+
+# These are the default devices, so you don't need to write
+# this explicitly if the default is what you want.
+usb_hid.enable(
+    (usb_hid.Device.KEYBOARD,
+     usb_hid.Device.MOUSE,
+     USB_hid.Device.CONSUMER_CONTROL)
+)
+
+usb_hid.enable((usb_hid.Device.KEYBOARD,))   # Enable just KEYBOARD.
+
+usb_hid.disable()       # Disable all HID devices.
+
+usb_hid.enable(())      # Another way to disable all the devices.
+---------------------------------------------------------------------
+sudo apt purge modemmanager
+sudo adduser $USER dialout
+---------------------------------------------------------------------
+Renaming CIRCUITPY (name must be <= 11 characters)
+
+#Renaming CIRCUITPY on Linux
+df | grep CIRCUITPY
+sudo umount /dev/foo
+sudo fatlabel /dev/foo NEW_NAME
+
+# Renaming CIRCUITPY through CircuitPython
+import storage
+storage.remount("/", readonly=False)
+m = storage.getmount("/")
+m.label = "NEW_NAME"
+storage.remount("/", readonly=True)
+storage.enable_usb_drive()
+
+---------------------------------------------------------------------
+https://learn.adafruit.com/welcome-to-circuitpython/advanced-serial-console-on-mac-and-linux
+https://learn.adafruit.com/welcome-to-circuitpython/advanced-serial-console-on-linux
+
+---------------------------------------------------------------------
+https://docs.circuitpython.org/en/latest/shared-bindings/usb_cdc/index.html
+---------------------------------------------------------------------
+https://learn.adafruit.com/circuitpython-essentials/circuitpython-storage
+
+
+https://learn.adafruit.com/circuitpython-essentials/circuitpython-storage
+https://learn.adafruit.com/scrolling-countdown-timer/create-your-settings-toml-file
+https://docs.circuitpython.org/en/latest/docs/environment.html
+https://github.com/bill88t/cptoml
+https://snarky.ca/use-toml-for-env-files/
+
+---------------------------------------------------------------------
+settings.toml
+
+# Comments are supported
+WIFI_SSID = "guest wifi"
+WIFI_PASSWORD = "guessable"
+WEB_API_PORT = 80
+WEB_API_PASSWORD = "passw0rd"
+test_variable = "this is a test"
+thumbs_up = "\U0001f44d"
+
+import os
+print(os.getenv("test_variable"))
+
+---------------------------------------------------------------------
+
+CircuitPython behavior
+CircuitPython will also read the environment to configure its behavior.
+Other keys are ignored by CircuitPython.
+Here are the keys it uses:
+
+CIRCUITPY_BLE_NAME
+Default BLE name the board advertises as, including for the BLE workflow.
+
+CIRCUITPY_PYSTACK_SIZE
+Sets the size of the python stack. Must be a multiple of 4. The default value is currently 1536. Increasing the stack reduces the size of the heap available to python code.
+Used to avoid "Pystack exhausted" errors when the code can’t be reworked to avoid it.
+
+CIRCUITPY_RESERVED_PSRAM
+On boards with Espressif microcontrollers with PSRAM (also called SPIRAM), permanently reserve a portion of PSRAM for use by esp-idf.
+This storage is removed from the CircuitPython heap and is available for allocation by esp-idf routines in the core instead.
+Generally, only set this to a non-zero value when it is required by a specific core module.
+
+CIRCUITPY_WEB_API_PASSWORD
+Password required to make modifications to the board from the Web Workflow.
+
+CIRCUITPY_WEB_API_PORT
+TCP port number used for the web HTTP API. Defaults to 80 when omitted.
+
+CIRCUITPY_WEB_INSTANCE_NAME
+Name the board advertises as for the WEB workflow. Defaults to human readable board name if omitted.
+
+CIRCUITPY_WIFI_PASSWORD
+Wi-Fi password used to auto connect to CIRCUITPY_WIFI_SSID.
+
+CIRCUITPY_WIFI_SSID
+Wi-Fi SSID to auto-connect to even if user code is not running.
+
