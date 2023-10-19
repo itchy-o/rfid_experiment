@@ -8,8 +8,7 @@
 # Read NTAG21x RFID tags using up to seven PN532 sensor modules.
 # Indicate which sensors are detecting tags using an LED strip.
 # Part of the Sono Chapel position-sensing experiments.
-
-# TODO convert to class
+# 2023-10-18
 
 import board
 import busio
@@ -17,12 +16,11 @@ import time
 from digitalio import DigitalInOut
 from adafruit_pn532.spi import PN532_SPI
 from adafruit_dotstar import DotStar
+from micropython import const
 
 # About this code:
 __version__ = "0.3.5.0"
 __repo__ = "https://github.com/itchy-o/rfid_experiment.git"
-# For what hardware was this code was developed:
-# TODO be compatible with MicroPython...
 __board_id__ = "raspberry_pi_pico"      # board.board_id
 __impl_name__ = "circuitpython"         # sys.implementation.name
 __impl_version__ = (8, 2, 6)            # sys.implementation.version
