@@ -1,0 +1,723 @@
+=~=~=~=~=~=~=~=~=~=~=~= PuTTY log 2023.10.20 15:25:40 =~=~=~=~=~=~=~=~=~=~=~=
+]0;🐍Wi-Fi: off | REPL | 8.2.6\
+]0;🐍Wi-Fi: off | Done | 8.2.6\soft reboot
+
+Auto-reload is on. Simply save files over USB to run them or enter REPL to disable.
+code.py output:
+]0;🐍Wi-Fi: off | code.py | 8.2.6\PN532 firmware: 1.6 ic: 50 support: 7
+
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+53475a44510001
+enter X,Y: 1,1
+data[ '53475a44510001' ] =  (1, 1)
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+Traceback (most recent call last):
+  File "code.py", line 2, in <module>
+  File "assign_xy.py", line 23, in main
+  File "tidreader.py", line 26, in read
+  File "adafruit_pn532/adafruit_pn532.py", line 386, in read_passive_target
+  File "adafruit_pn532/adafruit_pn532.py", line 418, in get_passive_target
+  File "adafruit_pn532/adafruit_pn532.py", line 329, in process_response
+  File "adafruit_pn532/spi.py", line 128, in _wait_ready
+KeyboardInterrupt: 
+]0;🐍Wi-Fi: off | 128@adafruit_pn532/spi.py KeyboardInterrupt | 8.2.6\
+Code done running.
+
+Press any key to enter the REPL. Use CTRL-D to reload.
+]0;🐍Wi-Fi: off | REPL | 8.2.6\
+Adafruit CircuitPython 8.2.6 on 2023-09-12; Raspberry Pi Pico W with rp2040
+>>> 
+]0;🐍Wi-Fi: off | Done | 8.2.6\soft reboot
+
+Auto-reload is on. Simply save files over USB to run them or enter REPL to disable.
+code.py output:
+]0;🐍Wi-Fi: off | code.py | 8.2.6\PN532 firmware: 1.6 ic: 50 support: 7
+
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+53475a44510001
+enter X,Y: 
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+53475a44510001
+enter X,Y: 1,1
+data[ '53475a44510001' ] =  (1, 1)
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+534a6343510001
+enter X,Y: 1,3
+data[ '534a6343510001' ] =  (1, 3)
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+53ba6343510001
+enter X,Y: 2,2
+data[ '53ba6343510001' ] =  (2, 2)
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+53b96343510001
+enter X,Y: 2,4
+data[ '53b96343510001' ] =  (2, 4)
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+539c6343510001
+enter X,Y: 3,1
+data[ '539c6343510001' ] =  (3, 1)
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+539b6343510001
+enter X,Y: 3,3
+data[ '539b6343510001' ] =  (3, 3)
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+53b46343510001
+enter X,Y: 4,2
+data[ '53b46343510001' ] =  (4, 2)
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+53b36343510001
+enter X,Y: 4,4
+data[ '53b36343510001' ] =  (4, 4)
+None
+None
+None
+None
+None
+534b6343510001
+enter X,Y: 5,1
+data[ '534b6343510001' ] =  (5, 1)
+None
+None
+None
+None
+None
+None
+None
+None
+534c6343510001
+enter X,Y: 5,3
+data[ '534c6343510001' ] =  (5, 3)
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+Traceback (most recent call last):
+  File "code.py", line 2, in <module>
+  File "assign_xy.py", line 23, in main
+  File "tidreader.py", line 26, in read
+  File "adafruit_pn532/adafruit_pn532.py", line 386, in read_passive_target
+  File "adafruit_pn532/adafruit_pn532.py", line 418, in get_passive_target
+  File "adafruit_pn532/adafruit_pn532.py", line 329, in process_response
+  File "adafruit_pn532/spi.py", line 123, in _wait_ready
+KeyboardInterrupt: 
+]0;🐍Wi-Fi: off | 123@adafruit_pn532/spi.py KeyboardInterrupt | 8.2.6\
+Code done running.
+
+Press any key to enter the REPL. Use CTRL-D to reload.
+]0;🐍Wi-Fi: off | REPL | 8.2.6\
+Adafruit CircuitPython 8.2.6 on 2023-09-12; Raspberry Pi Pico W with rp2040
+>>> continue
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+SyntaxError: 'continue' outside loop
+>>> 
+]0;🐍Wi-Fi: off | Done | 8.2.6\soft reboot
+
+Auto-reload is on. Simply save files over USB to run them or enter REPL to disable.
+code.py output:
+]0;🐍Wi-Fi: off | code.py | 8.2.6\PN532 firmware: 1.6 ic: 50 support: 7
+
+539a6343510001
+enter X,Y: 
+539a6343510001
+enter X,Y: 
+539a6343510001
+enter X,Y: "BOOK"
+data[ '539a6343510001' ] =  BOOK
+042dc25a1a1390
+enter X,Y: 7,1
+data[ '042dc25a1a1390' ] =  (7, 1)
+042dc15a1a1390
+enter X,Y: 7,3
+data[ '042dc15a1a1390' ] =  (7, 3)
+042dc05a1a1390
+enter X,Y: 6,2
+data[ '042dc05a1a1390' ] =  (6, 2)
+042dbf5a1a1390
+enter X,Y: 6,4
+data[ '042dbf5a1a1390' ] =  (6, 4)
+042dbe5a1a1390
+enter X,Y: 7,5
+data[ '042dbe5a1a1390' ] =  (7, 5)
+53596343510001
+enter X,Y: 5,5
+data[ '53596343510001' ] =  (5, 5)
+53546343510001
+enter X,Y: 3,5
+data[ '53546343510001' ] =  (3, 5)
+53536343510001
+enter X,Y: 1,5
+data[ '53536343510001' ] =  (1, 5)
+53526343510001
+enter X,Y: 2,6
+data[ '53526343510001' ] =  (2, 6)
+53485a44510001
+enter X,Y: 4,6
+data[ '53485a44510001' ] =  (4, 6)
+538b6343510001
+enter X,Y: 6,6
+data[ '538b6343510001' ] =  (6, 6)
+538b6343510001
+enter X,Y: 6,6
+data[ '538b6343510001' ] =  (6, 6)
+538c6343510001
+enter X,Y: 7,7
+data[ '538c6343510001' ] =  (7, 7)
+53916343510001
+enter X,Y: 5,7
+data[ '53916343510001' ] =  (5, 7)
+53926343510001
+enter X,Y: 3,7
+data[ '53926343510001' ] =  (3, 7)
+53936343510001
+enter X,Y: 1,7
+data[ '53936343510001' ] =  (1, 7)
+536c6343510001
+enter X,Y: 6,8
+data[ '536c6343510001' ] =  (6, 8)
+53716343510001
+enter X,Y: 4,8
+data[ '53716343510001' ] =  (4, 8)
+53726343510001
+enter X,Y: 2,8
+data[ '53726343510001' ] =  (2, 8)
+53736343510001
+enter X,Y: 1,9
+data[ '53736343510001' ] =  (1, 9)
+53746343510001
+enter X,Y: 3,9
+data[ '53746343510001' ] =  (3, 9)
+53816343510001
+enter X,Y: 5,9
+data[ '53816343510001' ] =  (5, 9)
+537c6343510001
+enter X,Y: 7,9
+data[ '537c6343510001' ] =  (7, 9)
+537b6343510001
+enter X,Y: 6,10
+data[ '537b6343510001' ] =  (6, 10)
+537a6343510001
+enter X,Y: 4,10
+data[ '537a6343510001' ] =  (4, 10)
+53796343510001
+enter X,Y: 2,10
+data[ '53796343510001' ] =  (2, 10)
+53826343510001
+enter X,Y: 1,11
+data[ '53826343510001' ] =  (1, 11)
+53836343510001
+enter X,Y: 3,11
+data[ '53836343510001' ] =  (3, 11)
+53846343510001
+enter X,Y: 5,11
+data[ '53846343510001' ] =  (5, 11)
+53896343510001
+enter X,Y: 7,11
+data[ '53896343510001' ] =  (7, 11)
+538a6343510001
+enter X,Y: 6,12
+data[ '538a6343510001' ] =  (6, 12)
+53246343510001
+enter X,Y: 4,12
+data[ '53246343510001' ] =  (4, 12)
+53236343510001
+enter X,Y: 2,12
+data[ '53236343510001' ] =  (2, 12)
+53226343510001
+enter X,Y: 1,13
+data[ '53226343510001' ] =  (1, 13)
+53216343510001
+enter X,Y: 3,13
+data[ '53216343510001' ] =  (3, 13)
+531c6343510001
+enter X,Y: 5,13
+data[ '531c6343510001' ] =  (5, 13)
+53126343510001
+enter X,Y: 2,14
+data[ '53126343510001' ] =  (2, 14)
+53116343510001
+enter X,Y: 4,14
+data[ '53116343510001' ] =  (4, 14)
+530c6343510001
+enter X,Y: 6,14
+data[ '530c6343510001' ] =  (6, 14)
+530b6343510001
+enter X,Y: 5,15
+data[ '530b6343510001' ] =  (5, 15)
+530a6343510001
+enter X,Y: 3,15
+data[ '530a6343510001' ] =  (3, 15)
+531b6343510001
+enter X,Y: 1,15
+data[ '531b6343510001' ] =  (1, 15)
+531a6343510001
+enter X,Y: 1,17
+data[ '531a6343510001' ] =  (1, 17)
+53196343510001
+enter X,Y: 1,19
+data[ '53196343510001' ] =  (1, 19)
+53146343510001
+enter X,Y: 1,21
+data[ '53146343510001' ] =  (1, 21)
+53136343510001
+enter X,Y: 1,23
+data[ '53136343510001' ] =  (1, 23)
+042dc75a1a1390
+enter X,Y: 2,16
+data[ '042dc75a1a1390' ] =  (2, 16)
+042dc65a1a1390
+enter X,Y: 2,18
+data[ '042dc65a1a1390' ] =  (2, 18)
+042dc55a1a1390
+enter X,Y: 2,20
+data[ '042dc55a1a1390' ] =  (2, 20)
+042dc45a1a1390
+enter X,Y: 2,22
+data[ '042dc45a1a1390' ] =  (2, 22)
+042dae5a1a1390
+enter X,Y: 3,17
+data[ '042dae5a1a1390' ] =  (3, 17)
+042daf5a1a1390
+ ---- UNKNOWN
+042daf5a1a1390
+ ---- UNKNOWN
+042daf5a1a1390
+ ---- UNKNOWN
+042daf5a1a1390
+ ---- UNKNOWN
+042daf5a1a1390
+ ---- UNKNOWN
+042daf5a1a1390
+ ---- UNKNOWN
+042daf5a1a1390
+ ---- UNKNOWN
+042daf5a1a1390
+ ---- UNKNOWN
+042daf5a1a1390
+ ---- UNKNOWN
+042daf5a1a1390
+ ---- UNKNOWN
+042daf5a1a1390
+ ---- UNKNOWN
+042db25a1a1390
+enter X,Y: 3,19
+data[ '042db25a1a1390' ] =  (3, 19)
+042db15a1a1390
+enter X,Y: 3,21
+data[ '042db15a1a1390' ] =  (3, 21)
+042db05a1a1390
+enter X,Y: 3,23
+data[ '042db05a1a1390' ] =  (3, 23)
+042daf5a1a1390
+ ---- UNKNOWN
+042daf5a1a1390
+ ---- UNKNOWN
+042daf5a1a1390
+ ---- UNKNOWN
+042daf5a1a1390
+ ---- UNKNOWN
+042daf5a1a1390
+ ---- UNKNOWN
+042daf5a1a1390
+ ---- UNKNOWN
+042daf5a1a1390
+ ---- UNKNOWN
+042daf5a1a1390
+ ---- UNKNOWN
+042daf5a1a1390
+ ---- UNKNOWN
+042daf5a1a1390
+ ---- UNKNOWN
+042daf5a1a1390
+ ---- UNKNOWN
+042daf5a1a1390
+ ---- UNKNOWN
+042daf5a1a1390
+ ---- UNKNOWN
+042daf5a1a1390
+ ---- UNKNOWN
+042dbd5a1a1390
+enter X,Y: 4,22
+data[ '042dbd5a1a1390' ] =  (4, 22)
+042dbb5a1a1390
+enter X,Y: 4,20
+data[ '042dbb5a1a1390' ] =  (4, 20)
+042dba5a1a1390
+enter X,Y: 4,18
+data[ '042dba5a1a1390' ] =  (4, 18)
+042db95a1a1390
+enter X,Y: 4,16
+data[ '042db95a1a1390' ] =  (4, 16)
+042db85a1a1390
+enter X,Y: 5,17
+data[ '042db85a1a1390' ] =  (5, 17)
+042da25a1a1390
+enter X,Y: 5,19
+data[ '042da25a1a1390' ] =  (5, 19)
+042da15a1a1390
+enter X,Y: 5,21
+data[ '042da15a1a1390' ] =  (5, 21)
+042da05a1a1390
+enter X,Y: 5,23
+data[ '042da05a1a1390' ] =  (5, 23)
+042d9f5a1a1390
+enter X,Y: 6,16
+data[ '042d9f5a1a1390' ] =  (6, 16)
+042d9e5a1a1390
+enter X,Y: 6,18
+data[ '042d9e5a1a1390' ] =  (6, 18)
+042db35a1a1390
+enter X,Y: 6,20
+data[ '042db35a1a1390' ] =  (6, 20)
+042db45a1a1390
+enter X,Y: 6,22
+data[ '042db45a1a1390' ] =  (6, 22)
+042db55a1a1390
+enter X,Y: 7,13
+data[ '042db55a1a1390' ] =  (7, 13)
+042db65a1a1390
+enter X,Y: 7,15
+data[ '042db65a1a1390' ] =  (7, 15)
+042db75a1a1390
+enter X,Y: 7,17
+data[ '042db75a1a1390' ] =  (7, 17)
+Traceback (most recent call last):
+  File "code.py", line 2, in <module>
+  File "assign_xy.py", line 23, in main
+  File "tidreader.py", line 26, in read
+  File "adafruit_pn532/adafruit_pn532.py", line 386, in read_passive_target
+  File "adafruit_pn532/adafruit_pn532.py", line 418, in get_passive_target
+  File "adafruit_pn532/adafruit_pn532.py", line 329, in process_response
+  File "adafruit_pn532/spi.py", line 128, in _wait_ready
+KeyboardInterrupt: 
+]0;🐍Wi-Fi: off | 128@adafruit_pn532/spi.py KeyboardInterrupt | 8.2.6\
+Code done running.
+
+Press any key to enter the REPL. Use CTRL-D to reload.
+]0;🐍Wi-Fi: off | REPL | 8.2.6\
+Adafruit CircuitPython 8.2.6 on 2023-09-12; Raspberry Pi Pico W with rp2040
+>>> 
+>>> 
+>>> 
+>>> 
+>>> 
