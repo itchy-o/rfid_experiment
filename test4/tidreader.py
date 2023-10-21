@@ -12,7 +12,7 @@ from adafruit_pn532.spi import PN532_SPI
 
 class TidReader:
 
-    def __init__(self,chip_select):
+    def __init__(self, chip_select=board.GP17):
         self.chip_select = chip_select
         self.cs = DigitalInOut(self.chip_select)
         self.spi = busio.SPI(clock=board.GP18, MOSI=board.GP19, MISO=board.GP16)
@@ -35,7 +35,7 @@ def test():
     """
     Simple exerciser for TidReader
     """
-    reader = TidReader(board.GP17)
+    reader = TidReader()
     while True:
         print(reader.read())
 
