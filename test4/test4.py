@@ -11,7 +11,7 @@
 # 2023-10-20
 
 # About this code:
-__version__ = "0.3.5.1"
+__version__ = "0.3.5.2"
 __repo__ = "https://github.com/itchy-o/rfid_experiment.git"
 __board_id__ = "raspberry_pi_pico"      # board.board_id
 __impl_name__ = "circuitpython"         # sys.implementation.name
@@ -69,35 +69,61 @@ class Sensor:
     def read(self):
         if self.pn532 is None:
             leds[self.i] = RED
-            return
+            return self.coord
 
         leds[self.i] = WHITE
         id = self.pn532.read_passive_target(timeout=0.1)
         if id is None:
             leds[self.i] = BLACK
-            return
+            return self.coord
 
         self.tid = "".join("{:02x}".format(i) for i in id)
         #print(self.tid)
         if self.tid not in tag_coords.data:
             leds[self.i] = CYAN
             self.coord = None
-            return
+            return self.coord
 
         leds[self.i] = GREEN
         self.coord = tag_coords.data[self.tid]
         #self.pn532.power_down()
         #time.sleep(0.1)
+        return self.coord
+
 
 class SensorDeck:
     """
     """
     def __init__(self, cs_gpios):
-        self.sensors = [None] * len(cs_gpios)
+        self.num_sensors = len(cs_gpios)
+        self.sensors = [None] * self.num_sensors
+        for i, cs_gpio in enumerate(cs_gpios):
+            self.sensors[i] = Sensor(i, cs_gpio)
+
+    def read(self):
+        for s in self.sensors:
+            s.read()
+
+    def coord(self):
+        x = 0.0
+        y = 0.0
+        n = 0.0
+        for s in self.sensors:
+            c = s.coord
+            if c is not None:
+                x += c[0]
+                y += c[1]
+                n += 1
+                #print(x,y,n)
+        return n, x/n, y/n
+
 
 # The GPIO pins controling each sensor's SPI chip-select (CS).
 CS_GPIOS = (board.GP9,  board.GP10, board.GP11, board.GP12, board.GP13,
             board.GP14, board.GP15)
+
+
+
 
 # List of handles to initialized sensor instances (or None).
 SENSORS = [None] * len(CS_GPIOS)
@@ -110,10 +136,16 @@ def read_all():
     for i, sensor in enumerate(SENSORS):
         SENSORS[i].read()
 
-def main():
+def main2():
     init_all()
     while True:
         read_all()
+
+def main():
+    sd = SensorDeck(CS_GPIOS)
+    while True:
+        sd.read()
+        print(sd.coord())
 
 @atexit.register
 def shutdown():
