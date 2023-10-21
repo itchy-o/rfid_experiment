@@ -8,10 +8,10 @@
 # Read NTAG21x RFID tags using up to seven PN532 sensor modules.
 # Indicate which sensors are detecting tags using an LED strip.
 # Part of the Sono Chapel position-sensing experiments.
-# 2023-10-20
+# 2023-10-21
 
 # About this code:
-__version__ = "0.3.5.2"
+__version__ = "0.4.0.0"
 __repo__ = "https://github.com/itchy-o/rfid_experiment.git"
 __board_id__ = "raspberry_pi_pico"      # board.board_id
 __impl_name__ = "circuitpython"         # sys.implementation.name
@@ -30,7 +30,7 @@ from micropython import const
 #from tidreader import TidReader
 
 # Configure GPIOs for 8-LED APA102 strip.  Turn all LEDs off.
-WHITE   = const(0x111111)
+WHITE   = const(0x040404)
 RED     = const(0x110000)
 GREEN   = const(0x001100)
 BLUE    = const(0x000022)
@@ -43,12 +43,14 @@ leds.fill(BLACK)
 # Configure GPIOs for Serial Peripheral Interface (SPI).
 spi = busio.SPI(clock=board.GP18, MOSI=board.GP19, MISO=board.GP20)
 
+#############################################################################
+
 class Sensor:
     """
     """
     def __init__(self, i, chip_select):
         self.i = i
-        leds[self.i] = MAGENTA
+        leds[self.i] = CYAN
         self.chip_select = chip_select
         self.cs_pin = DigitalInOut(self.chip_select)
         self.pn532 = None
@@ -59,6 +61,8 @@ class Sensor:
             self.pn532 = PN532_SPI(spi=spi, cs_pin=self.cs_pin,
                                 irq=None, reset=None, debug=False)
         except:
+            # sensor not responding, flag it as disabled
+            self.pn532 = None
             leds[self.i] = RED
             return
 
@@ -67,29 +71,34 @@ class Sensor:
         leds[self.i] = BLACK
 
     def read(self):
+        "Read the sensor; if it detects a valid tag, update its coordinate."
         if self.pn532 is None:
+            # Skip this disabled sensor
             leds[self.i] = RED
-            return self.coord
+            return False
 
         leds[self.i] = WHITE
         id = self.pn532.read_passive_target(timeout=0.1)
         if id is None:
+            # No tag was detected
             leds[self.i] = BLACK
-            return self.coord
+            return False
 
         self.tid = "".join("{:02x}".format(i) for i in id)
-        #print(self.tid)
         if self.tid not in tag_coords.data:
-            leds[self.i] = CYAN
+            # This tag id is not in the coordinate table?!  What??
+            leds[self.i] = MAGENTA
             self.coord = None
-            return self.coord
+            return False
 
+        # This tag is valid.
         leds[self.i] = GREEN
         self.coord = tag_coords.data[self.tid]
         #self.pn532.power_down()
         #time.sleep(0.1)
-        return self.coord
+        return True
 
+#############################################################################
 
 class SensorDeck:
     """
@@ -101,51 +110,38 @@ class SensorDeck:
             self.sensors[i] = Sensor(i, cs_gpio)
 
     def read(self):
+        "Read all sensors, return the number of actual tags detected."
+        n = 0
         for s in self.sensors:
-            s.read()
+            if s.read():
+                n += 1
+        return n
 
     def coord(self):
+        "Return the average of the sensors that have a valid coordinate."
         x = 0.0
         y = 0.0
         n = 0.0
         for s in self.sensors:
             c = s.coord
             if c is not None:
-                x += c[0]
-                y += c[1]
-                n += 1
-                #print(x,y,n)
-        return n, x/n, y/n
+                x += float(c[0])
+                y += float(c[1])
+                n += 1.0
+        return x/n, y/n
 
+#############################################################################
 
 # The GPIO pins controling each sensor's SPI chip-select (CS).
 CS_GPIOS = (board.GP9,  board.GP10, board.GP11, board.GP12, board.GP13,
             board.GP14, board.GP15)
 
-
-
-
-# List of handles to initialized sensor instances (or None).
-SENSORS = [None] * len(CS_GPIOS)
-
-def init_all():
-    for i, cs_gpio in enumerate(CS_GPIOS):
-        SENSORS[i] = Sensor(i, cs_gpio)
-
-def read_all():
-    for i, sensor in enumerate(SENSORS):
-        SENSORS[i].read()
-
-def main2():
-    init_all()
-    while True:
-        read_all()
-
 def main():
     sd = SensorDeck(CS_GPIOS)
     while True:
-        sd.read()
-        print(sd.coord())
+        count = sd.read()
+        coord = sd.coord()
+        print(coord, count)
 
 @atexit.register
 def shutdown():
