@@ -721,3 +721,357 @@ Adafruit CircuitPython 8.2.6 on 2023-09-12; Raspberry Pi Pico W with rp2040
 >>> 
 >>> 
 >>> 
+
+
+
+
+=~=~=~=~=~=~=~=~=~=~=~= PuTTY log 2023.10.20 17:18:20 =~=~=~=~=~=~=~=~=~=~=~=
+]0;🐍Wi-Fi: off | Done | 8.2.6\]0;🐍Wi-Fi: off | REPL | 8.2.6\
+Adafruit CircuitPython 8.2.6 on 2023-09-12; Raspberry Pi Pico W with rp2040
+>>> 
+]0;🐍Wi-Fi: off | Done | 8.2.6\soft reboot
+
+Auto-reload is on. Simply save files over USB to run them or enter REPL to disable.
+code.py output:
+]0;🐍Wi-Fi: off | code.py | 8.2.6\PN532 firmware: 1.6 ic: 50 support: 7
+
+042a865a1a1390
+enter X,Y: 7,19
+data[ '042a865a1a1390' ] =  (7, 19)
+042a875a1a1390
+enter X,Y: 7,21
+data[ '042a875a1a1390' ] =  (7, 21)
+042a885a1a1390
+enter X,Y: 7,23
+data[ '042a885a1a1390' ] =  (7, 23)
+Traceback (most recent call last):
+  File "code.py", line 9, in <module>
+  File "assign_xy.py", line 23, in main
+  File "tidreader.py", line 26, in read
+  File "adafruit_pn532/adafruit_pn532.py", line 386, in read_passive_target
+  File "adafruit_pn532/adafruit_pn532.py", line 418, in get_passive_target
+  File "adafruit_pn532/adafruit_pn532.py", line 329, in process_response
+  File "adafruit_pn532/spi.py", line 128, in _wait_ready
+KeyboardInterrupt: 
+]0;🐍Wi-Fi: off | 128@adafruit_pn532/spi.py KeyboardInterrupt | 8.2.6\
+Code done running.
+
+Press any key to enter the REPL. Use CTRL-D to reload.
+]0;🐍Wi-Fi: off | REPL | 8.2.6\
+Adafruit CircuitPython 8.2.6 on 2023-09-12; Raspberry Pi Pico W with rp2040
+>>> 
+]0;🐍Wi-Fi: off | Done | 8.2.6\soft reboot
+
+Auto-reload is on. Simply save files over USB to run them or enter REPL to disable.
+code.py output:
+]0;🐍Wi-Fi: off | code.py | 8.2.6\PN532 firmware: 1.6 ic: 50 support: 7
+
+042a895a1a1390
+enter X,Y: 14,2
+data[ '042a895a1a1390' ] =  (14, 2)
+042d995a1a1390
+enter X,Y: 14,4
+data[ '042d995a1a1390' ] =  (14, 4)
+042d9a5a1a1390
+enter X,Y: 14,6
+data[ '042d9a5a1a1390' ] =  (14, 6)
+042d9b5a1a1390
+enter X,Y: 14,8
+data[ '042d9b5a1a1390' ] =  (14, 8)
+042d9c5a1a1390
+enter X,Y: 14,10
+data[ '042d9c5a1a1390' ] =  (14, 10)
+042d9d5a1a1390
+enter X,Y: 14,12
+data[ '042d9d5a1a1390' ] =  (14, 12)
+042a8a5a1a1390
+enter X,Y: 14,14
+data[ '042a8a5a1a1390' ] =  (14, 14)
+042dd75a1a1390
+enter X,Y: 14,16
+data[ '042dd75a1a1390' ] =  (14, 16)
+042dd85a1a1390
+enter X,Y: 14,18
+data[ '042dd85a1a1390' ] =  (14, 18)
+042dd95a1a1390
+enter X,Y: 14,20
+data[ '042dd95a1a1390' ] =  (14, 20)
+042dda5a1a1390
+enter X,Y: 14,22
+data[ '042dda5a1a1390' ] =  (14, 22)
+042ddb5a1a1390
+enter X,Y: 13,24[K3
+data[ '042ddb5a1a1390' ] =  (13, 23)
+042a7b5a1a1390
+enter X,Y: 13,1
+data[ '042a7b5a1a1390' ] =  (13, 1)
+042a7c5a1a1390
+enter X,Y: 13,3
+data[ '042a7c5a1a1390' ] =  (13, 3)
+042a7d5a1a1390
+enter X,Y: 13,5
+data[ '042a7d5a1a1390' ] =  (13, 5)
+042a7f5a1a1390
+enter X,Y: 13,7
+data[ '042a7f5a1a1390' ] =  (13, 7)
+042a7e5a1a1390
+enter X,Y: 13,9
+data[ '042a7e5a1a1390' ] =  (13, 9)
+042a7a5a1a1390
+enter X,Y: 13,11
+data[ '042a7a5a1a1390' ] =  (13, 11)
+042a795a1a1390
+enter X,Y: 13,13
+data[ '042a795a1a1390' ] =  (13, 13)
+]0;🐍Wi-Fi: off | code.py | 8.2.6\042a785a1a1390
+enter X,Y: 13,15
+data[ '042a785a1a1390' ] =  (13, 15)
+042a775a1a1390
+enter X,Y: 13,17
+data[ '042a775a1a1390' ] =  (13, 17)
+042a765a1a1390
+enter X,Y: 13,19
+data[ '042a765a1a1390' ] =  (13, 19)
+
+
+
+
+=~=~=~=~=~=~=~=~=~=~=~= PuTTY log 2023.10.20 17:36:13 =~=~=~=~=~=~=~=~=~=~=~=
+]0;🐍Wi-Fi: off | code.py | 8.2.6\Traceback (most recent call last):
+  File "code.py", line 9, in <module>
+  File "assign_xy.py", line 23, in main
+  File "tidreader.py", line 26, in read
+  File "adafruit_pn532/adafruit_pn532.py", line 386, in read_passive_target
+  File "adafruit_pn532/adafruit_pn532.py", line 418, in get_passive_target
+  File "adafruit_pn532/adafruit_pn532.py", line 329, in process_response
+  File "adafruit_pn532/spi.py", line 128, in _wait_ready
+KeyboardInterrupt: 
+]0;🐍Wi-Fi: off | 128@adafruit_pn532/spi.py KeyboardInterrupt | 8.2.6\
+Code done running.
+
+Press any key to enter the REPL. Use CTRL-D to reload.
+]0;🐍Wi-Fi: off | REPL | 8.2.6\
+Adafruit CircuitPython 8.2.6 on 2023-09-12; Raspberry Pi Pico W with rp2040
+>>> 
+>>> 
+]0;🐍Wi-Fi: off | Done | 8.2.6\soft reboot
+
+Auto-reload is on. Simply save files over USB to run them or enter REPL to disable.
+code.py output:
+]0;🐍Wi-Fi: off | code.py | 8.2.6\PN532 firmware: 1.6 ic: 50 support: 7
+
+042a855a1a1390
+enter X,Y: 12,2
+data[ '042a855a1a1390' ] =  (12, 2)
+042a845a1a1390
+enter X,Y: 12,4
+data[ '042a845a1a1390' ] =  (12, 4)
+042a825a1a1390
+enter X,Y: 12,6
+data[ '042a825a1a1390' ] =  (12, 6)
+]0;🐍Wi-Fi: off | code.py | 8.2.6\042a815a1a1390
+enter X,Y: 12,8
+data[ '042a815a1a1390' ] =  (12, 8)
+042a805a1a1390
+enter X,Y: 12,10
+data[ '042a805a1a1390' ] =  (12, 10)
+042a9e5a1a1390
+enter X,Y: 11,1
+data[ '042a9e5a1a1390' ] =  (11, 1)
+042a9d5a1a1390
+enter X,Y: 11,3
+data[ '042a9d5a1a1390' ] =  (11, 3)
+042a9c5a1a1390
+enter X,Y: 11,5
+data[ '042a9c5a1a1390' ] =  (11, 5)
+042a9b5a1a1390
+enter X,Y: 11,7
+data[ '042a9b5a1a1390' ] =  (11, 7)
+042a9a5a1a1390
+enter X,Y: 11,9
+data[ '042a9a5a1a1390' ] =  (11, 9)
+042c895a1a1390
+enter X,Y: 10,2
+data[ '042c895a1a1390' ] =  (10, 2)
+042c8d5a1a1390
+enter X,Y: 10,4
+data[ '042c8d5a1a1390' ] =  (10, 4)
+042c8c5a1a1390
+enter X,Y: 10,6
+data[ '042c8c5a1a1390' ] =  (10, 6)
+042c8a5a1a1390
+enter X,Y: 10,8
+data[ '042c8a5a1a1390' ] =  (10, 8)
+042c8b5a1a1390
+enter X,Y: 10,10
+data[ '042c8b5a1a1390' ] =  (10, 10)
+042c885a1a1390
+enter X,Y: 8,22
+data[ '042c885a1a1390' ] =  (8, 22)
+042c875a1a1390
+enter X,Y: 8,20
+data[ '042c875a1a1390' ] =  (8, 20)
+042c865a1a1390
+enter X,Y: 8,18
+data[ '042c865a1a1390' ] =  (8, 18)
+042c855a1a1390
+enter X,Y: 8,16
+data[ '042c855a1a1390' ] =  (8, 16)
+042c835a1a1390
+enter X,Y: 8,14
+data[ '042c835a1a1390' ] =  (8, 14)
+042a8f5a1a1390
+enter X,Y: 9,23
+data[ '042a8f5a1a1390' ] =  (9, 23)
+042a8e5a1a1390
+enter X,Y: 9,21
+data[ '042a8e5a1a1390' ] =  (9, 21)
+042a8d5a1a1390
+enter X,Y: 9,19
+data[ '042a8d5a1a1390' ] =  (9, 19)
+042a8c5a1a1390
+enter X,Y: 9,17
+data[ '042a8c5a1a1390' ] =  (9, 17)
+042a8b5a1a1390
+enter X,Y: 9,15
+data[ '042a8b5a1a1390' ] =  (9, 15)
+042a6a5a1a1390
+enter X,Y: 9,13
+data[ '042a6a5a1a1390' ] =  (9, 13)
+042a695a1a1390
+enter X,Y: 9,11
+data[ '042a695a1a1390' ] =  (9, 11)
+042a685a1a1390
+enter X,Y: 9,9
+data[ '042a685a1a1390' ] =  (9, 9)
+042a675a1a1390
+enter X,Y: 9,7
+data[ '042a675a1a1390' ] =  (9, 7)
+042a665a1a1390
+enter X,Y: 9,5
+data[ '042a665a1a1390' ] =  (9, 5)
+042a655a1a1390
+enter X,Y: 10,22
+data[ '042a655a1a1390' ] =  (10, 22)
+042a645a1a1390
+enter X,Y: 10,20
+data[ '042a645a1a1390' ] =  (10, 20)
+042a635a1a1390
+enter X,Y: 10,18
+data[ '042a635a1a1390' ] =  (10, 18)
+042a625a1a1390
+enter X,Y: 10,16
+data[ '042a625a1a1390' ] =  (10, 16)
+042a615a1a1390
+enter X,Y: 10,14
+data[ '042a615a1a1390' ] =  (10, 14)
+042a705a1a1390
+enter X,Y: 10,12
+data[ '042a705a1a1390' ] =  (10, 12)
+042a6e5a1a1390
+enter X,Y: 11,23
+data[ '042a6e5a1a1390' ] =  (11, 23)
+Traceback (most recent call last):
+  File "code.py", line 9, in <module>
+  File "assign_xy.py", line 23, in main
+  File "tidreader.py", line 26, in read
+  File "adafruit_pn532/adafruit_pn532.py", line 386, in read_passive_target
+  File "adafruit_pn532/adafruit_pn532.py", line 418, in get_passive_target
+  File "adafruit_pn532/adafruit_pn532.py", line 329, in process_response
+  File "adafruit_pn532/spi.py", line 128, in _wait_ready
+KeyboardInterrupt: 
+]0;🐍Wi-Fi: off | 128@adafruit_pn532/spi.py KeyboardInterrupt | 8.2.6\
+Code done running.
+Auto-reload is on. Simply save files over USB to run them or enter REPL to disable.
+
+Press any key to enter the REPL. Use CTRL-D to reload.
+soft reboot
+
+Auto-reload is on. Simply save files over USB to run them or enter REPL to disable.
+code.py output:
+]0;🐍Wi-Fi: off | code.py | 8.2.6\PN532 firmware: 1.6 ic: 50 support: 7
+
+042a6d5a1a1390
+enter X,Y: 11,21
+data[ '042a6d5a1a1390' ] =  (11, 21)
+042a6c5a1a1390
+enter X,Y: 11,19
+data[ '042a6c5a1a1390' ] =  (11, 19)
+042a6b5a1a1390
+enter X,Y: 11,17
+data[ '042a6b5a1a1390' ] =  (11, 17)
+042a755a1a1390
+enter X,Y: 11,15
+data[ '042a755a1a1390' ] =  (11, 15)
+042a745a1a1390
+enter X,Y: 11,13
+data[ '042a745a1a1390' ] =  (11, 13)
+042a735a1a1390
+enter X,Y: 11,11
+data[ '042a735a1a1390' ] =  (11, 11)
+042a725a1a1390
+enter X,Y: 13,21
+data[ '042a725a1a1390' ] =  (13, 21)
+042a715a1a1390
+enter X,Y: 12,22
+data[ '042a715a1a1390' ] =  (12, 22)
+042ddc5a1a1390
+enter X,Y: 12,20
+data[ '042ddc5a1a1390' ] =  (12, 20)
+042ddd5a1a1390
+enter X,Y: 12,18
+data[ '042ddd5a1a1390' ] =  (12, 18)
+042dde5a1a1390
+enter X,Y: 12,16
+data[ '042dde5a1a1390' ] =  (12, 16)
+042ddf5a1a1390
+enter X,Y: 12,14
+data[ '042ddf5a1a1390' ] =  (12, 14)
+042cde5a1a1390
+enter X,Y: 12,12
+data[ '042cde5a1a1390' ] =  (12, 12)
+042c925a1a1390
+enter X,Y: 8,12
+data[ '042c925a1a1390' ] =  (8, 12)
+042c915a1a1390
+enter X,Y: 8,10
+data[ '042c915a1a1390' ] =  (8, 10)
+042c905a1a1390
+enter X,Y: 8,8
+data[ '042c905a1a1390' ] =  (8, 8)
+042c8f5a1a1390
+enter X,Y: 8,6
+data[ '042c8f5a1a1390' ] =  (8, 6)
+042c8e5a1a1390
+enter X,Y: 8,4
+data[ '042c8e5a1a1390' ] =  (8, 4)
+042cb15a1a1390
+enter X,Y: 8,2
+data[ '042cb15a1a1390' ] =  (8, 2)
+042cb25a1a1390
+enter X,Y: 9,1
+data[ '042cb25a1a1390' ] =  (9, 1)
+042cb35a1a1390
+enter X,Y: 9,3
+data[ '042cb35a1a1390' ] =  (9, 3)
+Traceback (most recent call last):
+  File "code.py", line 9, in <module>
+  File "assign_xy.py", line 23, in main
+  File "tidreader.py", line 26, in read
+  File "adafruit_pn532/adafruit_pn532.py", line 382, in read_passive_target
+  File "adafruit_pn532/adafruit_pn532.py", line 400, in listen_for_passive_target
+  File "adafruit_pn532/adafruit_pn532.py", line 310, in send_command
+  File "adafruit_pn532/adafruit_pn532.py", line 235, in _write_frame
+  File "adafruit_pn532/spi.py", line 151, in _write_data
+  File "adafruit_pn532/spi.py", line 151, in <listcomp>
+  File "adafruit_pn532/spi.py", line 46, in reverse_bit
+KeyboardInterrupt: 
+]0;🐍Wi-Fi: off | 46@adafruit_pn532/spi.py KeyboardInterrupt | 8.2.6\
+Code done running.
+
+Press any key to enter the REPL. Use CTRL-D to reload.
+]0;🐍Wi-Fi: off | REPL | 8.2.6\
+Adafruit CircuitPython 8.2.6 on 2023-09-12; Raspberry Pi Pico W with rp2040
+>>> 
+>>> 
+>>> 
