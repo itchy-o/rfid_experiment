@@ -128,7 +128,12 @@ class SensorDeck:
                 x += float(c[0])
                 y += float(c[1])
                 n += 1.0
-        return x/n, y/n
+
+        if n > 0.0:
+            return x/n, y/n
+
+        # TODO no tags detected, what best to do?
+        return 0, 0
 
 #############################################################################
 
