@@ -1,11 +1,11 @@
-# itchy-o/rfid_experiment/test4
+# itchy-o/rfid_experiment/test5
 
-test4 creates a 4 by 4 foot example of "test flooring"
-(actually two 2x4ft sections, for easier portability)
-using 4"/100mm tag spacing
+test5 reuses test4's 4x4 test flooring (and its tag_coords.py),
 and reuses the [test3 7-sensor deck](../test3/README.md)
+but with 3 sensors removed to be used on a second sensor deck.
 
-test4 also enhances the software running on the Raspberry Pi Pico.
+test5 also enhances and fixes bugs in software running on the Raspberry Pi Pico.
+
 
 ## Summary of sensor design
 The hardware consists of a
@@ -18,4 +18,3 @@ connected to
 [PN532 sensor boards](https://www.ebay.com/sch/i.html?_nkw=pn532)
 using
 [SPI](https://en.wikipedia.org/wiki/Serial_Peripheral_Interface).
-

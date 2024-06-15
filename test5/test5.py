@@ -3,7 +3,7 @@
 #
 # SPDX-License-Identifier: MIT
 #
-# rfid_experiment/test4/test4.py
+# rfid_experiment/test5/test5.py
 # Developed using CircuitPython 8.x on Raspberry Pi Pico MCU.
 # Read NTAG21x RFID tags using up to seven PN532 sensor modules.
 # Indicate which sensors are detecting tags using an LED strip.
@@ -11,11 +11,11 @@
 # 2023-10-21
 
 # About this code:
-__version__ = "0.4.0.0"
+__version__ = "0.4.1.0"
 __repo__ = "https://github.com/itchy-o/rfid_experiment.git"
 __board_id__ = "raspberry_pi_pico"      # board.board_id
 __impl_name__ = "circuitpython"         # sys.implementation.name
-__impl_version__ = (8, 2, 7)            # sys.implementation.version
+__impl_version__ = (9, 0, 5)            # sys.implementation.version
 
 import board
 import busio
