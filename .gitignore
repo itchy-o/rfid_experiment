@@ -2,19 +2,24 @@
 
 secrets*
 
-boot_out.txt
-.Trashes
-.fseventsd/
-.metadata_never_index
+# CPy stuff
+/boot_out.txt
+/.Trash-1000
+/.Trashes
+/.fseventsd/
+/.metadata_never_index
 
-System Volume Information/
-$RECYCLE.BIN/
+# OS cruft
+/System Volume Information/
+/$RECYCLE.BIN/
 __pycache__/
 
-*.log
-*.swp
-*~
+# temporary files
+**.log
+**.swp
+**~
 
+# mew's temporary
 HIDE/
 PRINT
 grep_*txt
