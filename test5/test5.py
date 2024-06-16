@@ -4,30 +4,28 @@
 # SPDX-License-Identifier: MIT
 #
 # rfid_experiment/test5/test5.py
-# Developed using CircuitPython 8.x on Raspberry Pi Pico MCU.
+# Developed using CircuitPython 9.0.x on Raspberry Pi Pico MCU.
 # Read NTAG21x RFID tags using up to seven PN532 sensor modules.
 # Indicate which sensors are detecting tags using an LED strip.
 # Part of the Sono Chapel position-sensing experiments.
-# 2023-10-21
+# 2024-06-15
 
 # About this code:
-__version__ = "0.4.1.0"
+__version__ = "0.5.0.0"
 __repo__ = "https://github.com/itchy-o/rfid_experiment.git"
-__board_id__ = "raspberry_pi_pico"      # board.board_id
 __impl_name__ = "circuitpython"         # sys.implementation.name
 __impl_version__ = (9, 0, 5)            # sys.implementation.version
+__board_id__ = "raspberry_pi_pico"      # board.board_id
 
 import board
 import busio
 import time
 import atexit
-#import valid_tids
 import tag_coords
 from digitalio import DigitalInOut
 from adafruit_pn532.spi import PN532_SPI
 from adafruit_dotstar import DotStar
 from micropython import const
-#from tidreader import TidReader
 
 # Configure GPIOs for 8-LED APA102 strip.  Turn all LEDs off.
 WHITE   = const(0x040404)
@@ -86,12 +84,12 @@ class Sensor:
 
         self.tid = "".join("{:02x}".format(i) for i in id)
         if self.tid not in tag_coords.data:
-            # This tag id is not in the coordinate table?!  What??
+            # This tag id is not in the coordinate table! A rogue tag??
             leds[self.i] = MAGENTA
             self.coord = None
             return False
 
-        # This tag is valid.
+        # This tag is valid, so update the sensor's coordinate.
         leds[self.i] = GREEN
         self.coord = tag_coords.data[self.tid]
         #self.pn532.power_down()
@@ -132,8 +130,8 @@ class SensorDeck:
         if n > 0.0:
             return x/n, y/n
 
-        # TODO no tags detected, what best to do?
-        return 0, 0
+        # No sensors have valid coordinates.
+        return None
 
 #############################################################################
 

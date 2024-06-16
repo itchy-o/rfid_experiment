@@ -1,10 +1,11 @@
 # itchy-o/rfid_experiment/test5
 
 test5 reuses test4's 4x4 test flooring (and its tag_coords.py),
-and reuses the [test3 7-sensor deck](../test3/README.md)
-but with 3 sensors removed to be used on a second sensor deck.
+and reuses the adjustable [test3 7-sensor deck](../test3/README.md).
+The actual demonstration was very similar to test4 (2023-10).
 
-test5 also enhances and fixes bugs in software running on the Raspberry Pi Pico.
+test5 also updates to CircuitPython v9.0.5 and has bug fixes in the firmware
+running on the Raspberry Pi Pico.
 
 
 ## Summary of sensor design
