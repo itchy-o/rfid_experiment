@@ -27,7 +27,14 @@ The preferred RFID tags are of the
 [NTAG21x](https://www.nxp.com/products/rfid-nfc/nfc-hf/ntag-for-tags-and-labels/ntag-213-215-216-nfc-forum-type-2-tag-compliant-ic-with-144-504-888-bytes-user-memory:NTAG213_215_216)
 series.
 We only require a tag's unique pre-programmed identifier, which is used to look up its physical location in a table.
-We do not need any of the tag's memory, so the smallest (thus hopefully cheapest?) of the NTAG21x tags is sufficient.
+The table of tag locations is manually created when the array of tags is built.
+We do not need any of the tag's memory, so the least-memory (thus hopefully cheapest?) of the NTAG21x tags is sufficient.
+
+Tags also vary in their physical size, thus the size of their antenna.
+The size of the antenna seems to directly affect the distance the sensor can read the tag.
+25mm circular tag stickers are common, and have been used in this testing.
+32mm tags have been seen for sale.
+There are "credit cards" with RFID circuitry embedded; the cards seem to have the largest antenna, and their solid plastic seems very durable.
 
 ## Summary of tests
 - test1 - Proof of concept for a PN532 sensor reading tags through a block of wood.
