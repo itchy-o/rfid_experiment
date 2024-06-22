@@ -41,6 +41,7 @@ There are "credit cards" with RFID circuitry embedded; the cards seem to have th
 - test2 - Build a sensor deck with three PN532 sensors reading a triangular grid of tags on a sheet of paper.
 - test3 - Build a sensor deck with seven adjustable PN532 sensors to explore sensor placement.
 - test4 - Build a 4x4 foot triangular grid of tags on plywood (16 sqft, ~160 tags total, 100mm tag spacing), and reuse the test3 7-sensor deck.
+- test5 - Same hardware as test4, with bug fixes and update to latest CircuitPython.
 
 ## Summary of branches
 - `main` - The current runtime version.  Intended to be installed verbatim on the CircuitPython device.
