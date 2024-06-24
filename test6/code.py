@@ -1,2 +1,2 @@
-from test5 import main
+from test6 import main
 main()

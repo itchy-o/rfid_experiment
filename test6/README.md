@@ -1,19 +1,16 @@
-# itchy-o/rfid_experiment/test5
+# itchy-o/rfid_experiment/test6
 
-test5 reuses test4's 4x4 test flooring (and its tag_coords.py),
-and reuses the adjustable [test3 7-sensor deck](../test3/README.md).
-The actual demonstration was very similar to test4 (2023-10).
-
-test5 also updates to CircuitPython v9.0.5 and has bug fixes in the firmware
-running on the Raspberry Pi Pico.
-
+test6 reuses test4's 4x4 test flooring (and its tag_coords.py),
+and create several (ideally seven) separate battery-powered 4-sensor decks,
+to experiment with manipulating multiple pods.
+Raspberry Pi Pico W is used to wirelessly communicate with the Q-SYS audio system.
 
 ## Summary of sensor design
 The hardware consists of a
-[Raspberry Pi Pico MCU](https://www.raspberrypi.com/products/raspberry-pi-pico/)
+[Raspberry Pi Pico W MCU](https://www.raspberrypi.com/products/raspberry-pi-pico/)
 running
 [CircuitPython 8](https://circuitpython.org/),
-connected to
+connected to four
 [RFID](https://en.wikipedia.org/wiki/Radio-frequency_identification)
 13.56MHz
 [PN532 sensor boards](https://www.ebay.com/sch/i.html?_nkw=pn532)
