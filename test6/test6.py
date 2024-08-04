@@ -4,30 +4,32 @@
 # SPDX-License-Identifier: MIT
 #
 # rfid_experiment/test6/test6.py
-# Developed using CircuitPython 9.0.x on Raspberry Pi Pico MCU.
-# Read NTAG21x RFID tags using up to seven PN532 sensor modules.
+# Developed using CircuitPython 9.1.x on Raspberry Pi Pico MCU.
+# Read NTAG21x RFID tags using four PN532 sensor modules.
 # Indicate which sensors are detecting tags using an LED strip.
 # Part of the Sono Chapel position-sensing experiments.
-# 2024-06-15
+# 2024-08-03
+# TODO WIP WIP WIP
+# TODO: migrate from DotStar to neopixel
 
 # About this code:
-__version__ = "0.5.1.0"
+__version__ = "0.5.2.0"
 __repo__ = "https://github.com/itchy-o/rfid_experiment.git"
 __impl_name__ = "circuitpython"         # sys.implementation.name
-__impl_version__ = (9, 0, 5)            # sys.implementation.version
+__impl_version__ = (9, 1, 1)            # sys.implementation.version
 __board_id__ = "raspberry_pi_pico"      # board.board_id
 
 import board
 import busio
 import time
 import atexit
+import neopixel
 import tag_coords
 from digitalio import DigitalInOut
 from adafruit_pn532.spi import PN532_SPI
-from adafruit_dotstar import DotStar
 from micropython import const
 
-# Configure GPIOs for 8-LED APA102 strip.  Turn all LEDs off.
+# Configure GPIOs for 4-LED neopixel strip.  Turn all LEDs off.
 WHITE   = const(0x040404)
 RED     = const(0x110000)
 GREEN   = const(0x001100)
@@ -35,7 +37,11 @@ BLUE    = const(0x000022)
 MAGENTA = const(0x110022)
 CYAN    = const(0x001122)
 BLACK   = const(0)
-leds  = DotStar(clock=board.GP26, data=board.GP27, n=8)
+leds  = DotStar(clock=board.GP26, data=board.GP27, n=4)
+
+#PIXEL_PIN = board.MOSI
+#NUM_PIXELS = 4
+#pixels = neopixel.NeoPixel(PIXEL_PIN, NUM_PIXELS, auto_write=False)
 leds.fill(BLACK)
 
 # Configure GPIOs for Serial Peripheral Interface (SPI).
@@ -136,6 +142,7 @@ class SensorDeck:
 #############################################################################
 
 # The GPIO pins controling each sensor's SPI chip-select (CS).
+# TODO four sensors for test6
 CS_GPIOS = (board.GP9,  board.GP10, board.GP11, board.GP12, board.GP13,
             board.GP14, board.GP15)
 
@@ -149,5 +156,6 @@ def main():
 @atexit.register
 def shutdown():
     leds.fill(BLACK)
+    leds.show()
 
 # vim: set sw=4 ts=8 et ic ai:
