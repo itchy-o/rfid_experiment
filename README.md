@@ -42,7 +42,7 @@ There are "credit cards" with RFID circuitry embedded; the cards seem to have th
 - test3 - Build a sensor deck with seven adjustable PN532 sensors to explore sensor placement.
 - test4 - Build a 4x4 foot triangular grid of tags on plywood (16 sqft, ~160 tags total, 100mm tag spacing), and reuse the test3 7-sensor deck.
 - test5 - Same hardware as test4, with bug fixes and update to latest CircuitPython.
-- test6 - Build several 4-sensor decks with Raspberry Pi Pico W, to wirelessly communicate with Q-SYS audio system.
+- test6 - Build eight 4-sensor decks with Raspberry Pi Pico W, to wirelessly communicate with Q-SYS audio system.
 
 ## Summary of branches
 - `main` - The current runtime version.  Intended to be installed verbatim on the CircuitPython device.
