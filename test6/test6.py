@@ -17,7 +17,8 @@ __version__ = "0.5.2.0"
 __repo__ = "https://github.com/itchy-o/rfid_experiment.git"
 __impl_name__ = "circuitpython"         # sys.implementation.name
 __impl_version__ = (9, 1, 1)            # sys.implementation.version
-__board_id__ = "raspberry_pi_pico"      # board.board_id
+__board_id__ = "raspberry_pi_pico_w"    # board.board_id
+
 
 import board
 import busio
