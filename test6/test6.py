@@ -13,7 +13,7 @@
 """Sono Chapel Pod firmware"""
 
 # About this code:
-__version__ = "0.5.3.1"
+__version__ = "0.5.3.2"
 __repo__ = "https://github.com/itchy-o/rfid_experiment.git"
 __impl_name__ = 'circuitpython'         # sys.implementation.name
 __impl_version__ = (9, 2, 1, '')        # sys.implementation.version
