@@ -7,7 +7,10 @@ CIRCUITPY_WIFI_PASSWORD = "itchyo237"
 # The identifier for this pod [uint]
 SONOCHAPEL_POD_ID = 1
 
-# Where does the pod sent messages?
+# Delay between pod's DATA messages in milliseconds [uint]
+SONOCHAPEL_POD_INTERVAL = 200
+
+# Where does the pod its sent messages?
 SONOCHAPEL_SERVER_IPADDR = "192.168.0.99"
 SONOCHAPEL_SERVER_PORT = 12345
 
