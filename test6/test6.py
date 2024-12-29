@@ -64,7 +64,7 @@ class PodMessenger:
         self.port   = const(os.getenv('SONOCHAPEL_SERVER_PORT'))
         self.sock   = None
         self.seq    = None
-        print("Send to", self.server, ":", self.port)
+        print("Sending to", self.server, ":", self.port)
 
     def connect(self):
         print("Connecting to SSID", self.ssid)
@@ -79,7 +79,7 @@ class PodMessenger:
 
     def send(self, type, data):
         packet = "%s %d %d %s" % (type, self.pod_id, self.seq, data)
-        print("packet : ", packet)
+        print("packet :", packet)
         self.sock.sendto(packet, (self.server, self.port))
         self.seq += 1
 
@@ -113,15 +113,14 @@ class Sensor:
 
         try:
             self.pn532 = PN532_SPI(spi=spi, cs_pin=self.cs_pin,
-                                irq=None, reset=None, debug=False)
+                                irq=None, reset=None, debug=True)
         except:
-            # sensor not responding, flag it as disabled
-            print("sensor not responding, flag it as disabled")
+            print(i, ": sensor not responding, flag it disabled")
             self.pn532 = None
             leds[self.i] = RED
             return
 
-        print(i, " : firmware_version ", self.pn532.firmware_version)
+        print(i, ": firmware_version", self.pn532.firmware_version)
         self.pn532.SAM_configuration()
         leds[self.i] = BLACK
 
@@ -188,7 +187,7 @@ class SensorDeck:
             return x/n, y/n
 
         # No sensors have valid coordinates.
-        return None
+        return 0,0
 
 #############################################################################
 
@@ -196,15 +195,19 @@ class SensorDeck:
 CS_GPIOS = (board.GP10, board.GP11, board.GP12, board.GP13)
 
 def main():
+    sd = SensorDeck(CS_GPIOS)
+
     pm = PodMessenger()
     pm.connect()
     pm.sendBOOT()
-    sd = SensorDeck(CS_GPIOS)
+
     while True:
-#       if touch1.value:
         count = sd.read()
-        coord = sd.coord()
-#        print(coord, count)
+        x,y = sd.coord()
+        t = touch1.value
+#        print(count, x, y, t)
+        pm.sendDATA(x, y, t)
+        time.sleep(0.5)
 
 @atexit.register
 def shutdown():
