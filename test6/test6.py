@@ -19,6 +19,8 @@ __impl_name__ = 'circuitpython'         # sys.implementation.name
 __impl_version__ = (9, 2, 1, '')        # sys.implementation.version
 __board_id__ = "raspberry_pi_pico_w"    # board.board_id
 
+PROTOCOL_VERSION= const("0.1.0.1")
+
 
 import board
 import busio
@@ -53,17 +55,17 @@ spi = busio.SPI(clock=board.GP18, MOSI=board.GP19, MISO=board.GP20)
 #############################################################################
 
 class PodMessenger:
-    """
-    """
+    """TODO"""
     def __init__(self):
-        """Initialize from settings.toml"""
-        self.ssid   = const(os.getenv('CIRCUITPY_WIFI_SSID'))
-        self.passwd = const(os.getenv('CIRCUITPY_WIFI_PASSWORD'))
-        self.pod_id = const(os.getenv('SONOCHAPEL_POD_ID'))
-        self.server = const(os.getenv('SONOCHAPEL_SERVER_IPADDR'))
-        self.port   = const(os.getenv('SONOCHAPEL_SERVER_PORT'))
-        self.sock   = None
-        self.seq    = None
+        """Initialize from envars defined in settings.toml"""
+        self.ssid         = const(os.getenv('CIRCUITPY_WIFI_SSID'))
+        self.passwd       = const(os.getenv('CIRCUITPY_WIFI_PASSWORD'))
+        self.pod_id       = const(os.getenv('SONOCHAPEL_POD_ID'))
+        self.pod_interval = const(os.getenv('SONOCHAPEL_POD_INTERVAL')/1000.0)
+        self.server       = const(os.getenv('SONOCHAPEL_SERVER_IPADDR'))
+        self.port         = const(os.getenv('SONOCHAPEL_SERVER_PORT'))
+        self.sock         = None
+        self.seq          = None
         print("Sending to", self.server, ":", self.port)
 
     def connect(self):
@@ -83,12 +85,14 @@ class PodMessenger:
         self.sock.sendto(packet, (self.server, self.port))
         self.seq += 1
 
-    # Messages as defined by sono_protocol.txt version "0.1"
+    def sleep(self):
+        time.sleep(self.pod_interval)
+
+    # Messages as defined by sono_protocol.txt
 
     def sendBOOT(self):
-        VERSION = const("0.1")
         self.seq = 0
-        self.send("BOOT", VERSION)
+        self.send("BOOT", PROTOCOL_VERSION)
 
     def sendDATA(self, x, y, t1):
         data = "%.3f %.3f %d" % (x, y, t1)
@@ -100,8 +104,7 @@ class PodMessenger:
 #############################################################################
 
 class Sensor:
-    """
-    """
+    """TODO"""
     def __init__(self, i, chip_select):
         self.i = i
         leds[self.i] = CYAN
@@ -155,8 +158,7 @@ class Sensor:
 #############################################################################
 
 class SensorDeck:
-    """
-    """
+    """TODO"""
     def __init__(self, cs_gpios):
         self.num_sensors = len(cs_gpios)
         self.sensors = [None] * self.num_sensors
@@ -195,19 +197,28 @@ class SensorDeck:
 CS_GPIOS = (board.GP10, board.GP11, board.GP12, board.GP13)
 
 def main():
+    leds[4] = WHITE
+    print("Sono Chapel version", __version__, "protocol", PROTOCOL_VERSION)
+
     sd = SensorDeck(CS_GPIOS)
 
+    leds[4] = BLUE
     pm = PodMessenger()
     pm.connect()
     pm.sendBOOT()
+    leds[4] = BLACK
 
     while True:
         count = sd.read()
         x,y = sd.coord()
         t = touch1.value
+        if t:
+            leds[4] = GREEN
+        else:
+            leds[4] = BLACK
 #        print(count, x, y, t)
         pm.sendDATA(x, y, t)
-        time.sleep(0.5)
+        pm.sleep()
 
 @atexit.register
 def shutdown():
