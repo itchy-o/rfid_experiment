@@ -24,6 +24,9 @@ import board
 import busio
 import time
 import atexit
+import os
+import wifi
+import socketpool
 import tag_coords
 from touchio import TouchIn
 from neopixel import NeoPixel
@@ -49,6 +52,53 @@ spi = busio.SPI(clock=board.GP18, MOSI=board.GP19, MISO=board.GP20)
 
 #############################################################################
 
+class PodMessenger:
+    """
+    """
+    def __init__(self):
+        """Initialize from settings.toml"""
+        self.ssid   = const(os.getenv('CIRCUITPY_WIFI_SSID'))
+        self.passwd = const(os.getenv('CIRCUITPY_WIFI_PASSWORD'))
+        self.pod_id = const(os.getenv('SONOCHAPEL_POD_ID'))
+        self.server = const(os.getenv('SONOCHAPEL_SERVER_IPADDR'))
+        self.port   = const(os.getenv('SONOCHAPEL_SERVER_PORT'))
+        self.sock   = None
+        self.seq    = None
+        print("Send to", self.server, ":", self.port)
+
+    def connect(self):
+        print("Connecting to SSID", self.ssid)
+        wifi.radio.connect(self.ssid, self.passwd)
+
+#        print("MAC", [hex(i) for i in wifi.radio.mac_address])
+        print("ipaddr", wifi.radio.ipv4_address)
+#        print("Ping : %f ms" % (wifi.radio.ping(self.server)*3))
+
+        pool = socketpool.SocketPool(wifi.radio)
+        self.sock = pool.socket(pool.AF_INET, pool.SOCK_DGRAM)
+
+    def send(self, type, data):
+        packet = "%s %d %d %s" % (type, self.pod_id, self.seq, data)
+        print("packet : ", packet)
+        self.sock.sendto(packet, (self.server, self.port))
+        self.seq += 1
+
+    # Messages as defined by sono_protocol.txt version "0.1"
+
+    def sendBOOT(self):
+        VERSION = const("0.1")
+        self.seq = 0
+        self.send("BOOT", VERSION)
+
+    def sendDATA(self, x, y, t1):
+        data = "%.3f %.3f %d" % (x, y, t1)
+        self.send("DATA", data)
+
+    def sendINFO(self, info):
+        self.send("INFO", info)
+
+#############################################################################
+
 class Sensor:
     """
     """
@@ -66,6 +116,7 @@ class Sensor:
                                 irq=None, reset=None, debug=False)
         except:
             # sensor not responding, flag it as disabled
+            print("sensor not responding, flag it as disabled")
             self.pn532 = None
             leds[self.i] = RED
             return
@@ -145,12 +196,15 @@ class SensorDeck:
 CS_GPIOS = (board.GP10, board.GP11, board.GP12, board.GP13)
 
 def main():
+    pm = PodMessenger()
+    pm.connect()
+    pm.sendBOOT()
     sd = SensorDeck(CS_GPIOS)
     while True:
 #       if touch1.value:
         count = sd.read()
         coord = sd.coord()
-        print(coord, count)
+#        print(coord, count)
 
 @atexit.register
 def shutdown():
