@@ -1,36 +1,36 @@
 sono_protocol.txt
-VERSION "0.1"
-mew 2024-12-28
+VERSION "0.1.0.1"
+mew 2024-12-29
 
-This doc describes the messages sent by Sono Chapel pods.
+This doc describes the protocol of messages sent by Sono Chapel pods.
 
 Messages are sent via WiFi to UDP port TBD.
 The messages are space-delimited ASCII strings.
-Messages are only sent from the pods to the receiving server.
+Messages are only sent from the pods to the receiving server; pods do not
+receive any messages.
 
-This document version defines:
-- three message types
-
+There are three message types.
 Any of the message types can be sent at any time.
+The message sequence counter is incremented after every send.
 
 
 ===============================================================================
 1. The BOOT message
-This message is sent when a pod is restarted.
+This message is sent when a pod is (re)started.
 It indicates the protocol being used, and that the pod's message counter
 is reset to zero.
 
 Format:
-    "BOOT pid seq version"
+    BOOT pid seq version
 where:
     - "BOOT" [str] : the message type.
     - pid [uint] : pod id number.
-    - seq [uint] : message sequence counter; always "0" for BOOT.
+    - seq [uint] : message sequence counter; always "0" for BOOT message.
     - version [str] : protocol version; i.e.: this document version.
 
 Example:
-    "BOOT 5 0 0.1"
-indicates pod 5 is using protocol version "0.1"
+    "BOOT 5 0 0.1.0.1"
+indicates pod 5 is using protocol version "0.1.0.1"
 
 
 ===============================================================================
@@ -38,40 +38,42 @@ indicates pod 5 is using protocol version "0.1"
 This message is periodically sent to report pod position and status.
 
 Format:
-    "DATA pid seq posx posy touch"
+    DATA pid seq posx posy touch1
 where:
     - "DATA" [str] : the message type.
     - pid [uint] : pod id number.
     - seq [uint] : message sequence counter.
     - posx [float] : pod X position
     - posy [float] : pod Y position
-    - touch [bool] : touch sensor status (0=not touched, 1=touched)
+    - touch1 [bool] : touch sensor 1 status (0=not touched, 1=touched)
 
 Example:
     "DATA 3 123 2.34 4.56 1"
-indicates the 123rd message since restart sent by pod 3, which is at
-position (2.34,4.56) and is being touched.
+indicates the 123rd message sent by pod 3 since BOOT.
+The pod is at position (2.34,4.56) and is being touched.
 
-Position units TBD.
-Valid position value > 0.0.
-Position value <= 0.0 indicates an error condition.
-Negative values may have enumerated semantics; e.g.: pod not sensing any tags; pod sensing unrecognized tag; etc. (edited)
+Position units are specific to each tag panel; see tag_coords.py.
+Valid position values are > 0.0.
+Position values <= 0.0 indicate an error condition.
+Negative values may have enumerated semantics:
+- pod not sensing any tags;
+- pod is sensing an unrecognized tag
 
 
 ===============================================================================
 3. The INFO message
-This message is sent to report various diagnostic infomation.
+This message is sent to report arbitrary diagnostic information.
 
 Format:
-    "INFO pid seq str"
+    INFO pid seq str
 where:
     - "INFO" [str] : the message type.
     - pid [uint] : pod id number.
     - seq [uint] : message sequence counter.
-    - str [str] : an arbitrary string, possibly containing spaces.
+    - str [str] : an arbitrary string, possibly containing embedded spaces.
 
 Example:
     "INFO 1 5432 walking on the ceiling"
-indicates the 5432nd message since restart sent by pod 1.
+indicates the 5432nd message sent by pod 1 since BOOT.
 
 #EOF
