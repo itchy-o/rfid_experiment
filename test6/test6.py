@@ -13,7 +13,7 @@
 """Sono Chapel Pod firmware"""
 
 # About this code:
-__version__ = "0.5.3.0"
+__version__ = "0.5.3.1"
 __repo__ = "https://github.com/itchy-o/rfid_experiment.git"
 __impl_name__ = 'circuitpython'         # sys.implementation.name
 __impl_version__ = (9, 2, 1, '')        # sys.implementation.version
@@ -113,7 +113,7 @@ class Sensor:
 
         try:
             self.pn532 = PN532_SPI(spi=spi, cs_pin=self.cs_pin,
-                                irq=None, reset=None, debug=True)
+                                irq=None, reset=None, debug=False)
         except:
             print(i, ": sensor not responding, flag it disabled")
             self.pn532 = None
