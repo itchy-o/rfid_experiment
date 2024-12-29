@@ -64,6 +64,7 @@ class PodMessenger:
         self.pod_interval = const(os.getenv('SONOCHAPEL_POD_INTERVAL')/1000.0)
         self.server       = const(os.getenv('SONOCHAPEL_SERVER_IPADDR'))
         self.port         = const(os.getenv('SONOCHAPEL_SERVER_PORT'))
+        # TODO SONOCHAPEL_RFID_TIMEOUT
         self.sock         = None
         self.seq          = None
         print("Sending to", self.server, ":", self.port)
@@ -81,7 +82,7 @@ class PodMessenger:
 
     def send(self, type, data):
         packet = "%s %d %d %s" % (type, self.pod_id, self.seq, data)
-        print("packet :", packet)
+        print(packet)
         self.sock.sendto(packet, (self.server, self.port))
         self.seq += 1
 
@@ -135,24 +136,25 @@ class Sensor:
             return False
 
         leds[self.i] = WHITE
-        id = self.pn532.read_passive_target(timeout=0.1)
+        id = self.pn532.read_passive_target(timeout=0.3)
         if id is None:
-            # No tag was detected
+#            print(self.i, ": No tag detected")
             leds[self.i] = BLACK
             return False
 
         self.tid = "".join("{:02x}".format(i) for i in id)
+        print(self.i, "tag id ", self.tid)
         if self.tid not in tag_coords.data:
-            # This tag id is not in the coordinate table! A rogue tag??
+#            print(self.i, ": Tag id not recognized; a rogue tag?")
             leds[self.i] = MAGENTA
             self.coord = None
             return False
 
-        # This tag is valid, so update the sensor's coordinate.
+        # This tag is recognized, so update the sensor's coordinate.
         leds[self.i] = GREEN
         self.coord = tag_coords.data[self.tid]
-        #self.pn532.power_down()
-        #time.sleep(0.1)
+#        self.pn532.power_down()
+#        time.sleep(0.1)
         return True
 
 #############################################################################
