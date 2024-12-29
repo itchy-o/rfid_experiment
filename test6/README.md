@@ -3,7 +3,8 @@
 test6 reuses test4's 4x4 test flooring (and its tag_coords.py),
 and create several (ideally seven) separate battery-powered 4-sensor decks,
 to experiment with manipulating multiple pods.
-Raspberry Pi Pico W is used to wirelessly communicate with the Q-SYS audio system.
+Raspberry Pi Pico W is used transmit pod state messages via WiFi to the
+Q-SYS audio system.
 
 ## Summary of sensor design
 The hardware consists of a
