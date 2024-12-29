@@ -9,8 +9,8 @@
 # Indicate which sensors are detecting tags using an LED strip.
 # Part of the Sono Chapel position-sensing experiments.
 # 2024-12-29
-# TODO WIP WIP WIP
-# TODO: migrate from DotStar to neopixel
+
+"""Sono Chapel Pod firmware"""
 
 # About this code:
 __version__ = "0.5.3.0"
@@ -24,13 +24,14 @@ import board
 import busio
 import time
 import atexit
-import neopixel
 import tag_coords
+from touchio import TouchIn
+from neopixel import Neopixel
 from digitalio import DigitalInOut
 from adafruit_pn532.spi import PN532_SPI
 from micropython import const
 
-# Configure GPIOs for 4-LED neopixel strip.  Turn all LEDs off.
+# Setup 5-LED neopixel strip, ensure all LEDs off.
 WHITE   = const(0x040404)
 RED     = const(0x110000)
 GREEN   = const(0x001100)
@@ -38,14 +39,12 @@ BLUE    = const(0x000022)
 MAGENTA = const(0x110022)
 CYAN    = const(0x001122)
 BLACK   = const(0)
-leds  = DotStar(clock=board.GP26, data=board.GP27, n=4)
-
-#PIXEL_PIN = board.MOSI
-#NUM_PIXELS = 4
-#pixels = neopixel.NeoPixel(PIXEL_PIN, NUM_PIXELS, auto_write=False)
+leds = NeoPixel(pin=board.GP0, n=5, brightness=0.3, auto_write=True)
 leds.fill(BLACK)
 
-# Configure GPIOs for Serial Peripheral Interface (SPI).
+touch1 = TouchIn(board.GP1)
+
+# Setup Serial Peripheral Interface (SPI).
 spi = busio.SPI(clock=board.GP18, MOSI=board.GP19, MISO=board.GP20)
 
 #############################################################################
@@ -142,14 +141,13 @@ class SensorDeck:
 
 #############################################################################
 
-# The GPIO pins controling each sensor's SPI chip-select (CS).
-# TODO four sensors for test6
-CS_GPIOS = (board.GP9,  board.GP10, board.GP11, board.GP12, board.GP13,
-            board.GP14, board.GP15)
+# Pins controling each sensor's SPI chip-select (CS).
+CS_GPIOS = (board.GP10, board.GP11, board.GP12, board.GP13)
 
 def main():
     sd = SensorDeck(CS_GPIOS)
     while True:
+#       if touch1.value:
         count = sd.read()
         coord = sd.coord()
         print(coord, count)
