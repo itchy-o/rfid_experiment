@@ -26,7 +26,7 @@ import time
 import atexit
 import tag_coords
 from touchio import TouchIn
-from neopixel import Neopixel
+from neopixel import NeoPixel
 from digitalio import DigitalInOut
 from adafruit_pn532.spi import PN532_SPI
 from micropython import const
