@@ -4,19 +4,19 @@
 # SPDX-License-Identifier: MIT
 #
 # rfid_experiment/test6/test6.py
-# Developed using CircuitPython 9.1.x on Raspberry Pi Pico MCU.
+# Developed using CircuitPython 9.2.x on Raspberry Pi Pico W.
 # Read NTAG21x RFID tags using four PN532 sensor modules.
 # Indicate which sensors are detecting tags using an LED strip.
 # Part of the Sono Chapel position-sensing experiments.
-# 2024-08-03
+# 2024-12-29
 # TODO WIP WIP WIP
 # TODO: migrate from DotStar to neopixel
 
 # About this code:
-__version__ = "0.5.2.0"
+__version__ = "0.5.3.0"
 __repo__ = "https://github.com/itchy-o/rfid_experiment.git"
-__impl_name__ = "circuitpython"         # sys.implementation.name
-__impl_version__ = (9, 1, 1)            # sys.implementation.version
+__impl_name__ = 'circuitpython'         # sys.implementation.name
+__impl_version__ = (9, 2, 1, '')        # sys.implementation.version
 __board_id__ = "raspberry_pi_pico_w"    # board.board_id
 
 
