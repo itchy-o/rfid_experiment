@@ -1,0 +1,14 @@
+# settings.toml
+
+# WiFi access point
+CIRCUITPY_WIFI_SSID = "SonoFan"
+CIRCUITPY_WIFI_PASSWORD = "itchyo237"
+
+# The identifier for this pod [uint]
+SONOCHAPEL_POD_ID = 1
+
+# Where does the pod sent messages?
+SONOCHAPEL_SERVER_IPADDR = "192.168.0.99"
+SONOCHAPEL_SERVER_PORT = 12345
+
+#eof
