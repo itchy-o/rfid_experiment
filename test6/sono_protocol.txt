@@ -1,13 +1,13 @@
 sono_protocol.txt
-VERSION "0.1.0.1"
-mew 2024-12-29
+PROTOCOL_VERSION = "0.1.0.2"
+mew@mew.cx 2024-12-31
 
-This doc describes the protocol of messages sent by Sono Chapel pods.
+This doc describes the protocol for messages sent by Sono Chapel pods.
 
-Messages are sent via WiFi to UDP port TBD.
+Messages are sent via WiFi to UDP port 12345.
 The messages are space-delimited ASCII strings.
-Messages are only sent from the pods to the receiving server; pods do not
-receive any messages.
+Messages are only sent from the pods to the receiving server;
+pods do not have any mechanism to receive messages.
 
 There are three message types.
 Any of the message types can be sent at any time.
@@ -29,8 +29,8 @@ where:
     - version [str] : protocol version; i.e.: this document version.
 
 Example:
-    "BOOT 5 0 0.1.0.1"
-indicates pod 5 is using protocol version "0.1.0.1"
+    "BOOT 5 0 0.1.0.2"
+indicates pod 5 is using protocol version "0.1.0.2"
 
 
 ===============================================================================
@@ -38,27 +38,28 @@ indicates pod 5 is using protocol version "0.1.0.1"
 This message is periodically sent to report pod position and status.
 
 Format:
-    DATA pid seq posx posy touch1
+    DATA pid seq posx posy touch1 scnt
 where:
     - "DATA" [str] : the message type.
     - pid [uint] : pod id number.
     - seq [uint] : message sequence counter.
-    - posx [float] : pod X position
-    - posy [float] : pod Y position
-    - touch1 [bool] : touch sensor 1 status (0=not touched, 1=touched)
+    - posx [float] : pod X position.
+    - posy [float] : pod Y position.
+    - touch1 [bool] : touch sensor 1 status (0=not touched, 1=touched).
+    - scnt [uint] : count of sensors actually detecting tags.
 
 Example:
-    "DATA 3 123 2.34 4.56 1"
+    "DATA 3 123 2.34 4.56 1 2"
 indicates the 123rd message sent by pod 3 since BOOT.
-The pod is at position (2.34,4.56) and is being touched.
+The pod is at position (2.34,4.56), that position is computed from two sensors
+detecting tags, and it is being touched.
 
-Position units are specific to each tag panel; see tag_coords.py.
+Position units are determined by the tag panel; see tag_coords.py.
 Valid position values are > 0.0.
-Position values <= 0.0 indicate an error condition.
-Negative values may have enumerated semantics:
-- pod not sensing any tags;
-- pod is sensing an unrecognized tag
+Position values <= 0.0 indicate an unknown position.
 
+If scnt=0 (i.e.: no tags are actually being detected), the last known position
+continues to be reported.
 
 ===============================================================================
 3. The INFO message
