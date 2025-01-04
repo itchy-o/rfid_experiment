@@ -8,18 +8,19 @@
 # Read NTAG21x RFID tags using four PN532 sensor modules.
 # Indicate which sensors are detecting tags using an LED strip.
 # Part of the Sono Chapel position-sensing experiments.
-# 2024-12-29
+# 2025-01-04
 
 """Sono Chapel Pod firmware"""
 
 # About this code:
-__version__ = "0.5.3.2"
+__version__ = "0.5.4.0"
 __repo__ = "https://github.com/itchy-o/rfid_experiment.git"
 __impl_name__ = 'circuitpython'         # sys.implementation.name
 __impl_version__ = (9, 2, 1, '')        # sys.implementation.version
 __board_id__ = "raspberry_pi_pico_w"    # board.board_id
 
-PROTOCOL_VERSION= const("0.1.0.1")
+# The version of sono_protocol.txt we implement here
+PROTOCOL_VERSION = const("0.1.0.3")
 
 
 import board
@@ -64,7 +65,6 @@ class PodMessenger:
         self.pod_interval = const(os.getenv('SONOCHAPEL_POD_INTERVAL')/1000.0)
         self.server       = const(os.getenv('SONOCHAPEL_SERVER_IPADDR'))
         self.port         = const(os.getenv('SONOCHAPEL_SERVER_PORT'))
-        # TODO SONOCHAPEL_RFID_TIMEOUT
         self.sock         = None
         self.seq          = None
         print("Sending to", self.server, ":", self.port)
@@ -89,18 +89,19 @@ class PodMessenger:
     def sleep(self):
         time.sleep(self.pod_interval)
 
-    # Messages as defined by sono_protocol.txt
+    # Messages as defined by sono_protocol.txt...
 
     def sendBOOT(self):
         self.seq = 0
-        self.send("BOOT", PROTOCOL_VERSION)
+        data = "%s %s" % (PROTOCOL_VERSION, __version__)
+        self.send("BOOT", data)
 
-    def sendDATA(self, x, y, t1):
-        data = "%.3f %.3f %d" % (x, y, t1)
+    def sendDATA(self, posx, posy, touch1, num_tags):
+        data = "%f %f %d %d" % (posx, posy, touch1, num_tags)
         self.send("DATA", data)
 
-    def sendINFO(self, info):
-        self.send("INFO", info)
+    def sendINFO(self, data):
+        self.send("INFO", data)
 
 #############################################################################
 
@@ -114,6 +115,7 @@ class Sensor:
         self.pn532 = None
         self.tid = None
         self.coord = None
+        self.rfid_timeout = const(os.getenv('SONOCHAPEL_RFID_TIMEOUT')/1000.0)
 
         try:
             self.pn532 = PN532_SPI(spi=spi, cs_pin=self.cs_pin,
@@ -136,7 +138,7 @@ class Sensor:
             return False
 
         leds[self.i] = WHITE
-        id = self.pn532.read_passive_target(timeout=0.3)
+        id = self.pn532.read_passive_target(timeout=self.rfid_timeout)
         if id is None:
 #            print(self.i, ": No tag detected")
             leds[self.i] = BLACK
@@ -213,13 +215,12 @@ def main():
     while True:
         count = sd.read()
         x,y = sd.coord()
-        t = touch1.value
-        if t:
+        t1 = touch1.value
+        if t1:
             leds[4] = GREEN
         else:
             leds[4] = BLACK
-#        print(count, x, y, t)
-        pm.sendDATA(x, y, t)
+        pm.sendDATA(x, y, t1, count)
         pm.sleep()
 
 @atexit.register
