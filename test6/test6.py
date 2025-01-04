@@ -1,5 +1,5 @@
 # SPDX-FileCopyrightText: 2021 ladyada for Adafruit Industries
-# SPDX-FileCopyrightText: 2023-2024 Mike Weiblen http://mew.cx/
+# SPDX-FileCopyrightText: 2023-2025 Mike Weiblen http://mew.cx/
 #
 # SPDX-License-Identifier: MIT
 #
