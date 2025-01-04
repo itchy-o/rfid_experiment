@@ -1,4 +1,4 @@
-# itchy-o/rfid_experiment
+# itchy-o/rfid_experiment/README.md
 
 ## Concept of operation
 The objective is to determine the location of a pod within a room using NFC/RFID.
@@ -10,17 +10,13 @@ can know where it is by mapping the tag ID to its known physical position.
 
 ## Summary of sensor design
 The hardware consists of a
-[Raspberry Pi Pico MCU](https://www.raspberrypi.com/products/raspberry-pi-pico/)
-running
-[CircuitPython](https://circuitpython.org/),
-connected to
-[RFID](https://en.wikipedia.org/wiki/Radio-frequency_identification)
-13.56MHz
-[PN532 sensor boards](https://www.ebay.com/sch/i.html?_nkw=pn532)
-using
-[SPI](https://en.wikipedia.org/wiki/Serial_Peripheral_Interface).
+- [Raspberry Pi Pico](https://www.raspberrypi.com/products/raspberry-pi-pico/)
+running [CircuitPython](https://circuitpython.org/), connected to
+- [RFID](https://en.wikipedia.org/wiki/Radio-frequency_identification)
+13.56MHz [PN532 sensor modules](https://www.ebay.com/sch/i.html?_nkw=pn532+rfid+v3)
+communicating via [SPI](https://en.wikipedia.org/wiki/Serial_Peripheral_Interface)
 
-The tags and sensors follow the ISO 14443-A standard.
+The tags and sensors follow the [ISO 14443-A](https://en.wikipedia.org/wiki/ISO/IEC_14443) standard.
 
 ## About the RFID tags
 The preferred RFID tags are of the
@@ -48,5 +44,7 @@ There are "credit cards" with RFID circuitry embedded; the cards seem to have th
 - `main` - The current runtime version.  Intended to be installed verbatim on the CircuitPython device.
 - `photos` - Detailed photographs (and other large files e.g. PDFs) supporting the tests.  _Not_ to be installed on the devices.
 
-## Misc
-- [PN532 CircuitPython API documentation](https://docs.circuitpython.org/projects/pn532/en/latest/api.html)
+## Misc CircuitPython documentation
+- [PN532 RFID sensor](https://docs.circuitpython.org/projects/pn532/en/latest/api.html)
+- [capacitive touch sensor](https://learn.adafruit.com/circuitpython-essentials/circuitpython-cap-touch)
+- [NeoPixel LED strip](https://learn.adafruit.com/circuitpython-essentials/circuitpython-neopixel)
