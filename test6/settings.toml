@@ -7,8 +7,8 @@ CIRCUITPY_WIFI_PASSWORD = "itchyo237"
 # The unique identifier for this pod [uint]
 SONOCHAPEL_POD_ID = 1
 
-# Delay between pod's DATA messages, in milliseconds [uint]
-SONOCHAPEL_POD_INTERVAL = 0
+# Delay after sending pod messages, in milliseconds [uint]
+SONOCHAPEL_MSG_DELAY = 0
 
 # PN532 timeout to detect an RFID tag, in milliseconds [uint]
 SONOCHAPEL_RFID_TIMEOUT = 100
