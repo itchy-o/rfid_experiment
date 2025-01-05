@@ -8,12 +8,12 @@
 # Read NTAG21x RFID tags using four PN532 sensor modules.
 # Indicate which sensors are detecting tags using an LED strip.
 # Part of the Sono Chapel position-sensing experiments.
-# 2025-01-04
+# 2025-01-05
 
 """Sono Chapel Pod firmware"""
 
 # About this code:
-__version__ = "0.5.4.1"
+__version__ = "0.5.4.2"
 __repo__ = "https://github.com/itchy-o/rfid_experiment.git"
 __impl_name__ = 'circuitpython'         # sys.implementation.name
 __impl_version__ = (9, 2, 1, '')        # sys.implementation.version
@@ -68,9 +68,10 @@ class PodMessenger:
         self.seq  = None
 
     def connect(self):
-        ssid = os.getenv('CIRCUITPY_WIFI_SSID')
+        ssid   = os.getenv('CIRCUITPY_WIFI_SSID')
+        passwd = os.getenv('CIRCUITPY_WIFI_PASSWORD')
         print("Connecting to SSID", ssid)
-        wifi.radio.connect(ssid, os.getenv('CIRCUITPY_WIFI_PASSWORD'))
+        wifi.radio.connect(ssid, passwd)
         pool = socketpool.SocketPool(wifi.radio)
         # a single socket we reuse forever
         self.sock = pool.socket(pool.AF_INET, pool.SOCK_DGRAM)
@@ -103,7 +104,7 @@ class PodMessenger:
 #############################################################################
 
 class Sensor:
-    """Abstraction for a single PN532 RFID sensor module"""
+    """A single PN532 RFID sensor module"""
 
     def __init__(self, i, spi, chip_select):
         self.i = i
@@ -116,19 +117,19 @@ class Sensor:
             cs_pin=DigitalInOut(chip_select)
             self.pn532 = PN532_SPI(spi=spi, cs_pin=cs_pin, debug=False)
         except:
-#            sendINFO("sensor %d not responding, flag as disabled" % i)
+#            pm.sendINFO("sensor %d not responding, flag as disabled" % i)
             print("sensor %d not responding, flag as disabled" % i)
             self.pn532 = None
             leds[self.i] = RED
             return
 
-#        sendINFO("sensor %d firmware_version %s", (i, self.pn532.firmware_version))
+#        pm.sendINFO("sensor %d firmware_version %s", (i, self.pn532.firmware_version))
         print("sensor %d firmware_version %s" % (i, self.pn532.firmware_version))
         self.pn532.SAM_configuration()
         leds[self.i] = BLACK
 
     def read(self):
-        "Read the sensor, returning True if a tag is recognized."
+        "Read the sensor, returning True if coordinate is updated."
         if self.pn532 is None:
             # Skip this disabled sensor
             return False
@@ -142,8 +143,10 @@ class Sensor:
             return False
 
         tid = "".join("{:02x}".format(i) for i in id)
-        if tid not in tag_coords.data:
-#            sendINFO("sensor %d ROGUE TAG %s" % (self.i, tid))
+        try:
+            coord = tag_coords.data[tid]
+        except:
+#            pm.sendINFO("sensor %d ROGUE TAG %s" % (self.i, tid))
             print("sensor %d ROGUE TAG %s" % (self.i, tid))
             leds[self.i] = MAGENTA
             self.coord = None
@@ -151,46 +154,53 @@ class Sensor:
 
         # This tag is recognized: update our coordinate, return True.
         leds[self.i] = GREEN
-        self.coord = tag_coords.data[tid]
+        self.coord = coord
         return True
 
 #############################################################################
 
 class SensorDeck:
-    """A pod's group of Sensors"""
+    """The pod's collection of Sensors"""
 
     def __init__(self, spi):
-        # Pins for each sensor's SPI chip-select (CS):
+        "Construct all the Sensors for this SensorDeck"
+        # Pins for each sensor's SPI chip-select (CS) signal:
         CS_GPIOS = (board.GP10, board.GP11, board.GP12, board.GP13)
+
         self.sensors = [None] * len(CS_GPIOS)
+        self.coord = (0,0)
         for i, cs_gpio in enumerate(CS_GPIOS):
             self.sensors[i] = Sensor(i, spi, cs_gpio)
 
-    def read(self):
-        "Read all sensors, return the number of recognized tags."
-        n = 0
+    def readAll(self):
+        "Read all sensors once."
         for s in self.sensors:
-            if s.read():
-                n += 1
-        return n
+            s.read()
+
+    def readOne(self):
+        "An infinite iterator to read a single sensor."
+        while True:
+            for s in self.sensors:
+                yield s.read()
 
     def coord(self):
-        "Return the average of our sensors that have valid coordinates."
-        x = 0.0
-        y = 0.0
-        n = 0.0
+        "Return the average of sensors that have valid coordinates."
+        n, x, y = 0, 0.0, 0.0
         for s in self.sensors:
             c = s.coord
             if c is not None:
-                x += float(c[0])
-                y += float(c[1])
-                n += 1.0
+                n += 1
+                x += c[0]
+                y += c[1]
 
-        if n > 0.0:
-            return x/n, y/n
+        if n > 0:
+            x /= n
+            y /= n
+            self.coord = (x,y)
+        else:
+            x,y = self.coord
 
-        # No sensors have valid coordinates.
-        return 0,0
+        return n, x, y
 
 #############################################################################
 
@@ -208,8 +218,8 @@ def main():
     sd = SensorDeck(spi)
 
     while True:
-        num_tags = sd.read()
-        x,y = sd.coord()
+        sd.readAll()
+        num_tags, x, y = sd.coord()
         t1 = touch1.value
         if t1:
             leds[4] = GREEN
