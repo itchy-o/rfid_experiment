@@ -40,14 +40,14 @@ version "0.1.0.3".
 This message is periodically sent to report pod position and status.
 
 Format:
-    DATA pid seq posx posy touch1 num_tags
+    DATA pid seq posx posy t1 num_tags
 where:
     - "DATA" [str] : the message type.
     - pid [uint] : pod id number.
     - seq [uint] : message sequence counter.
     - posx [float] : pod X position.
     - posy [float] : pod Y position.
-    - touch1 [bool] : touch sensor 1 status (0=not touched, 1=touched).
+    - t1 [bool] : touch sensor 1 status (0=not touched, 1=touched).
     - num_tags [uint] : count of sensors actually detecting tags.
 
 Example:
