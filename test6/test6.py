@@ -68,17 +68,21 @@ class PodMessenger:
         self.seq  = None
 
     def connect(self):
+        print("We are pod_id", self.pod_id,
+            "mac", ":".join("{:02x}".format(i) for i in wifi.radio.mac_address))
+
         ssid   = os.getenv('CIRCUITPY_WIFI_SSID')
         passwd = os.getenv('CIRCUITPY_WIFI_PASSWORD')
         print("Connecting to SSID", ssid)
         wifi.radio.connect(ssid, passwd)
-        pool = socketpool.SocketPool(wifi.radio)
-        # a single socket we reuse forever
-        self.sock = pool.socket(pool.AF_INET, pool.SOCK_DGRAM)
 
-        print("We are pod_id", self.pod_id, "ip", wifi.radio.ipv4_address)
-        print("MAC", [hex(i) for i in wifi.radio.mac_address])
+        print("We are pod_id", self.pod_id,
+            "ip", wifi.radio.ipv4_address)
         print("Sending to", self.server)
+
+        # a single socket we reuse forever
+        pool = socketpool.SocketPool(wifi.radio)
+        self.sock = pool.socket(pool.AF_INET, pool.SOCK_DGRAM)
 
     def send(self, type, data):
         packet = "%s %d %d %s" % (type, self.pod_id, self.seq, data)
@@ -87,7 +91,7 @@ class PodMessenger:
         self.seq += 1
         time.sleep(self.msg_delay)
 
-    # Messages as defined by sono_protocol.txt...
+    # Messages as defined by sono_protocol.txt:
 
     def sendBOOT(self):
         self.seq = 0
@@ -100,6 +104,8 @@ class PodMessenger:
 
     def sendINFO(self, data):
         self.send("INFO", data)
+
+pm = PodMessenger()
 
 #############################################################################
 
@@ -117,14 +123,12 @@ class Sensor:
             cs_pin=DigitalInOut(chip_select)
             self.pn532 = PN532_SPI(spi=spi, cs_pin=cs_pin, debug=False)
         except:
-#            pm.sendINFO("sensor %d not responding, flag as disabled" % i)
-            print("sensor %d not responding, flag as disabled" % i)
+            pm.sendINFO("sensor %d not responding, flag as disabled" % i)
             self.pn532 = None
             leds[self.i] = RED
             return
 
-#        pm.sendINFO("sensor %d firmware_version %s", (i, self.pn532.firmware_version))
-        print("sensor %d firmware_version %s" % (i, self.pn532.firmware_version))
+        pm.sendINFO("sensor %d firmware_version %s" % (i, self.pn532.firmware_version))
         self.pn532.SAM_configuration()
         leds[self.i] = BLACK
 
@@ -142,12 +146,11 @@ class Sensor:
             self.coord = None
             return False
 
-        tid = "".join("{:02x}".format(i) for i in id)
+        tag_id = "".join("{:02x}".format(i) for i in id)
         try:
-            coord = tag_coords.data[tid]
+            coord = tag_coords.data[tag_id]
         except:
-#            pm.sendINFO("sensor %d ROGUE TAG %s" % (self.i, tid))
-            print("sensor %d ROGUE TAG %s" % (self.i, tid))
+            pm.sendINFO("sensor %d ROGUE TAG %s" % (self.i, tag_id))
             leds[self.i] = MAGENTA
             self.coord = None
             return False
@@ -168,7 +171,7 @@ class SensorDeck:
         CS_GPIOS = (board.GP10, board.GP11, board.GP12, board.GP13)
 
         self.sensors = [None] * len(CS_GPIOS)
-        self.coord = (0,0)
+        self.lastCoord = (0,0)
         for i, cs_gpio in enumerate(CS_GPIOS):
             self.sensors[i] = Sensor(i, spi, cs_gpio)
 
@@ -185,7 +188,7 @@ class SensorDeck:
 
     def coord(self):
         "Return the average of sensors that have valid coordinates."
-        n, x, y = 0, 0.0, 0.0
+        n,x,y = 0,0,0
         for s in self.sensors:
             c = s.coord
             if c is not None:
@@ -193,14 +196,14 @@ class SensorDeck:
                 x += c[0]
                 y += c[1]
 
-        if n > 0:
+        if n == 0:
+            x,y = self.lastCoord
+        else:
             x /= n
             y /= n
-            self.coord = (x,y)
-        else:
-            x,y = self.coord
+            self.lastCoord = x,y
 
-        return n, x, y
+        return n,x,y
 
 #############################################################################
 
@@ -210,7 +213,6 @@ def main():
     print("Sono Chapel version", __version__, "protocol", PROTOCOL_VERSION)
 
     leds[4] = BLUE
-    pm = PodMessenger()
     pm.connect()
     pm.sendBOOT()
     leds[4] = BLACK
