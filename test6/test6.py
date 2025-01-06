@@ -83,8 +83,8 @@ class PodMessenger:
         data = "%s %s" % (PROTOCOL_VERSION, __version__)
         self.send("BOOT", data)
 
-    def sendDATA(self, posx, posy, touch1, num_tags):
-        data = "%.3f %.3f %d %d" % (posx, posy, touch1, num_tags)
+    def sendDATA(self, posx, posy, t1, num_tags):
+        data = "%.3f %.3f %d %d" % (posx, posy, t1, num_tags)
         self.send("DATA", data)
 
     def sendINFO(self, data):
@@ -134,7 +134,7 @@ class Sensor:
         try:
             coord = tag_coords.data[tag_id]
         except:
-            pm.sendINFO("sensor %d ROGUE TAG %s" % (self.i, tag_id))
+#            pm.sendINFO("sensor %d ROGUE TAG %s" % (self.i, tag_id))
             leds[self.i] = MAGENTA
             self.coord = None
             return False
@@ -214,21 +214,21 @@ def main():
     pm.connect()
     pm.sendBOOT()
 
-    leds.fill(GREEN)
+    touch1 = TouchIn(board.GP1)
+
+    leds.fill(BLACK)
     spi = busio.SPI(clock=board.GP18, MOSI=board.GP19, MISO=board.GP20)
     sd = SensorDeck(spi)
 
-    touch1 = TouchIn(board.GP1)
-
     while True:
+        t1 = touch1.value
+        leds[4] = GREEN if t1 else BLACK
+
         sd.readAll()
         num_tags, x, y = sd.coord()
-        t1 = touch1.value
-        if t1:
-            leds[4] = GREEN
-        else:
-            leds[4] = BLACK
         pm.sendDATA(x, y, t1, num_tags)
+
+# TODO sd.readOne()
 
 @atexit.register
 def shutdown():
