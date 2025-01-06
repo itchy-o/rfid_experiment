@@ -22,6 +22,7 @@ __board_id__ = "raspberry_pi_pico_w"    # board.board_id
 # The version of sono_protocol.txt we implement here:
 PROTOCOL_VERSION = const("0.1.0.3")
 
+#############################################################################
 
 import board
 import busio
@@ -36,22 +37,6 @@ from neopixel import NeoPixel
 from digitalio import DigitalInOut
 from adafruit_pn532.spi import PN532_SPI
 from micropython import const
-
-# Setup 5-LED neopixel strip, ensure all LEDs off.
-WHITE   = const(0x040404)
-RED     = const(0x110000)
-GREEN   = const(0x001100)
-BLUE    = const(0x000022)
-MAGENTA = const(0x110022)
-CYAN    = const(0x001122)
-BLACK   = const(0)
-leds = NeoPixel(pin=board.GP0, n=5, brightness=0.5, auto_write=True)
-leds.fill(BLACK)
-
-touch1 = TouchIn(board.GP1)
-
-# Setup a Serial Peripheral Interface (SPI).
-spi = busio.SPI(clock=board.GP18, MOSI=board.GP19, MISO=board.GP20)
 
 #############################################################################
 
@@ -105,8 +90,6 @@ class PodMessenger:
     def sendINFO(self, data):
         self.send("INFO", data)
 
-pm = PodMessenger()
-
 #############################################################################
 
 class Sensor:
@@ -134,6 +117,7 @@ class Sensor:
 
     def read(self):
         "Read the sensor, returning True if coordinate is updated."
+        print(">>>>>>> reading sensor", self.i)
         if self.pn532 is None:
             # Skip this disabled sensor
             return False
@@ -181,7 +165,7 @@ class SensorDeck:
             s.read()
 
     def readOne(self):
-        "An infinite iterator to read a single sensor."
+        "Infinite iterator that reads a single sensor."
         while True:
             for s in self.sensors:
                 yield s.read()
@@ -206,18 +190,35 @@ class SensorDeck:
         return n,x,y
 
 #############################################################################
+# Globals
 
+# Set up 5-LED neopixel strip
+WHITE   = const(0x040404)
+RED     = const(0x110000)
+GREEN   = const(0x001100)
+BLUE    = const(0x000022)
+MAGENTA = const(0x110022)
+CYAN    = const(0x001122)
+BLACK   = const(0)
+leds = NeoPixel(pin=board.GP0, n=5, brightness=0.5, auto_write=True)
+
+pm = PodMessenger()
+
+#############################################################################
 
 def main():
-    leds[4] = WHITE
+    leds.fill(BLACK)
     print("Sono Chapel version", __version__, "protocol", PROTOCOL_VERSION)
 
-    leds[4] = BLUE
+    leds.fill(BLUE)
     pm.connect()
     pm.sendBOOT()
-    leds[4] = BLACK
 
+    leds.fill(GREEN)
+    spi = busio.SPI(clock=board.GP18, MOSI=board.GP19, MISO=board.GP20)
     sd = SensorDeck(spi)
+
+    touch1 = TouchIn(board.GP1)
 
     while True:
         sd.readAll()
