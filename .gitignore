@@ -25,5 +25,6 @@ PRINT
 grep_*txt
 REFRESH.sh.bak
 liblist.txt
+RELEASE.txt
 
 # eof
