@@ -1,4 +1,12 @@
+# tag_coords.py
+# Dictionary that maps tag_ids to coords or special operations.
+
 data = {}
+
+# tags with special operations:
+data['63cf3efa'] =  "_REBOOT_"        # blue fob
+
+# the "4x4 foot" panel
 data['53475a44510001'] =  (1,1)
 data['534a6343510001'] =  (1,3)
 data['53536343510001'] =  (1,5)
@@ -161,7 +169,4 @@ data['042dd85a1a1390'] =  (14,18)
 data['042dd95a1a1390'] =  (14,20)
 data['042dda5a1a1390'] =  (14,22)
 
-# fob
-data['63cf3efa'] =  (-100,-100)
-
-
+# vim: set sw=4 ts=8 et ic ai:
