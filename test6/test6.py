@@ -4,7 +4,7 @@
 # SPDX-License-Identifier: MIT
 #
 # rfid_experiment/test6/test6.py
-# Developed using CircuitPython 9.2.x on Raspberry Pi Pico W.
+# Developed using CircuitPython on Raspberry Pi Pico W.
 # Read NTAG21x RFID tags using four PN532 sensor modules.
 # Indicate which sensors are detecting tags using an LED strip.
 # Part of the Sono Chapel position-sensing experiments.
@@ -13,7 +13,7 @@
 """Sono Chapel Pod firmware"""
 
 # About this code:
-__version__ = "0.5.4.2"
+__version__ = "0.5.4.3"
 __repo__ = "https://github.com/itchy-o/rfid_experiment.git"
 __impl_name__ = 'circuitpython'         # sys.implementation.name
 __impl_version__ = (9, 2, 1, '')        # sys.implementation.version
@@ -46,11 +46,12 @@ class PodMessenger:
     def __init__(self):
         """Initialize from settings.toml"""
         self.pod_id    =  const(os.getenv('SONOCHAPEL_POD_ID'))
-        self.msg_delay =  const(os.getenv('SONOCHAPEL_MSG_DELAY')/1000.0)
+        self.msg_delay =  const(os.getenv('SONOCHAPEL_MSG_DELAY')/1000)
         self.server    = (const(os.getenv('SONOCHAPEL_SERVER_IPADDR')),
                           const(os.getenv('SONOCHAPEL_SERVER_PORT')))
-        self.sock = None
-        self.seq  = None
+        self.infoLevel = os.getenv('SONOCHAPEL_INFO_LEVEL')
+        self.sock = None        # a single socket we reuse forever
+        self.seq  = None        # the message sequence counter
 
     def connect(self):
         print("We are pod_id", self.pod_id,
@@ -61,9 +62,8 @@ class PodMessenger:
         print("Connecting to SSID", ssid)
         wifi.radio.connect(ssid, passwd)
 
-        print("We are pod_id", self.pod_id,
-            "ip", wifi.radio.ipv4_address)
-        print("Sending to", self.server)
+        print("We are pod_id", self.pod_id, "ip", wifi.radio.ipv4_address)
+        print("Sending to", *self.server)
 
         # a single socket we reuse forever
         pool = socketpool.SocketPool(wifi.radio)
@@ -87,8 +87,9 @@ class PodMessenger:
         data = "%.3f %.3f %d %d" % (posx, posy, t1, num_tags)
         self.send("DATA", data)
 
-    def sendINFO(self, data):
-        self.send("INFO", data)
+    def sendINFO(self, infoLevel, data):
+        if infoLevel >= self.infoLevel:
+            self.send("INFO", data)
 
 #############################################################################
 
@@ -99,76 +100,86 @@ class Sensor:
         self.i = i
         self.pn532 = None
         self.coord = None
-        self.rfid_timeout = const(os.getenv('SONOCHAPEL_RFID_TIMEOUT')/1000.0)
-        leds[self.i] = CYAN
+        self.rfid_timeout = const(os.getenv('SONOCHAPEL_RFID_TIMEOUT')/1000)
 
+        leds[self.i] = CYAN
+        cs_pin = DigitalInOut(chip_select)
         try:
-            cs_pin=DigitalInOut(chip_select)
             self.pn532 = PN532_SPI(spi=spi, cs_pin=cs_pin, debug=False)
         except:
-            pm.sendINFO("sensor %d not responding, flag as disabled" % i)
+            pm.sendINFO("100, sensor %d not responding" % i)
             self.pn532 = None
-            leds[self.i] = RED
+            leds[self.i] = RED          # sensor is disabled
             return
 
-        pm.sendINFO("sensor %d firmware_version %s" % (i, self.pn532.firmware_version))
+        pm.sendINFO(100, "sensor %d firmware_version %s"
+                % (i, self.pn532.firmware_version))
         self.pn532.SAM_configuration()
         leds[self.i] = BLACK
 
     def read(self):
-        "Read the sensor, returning True if coordinate is updated."
-        print(">>>>>>> reading sensor", self.i)
-        if self.pn532 is None:
-            # Skip this disabled sensor
-            return False
-
+        "Read the sensor; if a tag is detected, lookup in the mapping table.
         leds[self.i] = WHITE
         id = self.pn532.read_passive_target(timeout=self.rfid_timeout)
         if id is None:
-            # no tag detected
-            leds[self.i] = BLACK
+            leds[self.i] = BLACK        # sensor is not detecting a tag
             self.coord = None
-            return False
+            return
 
         tag_id = "".join("{:02x}".format(i) for i in id)
-        try:
-            coord = tag_coords.data[tag_id]
-        except:
-#            pm.sendINFO("sensor %d ROGUE TAG %s" % (self.i, tag_id))
-            leds[self.i] = MAGENTA
-            self.coord = None
-            return False
+        tag_data = tag_coords.data.get(tag_id)
+        pm.sendINFO(100, "sensor %d tag_id %s tag_data %s"
+                % (self.i, tag_id, tag_data))
 
-        # This tag is recognized: update our coordinate, return True.
-        leds[self.i] = GREEN
-        self.coord = coord
-        return True
+        if tag_data is None:
+            leds[self.i] = MAGENTA      # tag is not in mapping table
+            self.coord = None
+            return
+
+        if tag_data == '_REBOOT_":
+            reboot()
+
+        # This tag is recognized: update our coordinate.
+        leds[self.i] = GREEN            # tag is recognized and has coord
+        self.coord = tag_data
 
 #############################################################################
 
 class SensorDeck:
     """The pod's collection of Sensors"""
 
-    def __init__(self, spi):
-        "Construct all the Sensors for this SensorDeck"
-        # Pins for each sensor's SPI chip-select (CS) signal:
-        CS_GPIOS = (board.GP10, board.GP11, board.GP12, board.GP13)
+    # Pins for each sensor's SPI chip-select (CS) signal:
+    self.CS_GPIOS = (board.GP10, board.GP11, board.GP12, board.GP13)
 
-        self.sensors = [None] * len(CS_GPIOS)
-        self.lastCoord = (0,0)
-        for i, cs_gpio in enumerate(CS_GPIOS):
-            self.sensors[i] = Sensor(i, spi, cs_gpio)
+    def __init__(self, spi):
+        "Attempt to construct all the Sensors for this SensorDeck"
+
+        self.lastCoord = (0,0)  # The previous averaged coordinate
+        self.sensors = []       # The SensorDeck's enabled sensors
+        for i, cs_gpio in enumerate(self.CS_GPIOS):
+            s = Sensor(i, spi, cs_gpio)
+            if s.pn532 is not None:
+                self.sensors.append(s)
+
+        num_sensors = len(self.sensors)
+        if num_sensors == 0:
+            # no enabled sensors?!  try rebooting
+            reboot()
+        pm.sendINFO("100, SensorDeck has %d enabled sensors" % num_sensors)
 
     def readAll(self):
-        "Read all sensors once."
-        for s in self.sensors:
-            s.read()
+        "Infinite iterator that reads all sensors once."
+        while True:
+            for s in self.sensors:
+                s.read()
+            yield
 
     def readOne(self):
         "Infinite iterator that reads a single sensor."
         while True:
             for s in self.sensors:
-                yield s.read()
+                s.read()
+                yield
 
     def coord(self):
         "Return the average of sensors that have valid coordinates."
@@ -193,14 +204,15 @@ class SensorDeck:
 # Globals
 
 # Set up 5-LED neopixel strip
-WHITE   = const(0x040404)
-RED     = const(0x110000)
-GREEN   = const(0x001100)
-BLUE    = const(0x000022)
-MAGENTA = const(0x110022)
-CYAN    = const(0x001122)
 BLACK   = const(0)
-leds = NeoPixel(pin=board.GP0, n=5, brightness=0.5, auto_write=True)
+BLUE    = const(0x0000ff)
+GREEN   = const(0x00ff00)
+CYAN    = const(0x00ffff)
+RED     = const(0xff0000)
+MAGENTA = const(0xff00ff)
+YELLOW  = const(0xffff00)
+WHITE   = const(0xffffff)
+leds = NeoPixel(pin=board.GP0, n=5, brightness=0.3, auto_write=True)
 
 pm = PodMessenger()
 
@@ -220,15 +232,13 @@ def main():
     spi = busio.SPI(clock=board.GP18, MOSI=board.GP19, MISO=board.GP20)
     sd = SensorDeck(spi)
 
-    while True:
+#    for s in sd.readAll():
+    for s in sd.readOne():
         t1 = touch1.value
         leds[4] = GREEN if t1 else BLACK
 
-        sd.readAll()
         num_tags, x, y = sd.coord()
         pm.sendDATA(x, y, t1, num_tags)
-
-# TODO sd.readOne()
 
 @atexit.register
 def shutdown():
