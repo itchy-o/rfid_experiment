@@ -3,10 +3,10 @@
 
 data = {}
 
-# tags with special operations:
-data['63cf3efa'] =  "_REBOOT_"        # blue fob
+# Special command tags:
+data['63cf3efa'] =  "!REBOOT!"      # blue fob1
 
-# the "4x4 foot" panel
+# The "4x4 foot" panel
 data['53475a44510001'] =  (1,1)
 data['534a6343510001'] =  (1,3)
 data['53536343510001'] =  (1,5)
