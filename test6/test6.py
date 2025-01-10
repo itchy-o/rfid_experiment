@@ -8,7 +8,7 @@
 # Read NTAG21x RFID tags using four PN532 sensor modules.
 # Indicate which sensors are detecting tags using an LED strip.
 # Part of the Sono Chapel position-sensing experiments.
-# 2025-01-05
+# 2025-01-09
 
 """Sono Chapel Pod firmware"""
 
@@ -31,6 +31,7 @@ import atexit
 import os
 import wifi
 import socketpool
+import supervisor
 import tag_coords
 from touchio import TouchIn
 from neopixel import NeoPixel
@@ -45,16 +46,16 @@ class PodMessenger:
 
     def __init__(self):
         """Initialize from settings.toml"""
-        self.pod_id    =  const(os.getenv('SONOCHAPEL_POD_ID'))
-        self.msg_delay =  const(os.getenv('SONOCHAPEL_MSG_DELAY')/1000)
-        self.server    = (const(os.getenv('SONOCHAPEL_SERVER_IPADDR')),
-                          const(os.getenv('SONOCHAPEL_SERVER_PORT')))
-        self.infoLevel = os.getenv('SONOCHAPEL_INFO_LEVEL')
-        self.sock = None        # a single socket we reuse forever
-        self.seq  = None        # the message sequence counter
+        self._pod_id =  const(os.getenv('SONOCHAPEL_POD_ID'))
+        self._msg_delay =  const(os.getenv('SONOCHAPEL_MSG_DELAY')/1000)
+        self._server = (const(os.getenv('SONOCHAPEL_SERVER_IPADDR')),
+                        const(os.getenv('SONOCHAPEL_SERVER_PORT')))
+        self._infoLevel = os.getenv('SONOCHAPEL_INFO_LEVEL')
+        self._sock = None       # a single socket we reuse forever
+        self._seq = None        # the message sequence counter
 
     def connect(self):
-        print("We are pod_id", self.pod_id,
+        print("We are pod_id", self._pod_id,
             "mac", ":".join("{:02x}".format(i) for i in wifi.radio.mac_address))
 
         ssid   = os.getenv('CIRCUITPY_WIFI_SSID')
@@ -62,24 +63,23 @@ class PodMessenger:
         print("Connecting to SSID", ssid)
         wifi.radio.connect(ssid, passwd)
 
-        print("We are pod_id", self.pod_id, "ip", wifi.radio.ipv4_address)
-        print("Sending to", *self.server)
+        print("We are pod_id", self._pod_id, "ip", wifi.radio.ipv4_address)
+        print("Sending to", *self._server)
 
-        # a single socket we reuse forever
         pool = socketpool.SocketPool(wifi.radio)
-        self.sock = pool.socket(pool.AF_INET, pool.SOCK_DGRAM)
+        self._sock = pool.socket(pool.AF_INET, pool.SOCK_DGRAM)
 
     def send(self, type, data):
-        packet = "%s %d %d %s" % (type, self.pod_id, self.seq, data)
+        packet = "%s %d %d %s" % (type, self._pod_id, self._seq, data)
         print(packet)
-        self.sock.sendto(packet, self.server)
-        self.seq += 1
-        time.sleep(self.msg_delay)
+        self._sock.sendto(packet, self._server)
+        self._seq += 1
+        time.sleep(self._msg_delay)
 
     # Messages as defined by sono_protocol.txt:
 
     def sendBOOT(self):
-        self.seq = 0
+        self._seq = 0
         data = "%s %s" % (PROTOCOL_VERSION, __version__)
         self.send("BOOT", data)
 
@@ -88,7 +88,7 @@ class PodMessenger:
         self.send("DATA", data)
 
     def sendINFO(self, infoLevel, data):
-        if infoLevel >= self.infoLevel:
+        if infoLevel >= self._infoLevel:
             self.send("INFO", data)
 
 #############################################################################
@@ -97,50 +97,53 @@ class Sensor:
     """A single PN532 RFID sensor module"""
 
     def __init__(self, i, spi, chip_select):
-        self.i = i
+        self._i = i
+        self._rfid_timeout = const(os.getenv('SONOCHAPEL_RFID_TIMEOUT')/1000)
         self.pn532 = None
         self.coord = None
-        self.rfid_timeout = const(os.getenv('SONOCHAPEL_RFID_TIMEOUT')/1000)
 
-        leds[self.i] = CYAN
+        leds[self._i] = CYAN
         cs_pin = DigitalInOut(chip_select)
         try:
             self.pn532 = PN532_SPI(spi=spi, cs_pin=cs_pin, debug=False)
         except:
-            pm.sendINFO("100, sensor %d not responding" % i)
+            pm.sendINFO(100, "Sensor %d not responding" % i)
+            leds[self._i] = RED         # sensor is disabled
             self.pn532 = None
-            leds[self.i] = RED          # sensor is disabled
             return
 
-        pm.sendINFO(100, "sensor %d firmware_version %s"
+        pm.sendINFO(100, "Sensor %d firmware_version %s"
                 % (i, self.pn532.firmware_version))
         self.pn532.SAM_configuration()
-        leds[self.i] = BLACK
+        leds[self._i] = BLACK           # sensor is idle
 
     def read(self):
-        "Read the sensor; if a tag is detected, lookup in the mapping table.
-        leds[self.i] = WHITE
-        id = self.pn532.read_passive_target(timeout=self.rfid_timeout)
+        "Read the sensor, try to detect a tag"
+        leds[self._i] = WHITE           # sensor is reading
+        id = self.pn532.read_passive_target(timeout=self._rfid_timeout)
+        leds[self._i] = BLACK           # sensor is idle
+
         if id is None:
-            leds[self.i] = BLACK        # sensor is not detecting a tag
-            self.coord = None
+            self.coord = None           # no tag detected
             return
 
+        "Attempt to retrieve data from tag mapping table"
         tag_id = "".join("{:02x}".format(i) for i in id)
         tag_data = tag_coords.data.get(tag_id)
-        pm.sendINFO(100, "sensor %d tag_id %s tag_data %s"
-                % (self.i, tag_id, tag_data))
+        pm.sendINFO(100, "Sensor %d tag_id %s tag_data %s"
+                % (self._i, tag_id, tag_data))
 
         if tag_data is None:
-            leds[self.i] = MAGENTA      # tag is not in mapping table
+            leds[self._i] = MAGENTA     # rogue! tag not in table
             self.coord = None
             return
 
-        if tag_data == '_REBOOT_":
-            reboot()
+        # Is this a special command tag?
+        if tag_data == '!REBOOT!":
+            supervisor.reload()
 
-        # This tag is recognized: update our coordinate.
-        leds[self.i] = GREEN            # tag is recognized and has coord
+        # This tag has recognized coordinate.
+        leds[self._i] = GREEN
         self.coord = tag_data
 
 #############################################################################
@@ -148,55 +151,56 @@ class Sensor:
 class SensorDeck:
     """The pod's collection of Sensors"""
 
-    # Pins for each sensor's SPI chip-select (CS) signal:
+    # Pins for each Sensor's SPI chip-select (CS) signal:
     self.CS_GPIOS = (board.GP10, board.GP11, board.GP12, board.GP13)
 
     def __init__(self, spi):
-        "Attempt to construct all the Sensors for this SensorDeck"
-
-        self.lastCoord = (0,0)  # The previous averaged coordinate
-        self.sensors = []       # The SensorDeck's enabled sensors
+        "Attempt to construct all the Sensors on this SensorDeck"
+        self._prevCoord = (0,0) # Our previous averaged coordinate
+        self._sensors = []      # List of SensorDeck's enabled Sensors
         for i, cs_gpio in enumerate(self.CS_GPIOS):
             s = Sensor(i, spi, cs_gpio)
             if s.pn532 is not None:
-                self.sensors.append(s)
+                self._sensors.append(s)
 
-        num_sensors = len(self.sensors)
+        num_sensors = len(self._sensors)
         if num_sensors == 0:
             # no enabled sensors?!  try rebooting
-            reboot()
-        pm.sendINFO("100, SensorDeck has %d enabled sensors" % num_sensors)
+            supervisor.reload()
+
+        pm.sendINFO(100, "SensorDeck has %d enabled sensors" % num_sensors)
 
     def readAll(self):
         "Infinite iterator that reads all sensors once."
         while True:
-            for s in self.sensors:
+            for s in self._sensors:
                 s.read()
             yield
 
     def readOne(self):
         "Infinite iterator that reads a single sensor."
         while True:
-            for s in self.sensors:
+            for s in self._sensors:
                 s.read()
                 yield
 
     def coord(self):
-        "Return the average of sensors that have valid coordinates."
+        "Return the average of Sensors that have valid coordinates."
         n,x,y = 0,0,0
-        for s in self.sensors:
+        for s in self._sensors:
             c = s.coord
             if c is not None:
                 n += 1
                 x += c[0]
                 y += c[1]
 
+        # If no Sensors have valid coords, return the previous coordinate.
         if n == 0:
-            x,y = self.lastCoord
+            x,y = self._prevCoord
         else:
             x /= n
             y /= n
-            self.lastCoord = x,y
+            self._prevCoord = x,y
 
         return n,x,y
 
