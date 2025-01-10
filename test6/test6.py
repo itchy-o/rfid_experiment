@@ -13,7 +13,7 @@
 """Sono Chapel Pod firmware"""
 
 # About this code:
-__version__ = "0.5.4.3"
+__version__ = "0.5.4.4"
 __repo__ = "https://github.com/itchy-o/rfid_experiment.git"
 __impl_name__ = 'circuitpython'         # sys.implementation.name
 __impl_version__ = (9, 2, 1, '')        # sys.implementation.version
@@ -139,7 +139,7 @@ class Sensor:
             return
 
         # Is this a special command tag?
-        if tag_data == '!REBOOT!":
+        if tag_data == "!REBOOT!":
             supervisor.reload()
 
         # This tag has recognized coordinate.
@@ -152,7 +152,7 @@ class SensorDeck:
     """The pod's collection of Sensors"""
 
     # Pins for each Sensor's SPI chip-select (CS) signal:
-    self.CS_GPIOS = (board.GP10, board.GP11, board.GP12, board.GP13)
+    CS_GPIOS = (board.GP10, board.GP11, board.GP12, board.GP13)
 
     def __init__(self, spi):
         "Attempt to construct all the Sensors on this SensorDeck"
@@ -216,7 +216,7 @@ RED     = const(0xff0000)
 MAGENTA = const(0xff00ff)
 YELLOW  = const(0xffff00)
 WHITE   = const(0xffffff)
-leds = NeoPixel(pin=board.GP0, n=5, brightness=0.3, auto_write=True)
+leds = NeoPixel(pin=board.GP0, n=5, brightness=0.2, auto_write=True)
 
 pm = PodMessenger()
 
@@ -224,7 +224,7 @@ pm = PodMessenger()
 
 def main():
     leds.fill(BLACK)
-    print("Sono Chapel version", __version__, "protocol", PROTOCOL_VERSION)
+    print("\n\nSono Chapel version", __version__, "protocol", PROTOCOL_VERSION)
 
     leds.fill(BLUE)
     pm.connect()
