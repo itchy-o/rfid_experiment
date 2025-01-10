@@ -1,6 +1,6 @@
 sono_protocol.txt
 PROTOCOL_VERSION = "0.1.0.3"
-mew@mew.cx 2025-01-07
+mew@mew.cx 2025-01-09
 
 This doc describes the protocol for messages sent by Sono Chapel pods.
 
@@ -66,7 +66,7 @@ continues to be reported.
 
 ===============================================================================
 3. The INFO message
-This message is sent to report arbitrary diagnostic information.
+This message is sent to deliver arbitrary diagnostic information.
 
 Format:
     INFO pid seq str
@@ -79,7 +79,7 @@ where:
 Example:
     "INFO 1 5432 walking on the ceiling"
 indicates the 5432nd message sent by pod 1 since BOOT.
-Don't parse data from INFO messages: their contents is not defined by this
+Don't parse data from INFO messages: their contents are not defined by this
 protocol.  Consider those strings to be human-readable comments which may
 change without notice.
 
