@@ -1,18 +1,18 @@
 # settings.toml
 
 # The unique identifier for this pod [uint]
-SONOCHAPEL_POD_ID = 1
+SONOCHAPEL_POD_ID = 95
 
 # WiFi access point
-CIRCUITPY_WIFI_SSID = "SonoFan"
-CIRCUITPY_WIFI_PASSWORD = "itchyo237"
+CIRCUITPY_WIFI_SSID = "blue"
+CIRCUITPY_WIFI_PASSWORD = "goodguest24"
 
 # The server to which the pod sends its messages via UDP
 SONOCHAPEL_SERVER_IPADDR = "192.168.0.23"
 SONOCHAPEL_SERVER_PORT = 12345
 
 # Delay after sending pod messages, in milliseconds [uint]
-SONOCHAPEL_MSG_DELAY = 0
+SONOCHAPEL_MSG_DELAY = 1000
 
 # PN532 timeout to detect an RFID tag, in milliseconds [uint]
 SONOCHAPEL_RFID_TIMEOUT = 100
