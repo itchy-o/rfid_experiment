@@ -23,11 +23,11 @@ The preferred RFID tags are of the
 [NTAG21x](https://www.nxp.com/products/rfid-nfc/nfc-hf/ntag-for-tags-and-labels/ntag-213-215-216-nfc-forum-type-2-tag-compliant-ic-with-144-504-888-bytes-user-memory:NTAG213_215_216)
 series.
 We only require a tag's unique pre-programmed identifier, which is used to look up its physical location in a table.
-The table of tag locations is manually created when the array of tags is built.
+A table of tag coordinates must be manually created when a panel of tags is built; see tag_coords.py.
 We do not need any of the tag's memory, so the least-memory (thus hopefully cheapest?) of the NTAG21x tags is sufficient.
 
 Tags also vary in their physical size, thus the size of their antenna.
-The size of the antenna seems to directly affect the distance the sensor can read the tag.
+The size of the antenna probably affects the distance the sensor can read the tag.
 25mm circular tag stickers are common, and have been used in this testing.
 32mm tags have been seen for sale.
 There are "credit cards" with RFID circuitry embedded; the cards seem to have the largest antenna, and their solid plastic seems very durable.
@@ -41,7 +41,7 @@ There are "credit cards" with RFID circuitry embedded; the cards seem to have th
 - test6 - Build eight 4-sensor decks with Raspberry Pi Pico W, to wirelessly communicate with Q-SYS audio system.
 
 ## Summary of branches
-- `main` - The current runtime version.  Intended to be installed verbatim on the CircuitPython device.
+- `main` - The released runtime version.  Intended to be installed on the CircuitPython device.
 - `photos` - Detailed photographs (and other large files e.g. PDFs) supporting the tests.  _Not_ to be installed on the devices.
 
 ## Misc CircuitPython documentation
