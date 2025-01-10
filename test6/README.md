@@ -9,7 +9,7 @@ Q-SYS audio system.
 ## Summary of pod hardware
 Each Sono Chapel pod consists of:
 - A [Raspberry Pi Pico W](https://www.raspberrypi.com/products/raspberry-pi-pico/)
-running [CircuitPython 9](https://circuitpython.org/)
+running [CircuitPython](https://circuitpython.org/)
 - Four [RFID](https://en.wikipedia.org/wiki/Radio-frequency_identification)
 13.56MHz [PN532 sensor modules](https://www.ebay.com/sch/i.html?_nkw=pn532+rfid+v3)
 communicating via [SPI](https://en.wikipedia.org/wiki/Serial_Peripheral_Interface)
@@ -21,6 +21,6 @@ of five RGB LEDs, for status indication
 ## Summary of files
 - [settings.toml](settings.toml) specifies tweakable parameters that control operation.
 - [sono_protocol.txt](sono_protocol.txt) describes the messages transmitted by the pods.
-- [tag_coords.py](tag_coords.py) specifies the positions of tags on the panel.
+- [tag_coords.py](tag_coords.py) specifies the coordinates of tags on a panel, or special commands.
 
 #EOF
