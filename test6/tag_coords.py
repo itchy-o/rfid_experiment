@@ -4,7 +4,11 @@
 data = {}
 
 # Special command tags:
-data['63cf3efa'] =  "!REBOOT!"      # blue fob1
+data['5980e718'] = "!REBOOT!"           # blue fob 1
+data['63cf3efa'] = "!REBOOT!"           # blue fob 2
+data['e5eb3500'] = "!REBOOT!"           # white card 3
+data['1a603100'] = "!REBOOT!"           # white card 4
+
 
 # The "4x4 foot" panel
 data['53475a44510001'] =  (1,1)
