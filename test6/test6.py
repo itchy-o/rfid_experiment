@@ -43,13 +43,7 @@ from micropython import const
 
 def reboot():
     "Soft restart of the microcontroller"
-#    supervisor.reload()
-
-@atexit.register
-def shutdown():
-    "Turn off devices when this code terminates"
-    leds.fill(BLACK)
-    leds.show()
+    supervisor.reload()
 
 #############################################################################
 
@@ -220,7 +214,7 @@ class SensorDeck:
 #############################################################################
 
 # Set up 5-LED neopixel strip
-brightness = os.getenv('SONOCHAPEL_LED_BRIGHTNESS')
+brightness = os.getenv('SONOCHAPEL_LED_BRIGHTNESS') / 100.0
 leds = NeoPixel(pin=board.GP0, n=5, brightness=brightness, auto_write=True)
 
 BLACK   = const(0)
@@ -257,5 +251,11 @@ def main():
 
         num_tags, x, y = sd.coord()
         pm.sendDATA(x, y, t1, num_tags)
+
+@atexit.register
+def shutdown():
+    "Turn off devices when this code terminates"
+    leds.fill(BLACK)
+    leds.show()
 
 # vim: set sw=4 ts=8 et ic ai:
