@@ -20,7 +20,7 @@ SONOCHAPEL_RFID_TIMEOUT = 100
 # sendINFO() actually sends message only if >= this value
 SONOCHAPEL_INFO_LEVEL = -999
 
-# Brightness of the LEDs, 0.0 (off) to 1.0 (full) [float]
-SONOCHAPEL_LED_BRIGHTNESS = 0.2
+# Brightness of the LEDs, 0 (off) to 100 (full) [uint]
+SONOCHAPEL_LED_BRIGHTNESS = 10
 
 #eof
