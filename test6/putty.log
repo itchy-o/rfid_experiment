@@ -1,5 +1,5 @@
-PN532 firmware: 1.6 ic: 50 support: 7
-
+# assign_xy.py
+# PN532 firmware: 1.6 ic: 50 support: 7
 
 # RFID experiment "test2" 2023-07-09
 # tag layout ~100mm spacing
@@ -29,9 +29,6 @@ data[ '53946343510001' ] =  (3, 5)
 enter X,Y: 2,4
 data[ '53316343510001' ] =  (2, 4)
 
-
-
-
 # RFID experiment "test3" 2023-08-09
 # tag layout 6" spacing ~153mm
 
@@ -47,8 +44,6 @@ data[ '532b6343510001' ] =  (1, 2)
 53296343510001
 enter X,Y: 2,3
 data[ '53296343510001' ] =  (2, 3)
-
-
 
 # RFID tag panel on black foamcore 2024-11-29
 # 4 by 7 inch spacing
