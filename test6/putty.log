@@ -1,10 +1,8 @@
-=~=~=~=~=~=~=~=~=~=~=~= PuTTY log 2025.01.12 14:23:52 =~=~=~=~=~=~=~=~=~=~=~=
-]0;🐍192.168.9.213 | REPL | 9.2.1\
-]0;🐍192.168.9.213 | Done | 9.2.1\soft reboot
+PN532 firmware: 1.6 ic: 50 support: 7
 
-[2K[0GAuto-reload is on. Simply save files over USB to run them or enter REPL to disable.
-[2K[0Gcode.py output:
-]0;🐍192.168.9.213 | code.py | 9.2.1\PN532 firmware: 1.6 ic: 50 support: 7
+
+# RFID experiment "test2" 2023-07-09
+# tag layout ~100mm spacing
 
 53646343510001
 enter X,Y: 1,1
@@ -30,24 +28,12 @@ data[ '53946343510001' ] =  (3, 5)
 53316343510001
 enter X,Y: 2,4
 data[ '53316343510001' ] =  (2, 4)
-Traceback (most recent call last):
-  File "code.py", line 3, in <module>
-  File "assign_xy.py", line 56, in main
-  File "assign_xy.py", line 29, in read
-  File "adafruit_pn532/adafruit_pn532.py", line 387, in read_passive_target
-  File "adafruit_pn532/adafruit_pn532.py", line 419, in get_passive_target
-  File "adafruit_pn532/adafruit_pn532.py", line 330, in process_response
-  File "adafruit_pn532/spi.py", line 128, in _wait_ready
-KeyboardInterrupt: 
-]0;🐍192.168.9.213 | 128@adafruit_pn532/spi.py KeyboardInterrupt | 9.2.1\
-Code done running.
 
-Press any key to enter the REPL. Use CTRL-D to reload.
-soft reboot
 
-[2K[0GAuto-reload is on. Simply save files over USB to run them or enter REPL to disable.
-[2K[0Gcode.py output:
-]0;🐍192.168.9.213 | code.py | 9.2.1\PN532 firmware: 1.6 ic: 50 support: 7
+
+
+# RFID experiment "test3" 2023-08-09
+# tag layout 6" spacing ~153mm
 
 532c6343510001
 enter X,Y: 1,1
@@ -61,26 +47,11 @@ data[ '532b6343510001' ] =  (1, 2)
 53296343510001
 enter X,Y: 2,3
 data[ '53296343510001' ] =  (2, 3)
-Traceback (most recent call last):
-  File "code.py", line 3, in <module>
-  File "assign_xy.py", line 56, in main
-  File "assign_xy.py", line 29, in read
-  File "adafruit_pn532/adafruit_pn532.py", line 387, in read_passive_target
-  File "adafruit_pn532/adafruit_pn532.py", line 419, in get_passive_target
-  File "adafruit_pn532/adafruit_pn532.py", line 330, in process_response
-  File "adafruit_pn532/spi.py", line 128, in _wait_ready
-KeyboardInterrupt: 
-]0;🐍192.168.9.213 | 128@adafruit_pn532/spi.py KeyboardInterrupt | 9.2.1\
-Code done running.
-]0;🐍192.168.9.213 | REPL | 9.2.1\
-Adafruit CircuitPython 9.2.1 on 2024-11-20; Raspberry Pi Pico W with rp2040
->>> 
->>> 
-]0;🐍192.168.9.213 | Done | 9.2.1\soft reboot
 
-[2K[0GAuto-reload is on. Simply save files over USB to run them or enter REPL to disable.
-[2K[0Gcode.py output:
-]0;🐍192.168.9.213 | code.py | 9.2.1\PN532 firmware: 1.6 ic: 50 support: 7
+
+
+# RFID tag panel on black foamcore 2024-11-29
+# 4 by 7 inch spacing
 
 53b26343510001
 enter X,Y: 1,1
@@ -151,20 +122,5 @@ data[ '53a26343510001' ] =  (6, 4)
 53a16343510001
 enter X,Y: 6,6
 data[ '53a16343510001' ] =  (6, 6)
-Traceback (most recent call last):
-  File "code.py", line 3, in <module>
-  File "assign_xy.py", line 56, in main
-  File "assign_xy.py", line 29, in read
-  File "adafruit_pn532/adafruit_pn532.py", line 387, in read_passive_target
-  File "adafruit_pn532/adafruit_pn532.py", line 419, in get_passive_target
-  File "adafruit_pn532/adafruit_pn532.py", line 330, in process_response
-  File "adafruit_pn532/spi.py", line 128, in _wait_ready
-KeyboardInterrupt: 
-]0;🐍192.168.9.213 | 128@adafruit_pn532/spi.py KeyboardInterrupt | 9.2.1\
-Code done running.
 
-Press any key to enter the REPL. Use CTRL-D to reload.
-]0;🐍192.168.9.213 | REPL | 9.2.1\
-Adafruit CircuitPython 9.2.1 on 2024-11-20; Raspberry Pi Pico W with rp2040
->>> 
->>> 
+
