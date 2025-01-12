@@ -153,7 +153,7 @@ class Sensor:
         # Is this a special command tag?
         if tag_data.startswith("!REBOOT!"):
             reboot()
-            return      # in case the actual reboot is stubbed out
+            return      # in case the actual reload() is stubbed out
 
         # This tag has recognized coordinate.
         leds[self._i] = GREEN
