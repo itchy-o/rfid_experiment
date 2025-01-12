@@ -11,13 +11,16 @@ CIRCUITPY_WIFI_PASSWORD = "goodguest24"
 SONOCHAPEL_SERVER_IPADDR = "192.168.0.23"
 SONOCHAPEL_SERVER_PORT = 12345
 
-# Delay after sending pod messages, in milliseconds [uint]
+# Delay after sending each pod message, in milliseconds [uint]
 SONOCHAPEL_MSG_DELAY = 1000
 
 # PN532 timeout to detect an RFID tag, in milliseconds [uint]
 SONOCHAPEL_RFID_TIMEOUT = 100
 
-# sendINFO() actually sends only if >= this INFO_LEVEL
+# sendINFO() actually sends message only if >= this value
 SONOCHAPEL_INFO_LEVEL = -999
+
+# Brightness of the LEDs, 0.0 (off) to 1.0 (full) [float]
+SONOCHAPEL_LED_BRIGHTNESS = 0.2
 
 #eof
