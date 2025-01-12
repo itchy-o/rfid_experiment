@@ -8,7 +8,7 @@
 # Read NTAG21x RFID tags using four PN532 sensor modules.
 # Indicate which sensors are detecting tags using an LED strip.
 # Part of the Sono Chapel position-sensing experiments.
-# 2025-01-09
+# 2025-01-12
 
 """Sono Chapel Pod firmware"""
 
@@ -38,6 +38,18 @@ from neopixel import NeoPixel
 from digitalio import DigitalInOut
 from adafruit_pn532.spi import PN532_SPI
 from micropython import const
+
+#############################################################################
+
+def reboot():
+    "Soft restart of the microcontroller"
+#    supervisor.reload()
+
+@atexit.register
+def shutdown():
+    "Turn off devices when this code terminates"
+    leds.fill(BLACK)
+    leds.show()
 
 #############################################################################
 
@@ -139,8 +151,9 @@ class Sensor:
             return
 
         # Is this a special command tag?
-        if tag_data == "!REBOOT!":
-            supervisor.reload()
+        if tag_data.startswith("!REBOOT!"):
+            reboot()
+            return      # in case the actual reboot is stubbed out
 
         # This tag has recognized coordinate.
         leds[self._i] = GREEN
@@ -166,7 +179,7 @@ class SensorDeck:
         num_sensors = len(self._sensors)
         if num_sensors == 0:
             # no enabled sensors?!  try rebooting
-            supervisor.reload()
+            reboot()
 
         pm.sendINFO(100, "SensorDeck has %d enabled sensors" % num_sensors)
 
@@ -205,9 +218,11 @@ class SensorDeck:
         return n,x,y
 
 #############################################################################
-# Globals
 
 # Set up 5-LED neopixel strip
+brightness = os.getenv('SONOCHAPEL_LED_BRIGHTNESS')
+leds = NeoPixel(pin=board.GP0, n=5, brightness=brightness, auto_write=True)
+
 BLACK   = const(0)
 BLUE    = const(0x0000ff)
 GREEN   = const(0x00ff00)
@@ -216,11 +231,10 @@ RED     = const(0xff0000)
 MAGENTA = const(0xff00ff)
 YELLOW  = const(0xffff00)
 WHITE   = const(0xffffff)
-leds = NeoPixel(pin=board.GP0, n=5, brightness=0.2, auto_write=True)
-
-pm = PodMessenger()
 
 #############################################################################
+
+pm = PodMessenger()
 
 def main():
     leds.fill(BLACK)
@@ -243,10 +257,5 @@ def main():
 
         num_tags, x, y = sd.coord()
         pm.sendDATA(x, y, t1, num_tags)
-
-@atexit.register
-def shutdown():
-    leds.fill(BLACK)
-    leds.show()
 
 # vim: set sw=4 ts=8 et ic ai:
