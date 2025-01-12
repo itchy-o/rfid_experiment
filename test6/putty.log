@@ -1,0 +1,170 @@
+=~=~=~=~=~=~=~=~=~=~=~= PuTTY log 2025.01.12 14:23:52 =~=~=~=~=~=~=~=~=~=~=~=
+]0;🐍192.168.9.213 | REPL | 9.2.1\
+]0;🐍192.168.9.213 | Done | 9.2.1\soft reboot
+
+[2K[0GAuto-reload is on. Simply save files over USB to run them or enter REPL to disable.
+[2K[0Gcode.py output:
+]0;🐍192.168.9.213 | code.py | 9.2.1\PN532 firmware: 1.6 ic: 50 support: 7
+
+53646343510001
+enter X,Y: 1,1
+data[ '53646343510001' ] =  (1, 1)
+53636343510001
+enter X,Y: 2,2
+data[ '53636343510001' ] =  (2, 2)
+536a6343510001
+enter X,Y: 3,3
+data[ '536a6343510001' ] =  (3, 3)
+53bb6343510001
+enter X,Y: 3,1
+data[ '53bb6343510001' ] =  (3, 1)
+53696343510001
+enter X,Y: 1,3
+data[ '53696343510001' ] =  (1, 3)
+536b6343510001
+enter X,Y: 1,5
+data[ '536b6343510001' ] =  (1, 5)
+53946343510001
+enter X,Y: 3,5
+data[ '53946343510001' ] =  (3, 5)
+53316343510001
+enter X,Y: 2,4
+data[ '53316343510001' ] =  (2, 4)
+Traceback (most recent call last):
+  File "code.py", line 3, in <module>
+  File "assign_xy.py", line 56, in main
+  File "assign_xy.py", line 29, in read
+  File "adafruit_pn532/adafruit_pn532.py", line 387, in read_passive_target
+  File "adafruit_pn532/adafruit_pn532.py", line 419, in get_passive_target
+  File "adafruit_pn532/adafruit_pn532.py", line 330, in process_response
+  File "adafruit_pn532/spi.py", line 128, in _wait_ready
+KeyboardInterrupt: 
+]0;🐍192.168.9.213 | 128@adafruit_pn532/spi.py KeyboardInterrupt | 9.2.1\
+Code done running.
+
+Press any key to enter the REPL. Use CTRL-D to reload.
+soft reboot
+
+[2K[0GAuto-reload is on. Simply save files over USB to run them or enter REPL to disable.
+[2K[0Gcode.py output:
+]0;🐍192.168.9.213 | code.py | 9.2.1\PN532 firmware: 1.6 ic: 50 support: 7
+
+532c6343510001
+enter X,Y: 1,1
+data[ '532c6343510001' ] =  (1, 1)
+532a6343510001
+enter X,Y: 2,1
+data[ '532a6343510001' ] =  (2, 1)
+532b6343510001
+enter X,Y: 1,2
+data[ '532b6343510001' ] =  (1, 2)
+53296343510001
+enter X,Y: 2,3
+data[ '53296343510001' ] =  (2, 3)
+Traceback (most recent call last):
+  File "code.py", line 3, in <module>
+  File "assign_xy.py", line 56, in main
+  File "assign_xy.py", line 29, in read
+  File "adafruit_pn532/adafruit_pn532.py", line 387, in read_passive_target
+  File "adafruit_pn532/adafruit_pn532.py", line 419, in get_passive_target
+  File "adafruit_pn532/adafruit_pn532.py", line 330, in process_response
+  File "adafruit_pn532/spi.py", line 128, in _wait_ready
+KeyboardInterrupt: 
+]0;🐍192.168.9.213 | 128@adafruit_pn532/spi.py KeyboardInterrupt | 9.2.1\
+Code done running.
+]0;🐍192.168.9.213 | REPL | 9.2.1\
+Adafruit CircuitPython 9.2.1 on 2024-11-20; Raspberry Pi Pico W with rp2040
+>>> 
+>>> 
+]0;🐍192.168.9.213 | Done | 9.2.1\soft reboot
+
+[2K[0GAuto-reload is on. Simply save files over USB to run them or enter REPL to disable.
+[2K[0Gcode.py output:
+]0;🐍192.168.9.213 | code.py | 9.2.1\PN532 firmware: 1.6 ic: 50 support: 7
+
+53b26343510001
+enter X,Y: 1,1
+data[ '53b26343510001' ] =  (1, 1)
+53336343510001
+enter X,Y: 1,3
+data[ '53336343510001' ] =  (1, 3)
+53326343510001
+enter X,Y: 1,5
+data[ '53326343510001' ] =  (1, 5)
+53cb6343510001
+enter X,Y: 1,7
+data[ '53cb6343510001' ] =  (1, 7)
+533a6343510001
+enter X,Y: 2,2
+data[ '533a6343510001' ] =  (2, 2)
+53396343510001
+enter X,Y: 2,4
+data[ '53396343510001' ] =  (2, 4)
+53346343510001
+enter X,Y: 2,6
+data[ '53346343510001' ] =  (2, 6)
+53cc6343510001
+enter X,Y: 2,8
+data[ '53cc6343510001' ] =  (2, 8)
+53b16343510001
+enter X,Y: 3,1
+data[ '53b16343510001' ] =  (3, 1)
+53616343510001
+enter X,Y: 3,3
+data[ '53616343510001' ] =  (3, 3)
+53495a44510001
+enter X,Y: 3,5
+data[ '53495a44510001' ] =  (3, 5)
+53ca6343510001
+enter X,Y: 3,7
+data[ '53ca6343510001' ] =  (3, 7)
+535a6343510001
+enter X,Y: 4,2
+data[ '535a6343510001' ] =  (4, 2)
+535b6343510001
+enter X,Y: 4,4
+data[ '535b6343510001' ] =  (4, 4)
+535c6343510001
+enter X,Y: 4,6
+data[ '535c6343510001' ] =  (4, 6)
+53d16343510001
+enter X,Y: 4,8
+data[ '53d16343510001' ] =  (4, 8)
+53ac6343510001
+enter X,Y: 5,1
+data[ '53ac6343510001' ] =  (5, 1)
+53ab6343510001
+enter X,Y: 5,3
+data[ '53ab6343510001' ] =  (5, 3)
+53aa6343510001
+enter X,Y: 5,5
+data[ '53aa6343510001' ] =  (5, 5)
+53c96343510001
+enter X,Y: 5,7
+data[ '53c96343510001' ] =  (5, 7)
+53a36343510001
+enter X,Y: 6,2
+data[ '53a36343510001' ] =  (6, 2)
+53a26343510001
+enter X,Y: 6,4
+data[ '53a26343510001' ] =  (6, 4)
+53a16343510001
+enter X,Y: 6,6
+data[ '53a16343510001' ] =  (6, 6)
+Traceback (most recent call last):
+  File "code.py", line 3, in <module>
+  File "assign_xy.py", line 56, in main
+  File "assign_xy.py", line 29, in read
+  File "adafruit_pn532/adafruit_pn532.py", line 387, in read_passive_target
+  File "adafruit_pn532/adafruit_pn532.py", line 419, in get_passive_target
+  File "adafruit_pn532/adafruit_pn532.py", line 330, in process_response
+  File "adafruit_pn532/spi.py", line 128, in _wait_ready
+KeyboardInterrupt: 
+]0;🐍192.168.9.213 | 128@adafruit_pn532/spi.py KeyboardInterrupt | 9.2.1\
+Code done running.
+
+Press any key to enter the REPL. Use CTRL-D to reload.
+]0;🐍192.168.9.213 | REPL | 9.2.1\
+Adafruit CircuitPython 9.2.1 on 2024-11-20; Raspberry Pi Pico W with rp2040
+>>> 
+>>> 
