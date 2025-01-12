@@ -1,9 +1,9 @@
 # tag_coords.py
-# Dictionary that maps tag_ids to coords or special operations.
+# Dictionary that maps tag_ids to coords or special commands.
 
 data = {}
 
-# Special command tags:
+# Special command tags
 data['5980e718'] = "!REBOOT! blue fob 1"
 data['63cf3efa'] = "!REBOOT! blue fob 2"
 data['e5eb3500'] = "!REBOOT! white card 3"
@@ -11,7 +11,8 @@ data['1a603100'] = "!REBOOT! white card 4"
 data['33f23900'] = "!REBOOT! white card 5"
 data['04efa7423f3c80'] = "!REBOOT! red tag"
 
-# The "4x4 foot" panel
+# The "4 by 4 foot panel" on plywood (actually two 2x4 foot panels)
+# "4 by 7 inch" spacing
 data['53475a44510001'] =  (1,1)
 data['534a6343510001'] =  (1,3)
 data['53536343510001'] =  (1,5)
@@ -173,5 +174,49 @@ data['042dd75a1a1390'] =  (14,16)
 data['042dd85a1a1390'] =  (14,18)
 data['042dd95a1a1390'] =  (14,20)
 data['042dda5a1a1390'] =  (14,22)
+
+# RFID experiment "test2" on paper 2023-07-09
+# ~100mm spacing, 8 tags
+data[ '53646343510001' ] =  (1, 1)
+data[ '53696343510001' ] =  (1, 3)
+data[ '536b6343510001' ] =  (1, 5)
+data[ '53636343510001' ] =  (2, 2)
+data[ '53316343510001' ] =  (2, 4)
+data[ '53bb6343510001' ] =  (3, 1)
+data[ '536a6343510001' ] =  (3, 3)
+data[ '53946343510001' ] =  (3, 5)
+
+# RFID experiment "test3" on paper 2023-08-09
+# 6" spacing ~153mm, 4 tags
+data[ '532c6343510001' ] =  (1, 0)
+data[ '532b6343510001' ] =  (1, 2)
+data[ '532a6343510001' ] =  (2, 1)
+data[ '53296343510001' ] =  (2, 3)
+
+# tag panel on black foamcore 2024-11-29
+# "4 by 7 inch" spacing, 23 tags
+data[ '53b26343510001' ] =  (1, 1)
+data[ '53336343510001' ] =  (1, 3)
+data[ '53326343510001' ] =  (1, 5)
+data[ '53cb6343510001' ] =  (1, 7)
+data[ '533a6343510001' ] =  (2, 2)
+data[ '53396343510001' ] =  (2, 4)
+data[ '53346343510001' ] =  (2, 6)
+data[ '53cc6343510001' ] =  (2, 8)
+data[ '53b16343510001' ] =  (3, 1)
+data[ '53616343510001' ] =  (3, 3)
+data[ '53495a44510001' ] =  (3, 5)
+data[ '53ca6343510001' ] =  (3, 7)
+data[ '535a6343510001' ] =  (4, 2)
+data[ '535b6343510001' ] =  (4, 4)
+data[ '535c6343510001' ] =  (4, 6)
+data[ '53d16343510001' ] =  (4, 8)
+data[ '53ac6343510001' ] =  (5, 1)
+data[ '53ab6343510001' ] =  (5, 3)
+data[ '53aa6343510001' ] =  (5, 5)
+data[ '53c96343510001' ] =  (5, 7)
+data[ '53a36343510001' ] =  (6, 2)
+data[ '53a26343510001' ] =  (6, 4)
+data[ '53a16343510001' ] =  (6, 6)
 
 # vim: set sw=4 ts=8 et ic ai:
