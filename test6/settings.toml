@@ -17,8 +17,8 @@ SONOCHAPEL_MSG_DELAY = 0
 # PN532 timeout to detect an RFID tag, in milliseconds [uint]
 SONOCHAPEL_RFID_TIMEOUT = 100
 
-# sendINFO() actually sends message only if >= this value
-SONOCHAPEL_INFO_LEVEL = -999
+# sendINFO() only sends message if its level is >= this value
+SONOCHAPEL_INFO_LEVEL = 0
 
 # Brightness of the LEDs, 0 (off) to 100 (full) [uint]
 SONOCHAPEL_LED_BRIGHTNESS = 10
