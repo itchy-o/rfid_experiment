@@ -13,7 +13,7 @@
 """Sono Chapel Pod firmware"""
 
 # About this code:
-__version__ = "0.5.4.4"
+__version__ = "0.5.4.5"
 __repo__ = "https://github.com/itchy-o/rfid_experiment.git"
 __impl_name__ = 'circuitpython'         # sys.implementation.name
 __impl_version__ = (9, 2, 1, '')        # sys.implementation.version
@@ -48,12 +48,12 @@ def reboot():
 #############################################################################
 
 class PodMessenger:
-    """Send messages to server via WiFi"""
+    "Send messages from pod to server via UDP over WiFi"
 
     def __init__(self):
-        """Initialize from settings.toml"""
-        self._pod_id =  const(os.getenv('SONOCHAPEL_POD_ID'))
-        self._msg_delay =  const(os.getenv('SONOCHAPEL_MSG_DELAY')/1000)
+        "Initialize from settings.toml"
+        self._pod_id = const(os.getenv('SONOCHAPEL_POD_ID'))
+        self._msg_delay = const(os.getenv('SONOCHAPEL_MSG_DELAY')/1000)
         self._server = (const(os.getenv('SONOCHAPEL_SERVER_IPADDR')),
                         const(os.getenv('SONOCHAPEL_SERVER_PORT')))
         self._infoLevel = os.getenv('SONOCHAPEL_INFO_LEVEL')
@@ -108,48 +108,49 @@ class Sensor:
         self.pn532 = None
         self.coord = None
 
-        leds[self._i] = CYAN
+        leds[self._i] = CYAN            # construct the sensor
         cs_pin = DigitalInOut(chip_select)
         try:
             self.pn532 = PN532_SPI(spi=spi, cs_pin=cs_pin, debug=False)
         except:
-            pm.sendINFO(100, "Sensor %d not responding" % i)
+            pm.sendINFO(80, "Sensor %d not responding" % i)
             leds[self._i] = RED         # sensor is disabled
             self.pn532 = None
             return
 
-        pm.sendINFO(100, "Sensor %d firmware_version %s"
+        pm.sendINFO(80, "Sensor %d firmware_version %s"
                 % (i, self.pn532.firmware_version))
         self.pn532.SAM_configuration()
         leds[self._i] = BLACK           # sensor is idle
 
     def read(self):
-        "Read the sensor, try to detect a tag"
+        "Read the sensor, try to detect a tag, and lookup in table"
         leds[self._i] = WHITE           # sensor is reading
         id = self.pn532.read_passive_target(timeout=self._rfid_timeout)
         leds[self._i] = BLACK           # sensor is idle
+        self.coord = None
 
         if id is None:
-            self.coord = None           # no tag detected
-            return
+            return      # no tag detected
 
-        "Attempt to retrieve data from tag mapping table"
+        # Attempt to retrieve data from tag_coord mapping table
         tag_id = "".join("{:02x}".format(i) for i in id)
         tag_data = tag_coords.data.get(tag_id)
-        pm.sendINFO(100, "Sensor %d tag_id %s tag_data %s"
+        pm.sendINFO(50, "Sensor %d tag_id %s tag_data %s"
                 % (self._i, tag_id, tag_data))
 
         if tag_data is None:
-            leds[self._i] = MAGENTA     # rogue! tag not in table
-            self.coord = None
+            leds[self._i] = MAGENTA     # rogue tag that not in table
             return
 
-        # Is this a special command tag?
-#        if tag_data.startswith("!REBOOT!"):
-#            reboot()
-#            return      # in case the actual reload() is stubbed out
+        # Does this tag indicate a special command?
+        if isinstance(tag_data, str):
+            if tag_data.startswith("!REBOOT!"):
+                reboot()
+                return      # just in case the reboot() is stubbed out
+            # Other special commands could go here
 
-        # This tag has recognized coordinate.
+        # This tag has a valid x,y coordinate.
         leds[self._i] = GREEN
         self.coord = tag_data
 
@@ -175,17 +176,17 @@ class SensorDeck:
             # no enabled sensors?!  try rebooting
             reboot()
 
-        pm.sendINFO(100, "SensorDeck has %d enabled sensors" % num_sensors)
+        pm.sendINFO(90, "SensorDeck has %d enabled sensors" % num_sensors)
 
     def readAll(self):
-        "Infinite iterator that reads all sensors once."
+        "A generator as infinite iterator that reads all sensors once."
         while True:
             for s in self._sensors:
                 s.read()
             yield
 
     def readOne(self):
-        "Infinite iterator that reads a single sensor."
+        "A generator as infinite iterator that reads a single sensor."
         while True:
             for s in self._sensors:
                 s.read()
@@ -231,11 +232,10 @@ WHITE   = const(0xffffff)
 pm = PodMessenger()
 
 def main():
-    leds.fill(BLACK)
+    leds.fill(GREEN)
     print("\n\nSono Chapel version", __version__, "protocol", PROTOCOL_VERSION)
-
-    leds.fill(BLUE)
     pm.connect()
+    leds.fill(BLUE)
     pm.sendBOOT()
 
     touch1 = TouchIn(board.GP1)
@@ -244,7 +244,6 @@ def main():
     spi = busio.SPI(clock=board.GP18, MOSI=board.GP19, MISO=board.GP20)
     sd = SensorDeck(spi)
 
-#    for s in sd.readAll():
     for s in sd.readOne():
         t1 = touch1.value
         leds[4] = GREEN if t1 else BLACK
@@ -254,7 +253,7 @@ def main():
 
 @atexit.register
 def shutdown():
-    "Turn off devices when this code terminates"
+    "Turn off LEDs when this code terminates"
     leds.fill(BLACK)
     leds.show()
 
