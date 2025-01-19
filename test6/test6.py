@@ -8,7 +8,7 @@
 # Read NTAG21x RFID tags using four PN532 sensor modules.
 # Indicate which sensors are detecting tags using an LED strip.
 # Part of the Sono Chapel position-sensing experiments.
-# 2025-01-12
+# 2025-01-18
 
 """Sono Chapel Pod firmware"""
 
