@@ -1,0 +1,81 @@
+filename : waveshare_rp2040_geek__0.0.0__de636c969b4e9132.txt
+
+hinv version : 0.0.8.0		repo : https://github.com/mew-cx/CircuitPython_hinv
+board.board_id : waveshare_rp2040_geek
+uid : de636c969b4e9132
+len(cpus) : 2 (de636c969b4e9132 de636c969b4e9132)
+sys.implementation : (name='circuitpython', version=(9, 2, 1, ''), _machine='Waveshare RP2040-GEEK with rp2040', _mpy=774) MPY_VERSION=6 flags=0x03 arch=0
+sys.path : ['', '/', '/lib']
+sys.platform : RP2040
+sys.version : 3.4.0; CircuitPython 9.2.1 on 2024-11-20
+sys.modules : {'hinv': <module 'hinv' from 'hinv.py'>}
+os.uname() : (sysname='rp2040', nodename='rp2040', release='9.2.1', version='9.2.1 on 2024-11-20', machine='Waveshare RP2040-GEEK with rp2040')
+memory : 141.5KiB free of 151.6KiB total (93.3%)
+storage : 2987.0KiB free of 3050.0KiB total (97.9%)
+len(nvm) : 4096
+
+dir(board) :
+['__class__', '__name__', 'DISPLAY', 'GP10', 'GP11', 'GP12', 'GP16', 'GP17', 'GP18', 'GP19', 'GP2', 'GP20', 'GP21', 'GP22', 'GP23', 'GP25', 'GP28', 'GP29', 'GP3', 'GP4', 'GP5', 'GP8', 'GP9', 'I2C', 'LCD_BACKLIGHT', 'LCD_CLK', 'LCD_CS', 'LCD_DC', 'LCD_MOSI', 'LCD_RST', 'LCD_SPI', 'RX', 'SCL', 'SDA', 'SDIO_CLK', 'SDIO_COMMAND', 'SDIO_DATA0', 'SDIO_DATA1', 'SDIO_DATA2', 'SDIO_DATA3', 'SD_CS', 'SD_MISO', 'SD_MOSI', 'SD_SCK', 'SD_SPI', 'TX', 'UART', '__dict__', 'board_id']
+
+PinMap() {
+microcontroller.GPIO0
+microcontroller.GPIO1
+microcontroller.GPIO10	board.GP10	board.LCD_CLK
+microcontroller.GPIO11	board.GP11	board.LCD_MOSI
+microcontroller.GPIO12	board.GP12	board.LCD_RST
+microcontroller.GPIO13
+microcontroller.GPIO14
+microcontroller.GPIO15
+microcontroller.GPIO16	board.GP16
+microcontroller.GPIO17	board.GP17
+microcontroller.GPIO18	board.GP18	board.SDIO_CLK	board.SD_SCK
+microcontroller.GPIO19	board.GP19	board.SDIO_COMMAND	board.SD_MOSI
+microcontroller.GPIO2	board.GP2
+microcontroller.GPIO20	board.GP20	board.SDIO_DATA0	board.SD_MISO
+microcontroller.GPIO21	board.GP21	board.SDIO_DATA1
+microcontroller.GPIO22	board.GP22	board.SDIO_DATA2
+microcontroller.GPIO23	board.GP23	board.SDIO_DATA3	board.SD_CS
+microcontroller.GPIO24
+microcontroller.GPIO25	board.GP25	board.LCD_BACKLIGHT
+microcontroller.GPIO26
+microcontroller.GPIO27
+microcontroller.GPIO28	board.GP28	board.SDA
+microcontroller.GPIO29	board.GP29	board.SCL
+microcontroller.GPIO3	board.GP3
+microcontroller.GPIO4	board.GP4	board.TX
+microcontroller.GPIO5	board.GP5	board.RX
+microcontroller.GPIO6
+microcontroller.GPIO7
+microcontroller.GPIO8	board.GP8	board.LCD_DC
+microcontroller.GPIO9	board.GP9	board.LCD_CS
+}
+help('modules') {
+__future__        builtins          math              synthio
+__main__          busdisplay        memorymap         sys
+_asyncio          busio             microcontroller   terminalio
+_bleio            codeop            micropython       time
+_eve              collections       msgpack           touchio
+_pixelmap         countio           neopixel_write    traceback
+adafruit_bus_device                 digitalio         nvm               ulab
+adafruit_bus_device.i2c_device      displayio         onewireio         ulab.numpy
+adafruit_bus_device.spi_device      epaperdisplay     os                ulab.numpy.fft
+adafruit_pixelbuf errno             paralleldisplay   ulab.numpy.linalg
+aesio             floppyio          paralleldisplaybus                  ulab.scipy
+alarm             fontio            pulseio           ulab.scipy.linalg
+analogbufio       fourwire          pwmio             ulab.scipy.optimize
+analogio          framebufferio     qrio              ulab.scipy.signal
+array             gc                rainbowio         ulab.scipy.special
+atexit            getpass           random            ulab.utils
+audiobusio        gifio             re                usb
+audiocore         hashlib           rgbmatrix         usb.core
+audiomixer        i2cdisplaybus     rotaryio          usb_cdc
+audiomp3          i2ctarget         rp2pio            usb_hid
+audiopwmio        imagecapture      rtc               usb_host
+binascii          io                sdcardio          usb_midi
+bitbangio         jpegio            select            usb_video
+bitmapfilter      json              sharpdisplay      vectorio
+bitmaptools       keypad            storage           warnings
+bitops            keypad_demux      struct            watchdog
+board             locale            supervisor        zlib
+Plus any modules on the filesystem
+}
