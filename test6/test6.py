@@ -165,7 +165,7 @@ class SensorDeck:
     """The pod's collection of Sensors"""
 
     # Pins for each Sensor's SPI chip-select (CS) signal:
-    CS_GPIOS = (board.GP10, board.GP11, board.GP12, board.GP13)
+    CS_GPIOS = (board.GP10)
 
     def __init__(self, spi):
         "Attempt to construct all the Sensors on this SensorDeck"
@@ -221,7 +221,7 @@ class SensorDeck:
 
 # Set up 5-LED neopixel strip
 brightness = os.getenv('SONOCHAPEL_LED_BRIGHTNESS') / 100.0
-leds = NeoPixel(pin=board.GP0, n=5, brightness=brightness, auto_write=True)
+leds = NeoPixel(pin=board.GP22, n=5, brightness=brightness, auto_write=True)
 
 BLACK   = const(0)
 BLUE    = const(0x0000ff)
@@ -243,7 +243,7 @@ def main():
     leds.fill(BLUE)
     pm.sendBOOT()
 
-    touch1 = TouchIn(board.GP1)
+    touch1 = TouchIn(board.GP23)
 
     leds.fill(BLACK)
     spi = busio.SPI(clock=board.GP18, MOSI=board.GP19, MISO=board.GP20)
