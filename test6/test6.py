@@ -29,8 +29,6 @@ import busio
 import time
 import atexit
 import os
-import wifi
-import socketpool
 import supervisor
 import tag_coords
 from touchio import TouchIn
@@ -38,6 +36,13 @@ from neopixel import NeoPixel
 from digitalio import DigitalInOut
 from adafruit_pn532.spi import PN532_SPI
 from micropython import const
+
+try:
+    import wifi
+    import socketpool
+except:
+    import wifi_fake as wifi
+    import socketpool_fake as socketpool
 
 #############################################################################
 
