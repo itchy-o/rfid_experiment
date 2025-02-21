@@ -1,10 +1,9 @@
 # itchy-o/rfid_experiment/test7/README.md
 
-test7 reuses test4's "4x4" floor panel,
-and builds eight (7+1 spare) individual battery-powered 4-sensor decks,
-to experiment with manipulating multiple pods.
-Raspberry Pi Pico W is used to transmit pod state messages via WiFi to the
-Q-SYS audio system.
+test7 reuses test6's eight (7+1 spare) individual 4-sensor decks, and builds a
+new 6x6 floor panel with approximately (25+26)*5*3=765 tags in 7cm triangles.
+This configuration is scheduled for test at HQ 2025-03-02, and first public
+appearance during Som Saptalahn at Fiske Planetarium 2025-03-15.
 
 ## Summary of pod hardware
 Each Sono Chapel pod consists of:
