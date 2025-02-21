@@ -1,6 +1,6 @@
-# itchy-o/rfid_experiment/test6/README.md
+# itchy-o/rfid_experiment/test7/README.md
 
-test6 reuses test4's "4x4" floor panel,
+test7 reuses test4's "4x4" floor panel,
 and builds eight (7+1 spare) individual battery-powered 4-sensor decks,
 to experiment with manipulating multiple pods.
 Raspberry Pi Pico W is used to transmit pod state messages via WiFi to the

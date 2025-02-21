@@ -3,17 +3,17 @@
 #
 # SPDX-License-Identifier: MIT
 #
-# rfid_experiment/test6/test6.py
+# rfid_experiment/test7/test7.py
 # Developed using CircuitPython on Raspberry Pi Pico W.
 # Read NTAG21x RFID tags using four PN532 sensor modules.
 # Indicate which sensors are detecting tags using an LED strip.
 # Part of the Sono Chapel position-sensing experiments.
-# 2025-01-12
+# 2025-02-20
 
 """Sono Chapel Pod firmware"""
 
 # About this code:
-__version__ = "0.6.0.0"
+__version__ = "0.6.1.0"
 __repo__ = "https://github.com/itchy-o/rfid_experiment.git"
 __impl_name__ = 'circuitpython'         # sys.implementation.name
 __impl_version__ = (9, 2, 1, '')        # sys.implementation.version
