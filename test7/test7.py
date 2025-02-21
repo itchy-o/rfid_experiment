@@ -75,7 +75,7 @@ class PodMessenger:
         pool = socketpool.SocketPool(wifi.radio)
         self._sock = pool.socket(pool.AF_INET, pool.SOCK_DGRAM)
 
-    def send(self, type, data):
+    def _send(self, type, data):
         packet = "%s %d %d %s" % (type, self._pod_id, self._seq, data)
         print(packet)
         self._sock.sendto(packet, self._server)
@@ -87,15 +87,15 @@ class PodMessenger:
     def sendBOOT(self):
         self._seq = 0
         data = "%s %s" % (PROTOCOL_VERSION, __version__)
-        self.send("BOOT", data)
+        self._send("BOOT", data)
 
     def sendDATA(self, posx, posy, t1, num_tags):
         data = "%.3f %.3f %d %d" % (posx, posy, t1, num_tags)
-        self.send("DATA", data)
+        self._send("DATA", data)
 
     def sendINFO(self, infoLevel, data):
         if infoLevel >= self._infoLevel:
-            self.send("INFO", data)
+            self._send("INFO", data)
 
 #############################################################################
 
