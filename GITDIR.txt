@@ -1,4 +1,5 @@
 gitdir: C:/mew/gits/github.com/itchy-o/rfid_experiment/.git
+gitdir: c:/Users/mew/Desktop/sonochapel_2025-01-14b/gits/rfid_experiment/.git
 
 
 Windows: gwar brat
