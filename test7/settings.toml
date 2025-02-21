@@ -1,11 +1,11 @@
 # settings.toml
 
 # The unique identifier for this pod [uint]
-SONOCHAPEL_POD_ID = 95
+#SONOCHAPEL_POD_ID = 1
 
 # WiFi access point
-CIRCUITPY_WIFI_SSID = "blue"
-CIRCUITPY_WIFI_PASSWORD = "goodguest24"
+#CIRCUITPY_WIFI_SSID = "SonoFan"
+#CIRCUITPY_WIFI_PASSWORD = "itchyo237"
 
 # The server to which the pod sends its messages via UDP
 SONOCHAPEL_SERVER_IPADDR = "192.168.0.23"
@@ -22,5 +22,11 @@ SONOCHAPEL_INFO_LEVEL = 0
 
 # Brightness of the LEDs, 0 (off) to 100 (full) [uint]
 SONOCHAPEL_LED_BRIGHTNESS = 10
+
+
+# mew's development overrides ======================
+CIRCUITPY_WIFI_SSID = "blue"
+CIRCUITPY_WIFI_PASSWORD = "goodguest24"
+SONOCHAPEL_POD_ID = 100
 
 #eof
