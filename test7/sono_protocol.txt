@@ -1,0 +1,86 @@
+sono_protocol.txt
+PROTOCOL_VERSION = "0.1.0.3"
+mew@mew.cx 2025-01-09
+
+This doc describes the protocol for messages sent by Sono Chapel pods.
+
+Messages are sent via WiFi to UDP port 12345.
+The messages are space-delimited ASCII strings.
+Messages are only sent from the pods to the receiving server;
+pods do not have any mechanism to receive messages.
+
+There are three message types.
+Any of the message types can be sent at any time.
+The message sequence counter is incremented after every send.
+
+
+===============================================================================
+1. The BOOT message
+This message is sent when a pod is (re)started.
+It specifies the protocol being used, and that the pod's message counter is
+reset to zero.
+
+Format:
+    BOOT pid seq proto_ver fw_ver
+where:
+    - "BOOT" [str] : the message type.
+    - pid [uint] : pod id number.
+    - seq [uint] : message sequence counter; always "0" for BOOT message.
+    - proto_ver [str] : protocol version; i.e.: this document version.
+    - fw_ver [str] : version of firmware sending this message.
+
+Example:
+    "BOOT 5 0 0.1.0.3 0.0.0.1"
+indicates pod 5 is running firmware version "0.0.0.1" and using protocol
+version "0.1.0.3".
+
+
+===============================================================================
+2. The DATA message
+This message is periodically sent to report pod position and status.
+
+Format:
+    DATA pid seq posx posy t1 num_tags
+where:
+    - "DATA" [str] : the message type.
+    - pid [uint] : pod id number.
+    - seq [uint] : message sequence counter.
+    - posx [float] : pod X position.
+    - posy [float] : pod Y position.
+    - t1 [bool] : touch sensor 1 status (0=not touched, 1=touched).
+    - num_tags [uint] : count of sensors actually detecting tags.
+
+Example:
+    "DATA 3 123 2.34 4.56 1 2"
+indicates the 123rd message sent by pod 3 since BOOT.
+The pod is at position (2.34,4.56), that position is computed from two sensors
+detecting tags, and it is being touched.
+
+Position units are determined by the tag panel; see tag_coords.py.
+Valid position values are > 0.0; values <= 0.0 should not be interpreted as
+positions.
+
+If num_tags=0 (i.e.: no tags are being detected), the last known position
+continues to be reported.
+
+
+===============================================================================
+3. The INFO message
+This message is sent to deliver arbitrary diagnostic information.
+
+Format:
+    INFO pid seq str
+where:
+    - "INFO" [str] : the message type.
+    - pid [uint] : pod id number.
+    - seq [uint] : message sequence counter.
+    - str [str] : an arbitrary string, possibly containing embedded spaces.
+
+Example:
+    "INFO 1 5432 walking on the ceiling"
+indicates the 5432nd message sent by pod 1 since BOOT.
+Don't parse data from INFO messages: their contents are not defined by this
+protocol.  Consider those strings to be human-readable comments which may
+change without notice.
+
+#EOF
