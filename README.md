@@ -39,6 +39,7 @@ There are "credit cards" with RFID circuitry embedded; the cards seem to have th
 - test4 - Build a 4x4 foot triangular grid of tags on plywood (16 sqft, ~160 tags total, 100mm tag spacing), and reuse the test3 7-sensor deck.
 - test5 - Same hardware as test4, with bug fixes and update to latest CircuitPython.
 - test6 - Build eight 4-sensor decks with Raspberry Pi Pico W, to wirelessly communicate with Q-SYS audio system.
+- test7 - Build a 6x6 foot triangular grid of tags on plywood (36 sqft, ~760 tags total, 70mm tag spacing), and reuse the eight test6 4-sensor pods.
 
 ## Summary of branches
 - `main` - The released runtime version.  Intended to be installed on the CircuitPython device.
@@ -46,5 +47,6 @@ There are "credit cards" with RFID circuitry embedded; the cards seem to have th
 
 ## Misc CircuitPython documentation
 - [PN532 RFID sensor](https://docs.circuitpython.org/projects/pn532/en/latest/api.html)
+- [PN532 module pinout](https://components101.com/wireless/pn532-nfc-rfid-module)
 - [capacitive touch sensor](https://learn.adafruit.com/circuitpython-essentials/circuitpython-cap-touch)
 - [NeoPixel LED strip](https://learn.adafruit.com/circuitpython-essentials/circuitpython-neopixel)
