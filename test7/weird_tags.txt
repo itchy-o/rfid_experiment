@@ -1,0 +1,24 @@
+=============================================================================
+
+# grep -n 04bc506a7b1d90 *
+6x6.txt:234:q 10 11 04bc506a7b1d90
+6x6.txt:236:q 10 13 04bc506a7b1d90
+7comments.txt:617:# 04bc506a7b1d90 (10, 11)
+7comments.txt:618:# 04bc506a7b1d90 (10, 13)
+
+analysis: tag has been assigned two coordinates.
+          does that mess up the subsequent tags in column 10?
+resolution: TODO
+=============================================================================
+
+# bash 6x6.txt | sort > x ; diff x 7comments.txt
+579d578
+< # 04a64b6a7b1d90 (20, 13)
+
+# grep -n 04a64b6a7b1d90 *
+6x6.txt:481:q 20 13 04a64b6a7b1d90
+
+analysis: this coordinate just didn't get read back into 7comments.txt?
+resolution: it is ok for it to be in 6x6.txt
+=============================================================================
+
