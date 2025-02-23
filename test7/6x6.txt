@@ -3489,160 +3489,160 @@ Traceback (most recent call last):
 KeyboardInterrupt: 
 ]0;🐍192.168.9.213 | 128@adafruit_pn532/spi.py KeyboardInterrupt | 9.2.1\
 Code done running.
-
 
 
 
 
 
-=~=~=~=~=~=~=~=~=~=~=~= PuTTY log 2025.02.23 01:00:32 =~=~=~=~=~=~=~=~=~=~=~=
 
-Press any key to enter the REPL. Use CTRL-D to reload.
-]0;🐍192.168.9.213 | Done | 9.2.1\soft reboot
-
-[2K[0GAuto-reload is on. Simply save files over USB to run them or enter REPL to disable.
-[2K[0Gcode.py output:
-]0;🐍192.168.9.213 | code.py | 9.2.1\PN532 firmware: 1.6 ic: 50 support: 7
-
-starting X: 22
-starting Y: 3
-22 3 0447516a7b1d90
-# 0447516a7b1d90 (22, 3)
-# 0447516a7b1d90 (22, 3)
-# 0447516a7b1d90 (22, 3)
-22 5 04184f6a7b1d91
-# 04184f6a7b1d91 (22, 5)
-# 04184f6a7b1d91 (22, 5)
-# 04184f6a7b1d91 (22, 5)
-22 7 0443526a7b1d90
-# 0443526a7b1d90 (22, 7)
-# 0443526a7b1d90 (22, 7)
-# 0443526a7b1d90 (22, 7)
-22 9 0442526a7b1d90
-# 0442526a7b1d90 (22, 9)
-# 0442526a7b1d90 (22, 9)
-# 0442526a7b1d90 (22, 9)
-# 0442526a7b1d90 (22, 9)
-22 11 0441526a7b1d90
-# 0441526a7b1d90 (22, 11)
-# 0441526a7b1d90 (22, 11)
-# 0441526a7b1d90 (22, 11)
-22 13 0440526a7b1d90
-# 0440526a7b1d90 (22, 13)
-# 0440526a7b1d90 (22, 13)
-# 0440526a7b1d90 (22, 13)
-# 0440526a7b1d90 (22, 13)
-22 15 043f526a7b1d90
-# 043f526a7b1d90 (22, 15)
-# 043f526a7b1d90 (22, 15)
-# 043f526a7b1d90 (22, 15)
-# 043f526a7b1d90 (22, 15)
-22 17 04634f6a7b1d90
-# 04634f6a7b1d90 (22, 17)
-# 04634f6a7b1d90 (22, 17)
-# 04634f6a7b1d90 (22, 17)
-# 04634f6a7b1d90 (22, 17)
-22 19 04624f6a7b1d90
-# 04624f6a7b1d90 (22, 19)
-# 04624f6a7b1d90 (22, 19)
-# 04624f6a7b1d90 (22, 19)
-# 04624f6a7b1d90 (22, 19)
-22 21 04c8526a7b1d90
-# 04c8526a7b1d90 (22, 21)
-# 04c8526a7b1d90 (22, 21)
-# 04c8526a7b1d90 (22, 21)
-# 04c8526a7b1d90 (22, 21)
-# 04c8526a7b1d90 (22, 21)
-# 04c8526a7b1d90 (22, 21)
-22 23 04a24f6a7b1d90
-# 04a24f6a7b1d90 (22, 23)
-# 04a24f6a7b1d90 (22, 23)
-# 04a24f6a7b1d90 (22, 23)
-# 04a24f6a7b1d90 (22, 23)
-22 25 04a14f6a7b1d90
-# 04a14f6a7b1d90 (22, 25)
-# 04a14f6a7b1d90 (22, 25)
-# 04a14f6a7b1d90 (22, 25)
-# 04a14f6a7b1d90 (22, 25)
-# 04a14f6a7b1d90 (22, 25)
-22 27 04a04f6a7b1d90
-# 04a04f6a7b1d90 (22, 27)
-# 04a04f6a7b1d90 (22, 27)
-# 04a04f6a7b1d90 (22, 27)
-# 04a04f6a7b1d90 (22, 27)
-22 29 049f4f6a7b1d90
-# 049f4f6a7b1d90 (22, 29)
-# 049f4f6a7b1d90 (22, 29)
-# 049f4f6a7b1d90 (22, 29)
-# 049f4f6a7b1d90 (22, 29)
-# 049f4f6a7b1d90 (22, 29)
-22 31 04c64e6a7b1d90
-# 04c64e6a7b1d90 (22, 31)
-# 04c64e6a7b1d90 (22, 31)
-# 04c64e6a7b1d90 (22, 31)
-22 33 04c84e6a7b1d90
-# 04c84e6a7b1d90 (22, 33)
-# 04c84e6a7b1d90 (22, 33)
-22 35 04c74e6a7b1d90
-# 04c74e6a7b1d90 (22, 35)
-# 04c74e6a7b1d90 (22, 35)
-# 04c74e6a7b1d90 (22, 35)
-22 37 04834d6a7b1d90
-# 04834d6a7b1d90 (22, 37)
-# 04834d6a7b1d90 (22, 37)
-# 04834d6a7b1d90 (22, 37)
-# 04834d6a7b1d90 (22, 37)
-# 04834d6a7b1d90 (22, 37)
-22 39 04824d6a7b1d90
-# 04824d6a7b1d90 (22, 39)
-# 04824d6a7b1d90 (22, 39)
-# 04824d6a7b1d90 (22, 39)
-# 04824d6a7b1d90 (22, 39)
-# 04824d6a7b1d90 (22, 39)
-# 04824d6a7b1d90 (22, 39)
-22 41 04814d6a7b1d90
-# 04814d6a7b1d90 (22, 41)
-# 04814d6a7b1d90 (22, 41)
-# 04814d6a7b1d90 (22, 41)
-# 04814d6a7b1d90 (22, 41)
-# 04814d6a7b1d90 (22, 41)
-22 43 04804d6a7b1d90
-# 04804d6a7b1d90 (22, 43)
-# 04804d6a7b1d90 (22, 43)
-# 04804d6a7b1d90 (22, 43)
-# 04804d6a7b1d90 (22, 43)
-# 04804d6a7b1d90 (22, 43)
-22 45 047f4d6a7b1d90
-# 047f4d6a7b1d90 (22, 45)
-# 047f4d6a7b1d90 (22, 45)
-# 047f4d6a7b1d90 (22, 45)
-# 047f4d6a7b1d90 (22, 45)
-# 047f4d6a7b1d90 (22, 45)
-22 47 0471526a7b1d90
-# 0471526a7b1d90 (22, 47)
-# 0471526a7b1d90 (22, 47)
-# 0471526a7b1d90 (22, 47)
-# 0471526a7b1d90 (22, 47)
-# 0471526a7b1d90 (22, 47)
-# 0471526a7b1d90 (22, 47)
-22 49 041e526a7b1d90
-# 041e526a7b1d90 (22, 49)
-# 041e526a7b1d90 (22, 49)
-# 041e526a7b1d90 (22, 49)
-# 041e526a7b1d90 (22, 49)
-Traceback (most recent call last):
-  File "code.py", line 3, in <module>
-  File "assign_xy.py", line 77, in main
-  File "assign_xy.py", line 34, in read
-  File "adafruit_pn532/adafruit_pn532.py", line 387, in read_passive_target
-  File "adafruit_pn532/adafruit_pn532.py", line 419, in get_passive_target
-  File "adafruit_pn532/adafruit_pn532.py", line 330, in process_response
-  File "adafruit_pn532/spi.py", line 128, in _wait_ready
-KeyboardInterrupt: 
-]0;🐍192.168.9.213 | 128@adafruit_pn532/spi.py KeyboardInterrupt | 9.2.1\
-Code done running.
-
-Press any key to enter the REPL. Use CTRL-D to reload.
+=~=~=~=~=~=~=~=~=~=~=~= PuTTY log 2025.02.23 01:00:32 =~=~=~=~=~=~=~=~=~=~=~=
+
+Press any key to enter the REPL. Use CTRL-D to reload.
+]0;🐍192.168.9.213 | Done | 9.2.1\soft reboot
+
+[2K[0GAuto-reload is on. Simply save files over USB to run them or enter REPL to disable.
+[2K[0Gcode.py output:
+]0;🐍192.168.9.213 | code.py | 9.2.1\PN532 firmware: 1.6 ic: 50 support: 7
+
+starting X: 22
+starting Y: 3
+22 3 0447516a7b1d90
+# 0447516a7b1d90 (22, 3)
+# 0447516a7b1d90 (22, 3)
+# 0447516a7b1d90 (22, 3)
+22 5 04184f6a7b1d91
+# 04184f6a7b1d91 (22, 5)
+# 04184f6a7b1d91 (22, 5)
+# 04184f6a7b1d91 (22, 5)
+22 7 0443526a7b1d90
+# 0443526a7b1d90 (22, 7)
+# 0443526a7b1d90 (22, 7)
+# 0443526a7b1d90 (22, 7)
+22 9 0442526a7b1d90
+# 0442526a7b1d90 (22, 9)
+# 0442526a7b1d90 (22, 9)
+# 0442526a7b1d90 (22, 9)
+# 0442526a7b1d90 (22, 9)
+22 11 0441526a7b1d90
+# 0441526a7b1d90 (22, 11)
+# 0441526a7b1d90 (22, 11)
+# 0441526a7b1d90 (22, 11)
+22 13 0440526a7b1d90
+# 0440526a7b1d90 (22, 13)
+# 0440526a7b1d90 (22, 13)
+# 0440526a7b1d90 (22, 13)
+# 0440526a7b1d90 (22, 13)
+22 15 043f526a7b1d90
+# 043f526a7b1d90 (22, 15)
+# 043f526a7b1d90 (22, 15)
+# 043f526a7b1d90 (22, 15)
+# 043f526a7b1d90 (22, 15)
+22 17 04634f6a7b1d90
+# 04634f6a7b1d90 (22, 17)
+# 04634f6a7b1d90 (22, 17)
+# 04634f6a7b1d90 (22, 17)
+# 04634f6a7b1d90 (22, 17)
+22 19 04624f6a7b1d90
+# 04624f6a7b1d90 (22, 19)
+# 04624f6a7b1d90 (22, 19)
+# 04624f6a7b1d90 (22, 19)
+# 04624f6a7b1d90 (22, 19)
+22 21 04c8526a7b1d90
+# 04c8526a7b1d90 (22, 21)
+# 04c8526a7b1d90 (22, 21)
+# 04c8526a7b1d90 (22, 21)
+# 04c8526a7b1d90 (22, 21)
+# 04c8526a7b1d90 (22, 21)
+# 04c8526a7b1d90 (22, 21)
+22 23 04a24f6a7b1d90
+# 04a24f6a7b1d90 (22, 23)
+# 04a24f6a7b1d90 (22, 23)
+# 04a24f6a7b1d90 (22, 23)
+# 04a24f6a7b1d90 (22, 23)
+22 25 04a14f6a7b1d90
+# 04a14f6a7b1d90 (22, 25)
+# 04a14f6a7b1d90 (22, 25)
+# 04a14f6a7b1d90 (22, 25)
+# 04a14f6a7b1d90 (22, 25)
+# 04a14f6a7b1d90 (22, 25)
+22 27 04a04f6a7b1d90
+# 04a04f6a7b1d90 (22, 27)
+# 04a04f6a7b1d90 (22, 27)
+# 04a04f6a7b1d90 (22, 27)
+# 04a04f6a7b1d90 (22, 27)
+22 29 049f4f6a7b1d90
+# 049f4f6a7b1d90 (22, 29)
+# 049f4f6a7b1d90 (22, 29)
+# 049f4f6a7b1d90 (22, 29)
+# 049f4f6a7b1d90 (22, 29)
+# 049f4f6a7b1d90 (22, 29)
+22 31 04c64e6a7b1d90
+# 04c64e6a7b1d90 (22, 31)
+# 04c64e6a7b1d90 (22, 31)
+# 04c64e6a7b1d90 (22, 31)
+22 33 04c84e6a7b1d90
+# 04c84e6a7b1d90 (22, 33)
+# 04c84e6a7b1d90 (22, 33)
+22 35 04c74e6a7b1d90
+# 04c74e6a7b1d90 (22, 35)
+# 04c74e6a7b1d90 (22, 35)
+# 04c74e6a7b1d90 (22, 35)
+22 37 04834d6a7b1d90
+# 04834d6a7b1d90 (22, 37)
+# 04834d6a7b1d90 (22, 37)
+# 04834d6a7b1d90 (22, 37)
+# 04834d6a7b1d90 (22, 37)
+# 04834d6a7b1d90 (22, 37)
+22 39 04824d6a7b1d90
+# 04824d6a7b1d90 (22, 39)
+# 04824d6a7b1d90 (22, 39)
+# 04824d6a7b1d90 (22, 39)
+# 04824d6a7b1d90 (22, 39)
+# 04824d6a7b1d90 (22, 39)
+# 04824d6a7b1d90 (22, 39)
+22 41 04814d6a7b1d90
+# 04814d6a7b1d90 (22, 41)
+# 04814d6a7b1d90 (22, 41)
+# 04814d6a7b1d90 (22, 41)
+# 04814d6a7b1d90 (22, 41)
+# 04814d6a7b1d90 (22, 41)
+22 43 04804d6a7b1d90
+# 04804d6a7b1d90 (22, 43)
+# 04804d6a7b1d90 (22, 43)
+# 04804d6a7b1d90 (22, 43)
+# 04804d6a7b1d90 (22, 43)
+# 04804d6a7b1d90 (22, 43)
+22 45 047f4d6a7b1d90
+# 047f4d6a7b1d90 (22, 45)
+# 047f4d6a7b1d90 (22, 45)
+# 047f4d6a7b1d90 (22, 45)
+# 047f4d6a7b1d90 (22, 45)
+# 047f4d6a7b1d90 (22, 45)
+22 47 0471526a7b1d90
+# 0471526a7b1d90 (22, 47)
+# 0471526a7b1d90 (22, 47)
+# 0471526a7b1d90 (22, 47)
+# 0471526a7b1d90 (22, 47)
+# 0471526a7b1d90 (22, 47)
+# 0471526a7b1d90 (22, 47)
+22 49 041e526a7b1d90
+# 041e526a7b1d90 (22, 49)
+# 041e526a7b1d90 (22, 49)
+# 041e526a7b1d90 (22, 49)
+# 041e526a7b1d90 (22, 49)
+Traceback (most recent call last):
+  File "code.py", line 3, in <module>
+  File "assign_xy.py", line 77, in main
+  File "assign_xy.py", line 34, in read
+  File "adafruit_pn532/adafruit_pn532.py", line 387, in read_passive_target
+  File "adafruit_pn532/adafruit_pn532.py", line 419, in get_passive_target
+  File "adafruit_pn532/adafruit_pn532.py", line 330, in process_response
+  File "adafruit_pn532/spi.py", line 128, in _wait_ready
+KeyboardInterrupt: 
+]0;🐍192.168.9.213 | 128@adafruit_pn532/spi.py KeyboardInterrupt | 9.2.1\
+Code done running.
+
+Press any key to enter the REPL. Use CTRL-D to reload.
 
 
 
