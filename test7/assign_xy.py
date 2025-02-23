@@ -1,11 +1,11 @@
-# SPDX-FileCopyrightText: 2023 Mike Weiblen http://mew.cx/
+# SPDX-FileCopyrightText: 2023-2025 Mike Weiblen http://mew.cx/
 #
 # SPDX-License-Identifier: MIT
 #
 # assign_xy.py
 # Enter X,Y tag locations.
 # Turn on logging to save the data.
-# 2023-10-20 2025-01-12
+# 2023-10-20 2025-02-21
 
 import board
 import busio
@@ -14,8 +14,8 @@ from adafruit_pn532.spi import PN532_SPI
 
 class TidReader:
 
-    def __init__(self,chip_select):
-        self.chip_select = chip_select
+    def __init__(self):
+        self.chip_select = board.GP13
         self.cs = DigitalInOut(self.chip_select)
         self.spi = busio.SPI(clock=board.GP18, MOSI=board.GP19, MISO=board.GP20)
         self.pn532 = PN532_SPI(self.spi, self.cs, debug=False)
@@ -26,18 +26,32 @@ class TidReader:
         self.pn532.SAM_configuration()
 
     def read(self):
-        tid = self.pn532.read_passive_target(timeout=0.5)
-        if tid is not None:
-            # reformat binary tid as readable hex
+        prev = None
+        tid = None
+        count = 0
+        while True:
+            prev = tid
+            tid = self.pn532.read_passive_target(timeout=0.2)
+            if tid is None:
+                prev = None
+                count = 0
+                continue
+
             tid = "".join("{:02x}".format(i) for i in tid)
-        return tid
+#            print("#", tid)
+            if tid != prev:
+                prev = None
+                count = 0
+                continue
+
+            count += 1
+            if count > 5:
+                return tid
 
 
 def test():
-    """
-    Simple exerciser for TidReader
-    """
-    reader = TidReader(board.GP13)
+    "Simple exerciser for TidReader"
+    reader = TidReader()
     while True:
         print(reader.read())
 
@@ -51,13 +65,23 @@ def is_valid(tid):
         print("data[", tid, "] = ", xy)
 
 def main():
-    reader = TidReader(board.GP13)
-    while True:
-        t = reader.read()
-        if t is None:
-            continue
+    reader = TidReader()
+    x = eval(input("starting X: "))
+    y = eval(input("starting Y: "))
+    data = {}
 
-        print(t)
-        is_valid(t)
+    while True:
+        xy = (x,y)
+
+        while True:
+            tid = reader.read()
+            if tid not in data:
+                print(x, y, tid)
+                data[tid] = xy
+                y+=2
+                break
+            else:
+                print("#",tid,data[tid])
+
 
 # vim: set sw=4 ts=8 et ic ai:
