@@ -3,14 +3,20 @@
 # SPDX-License-Identifier: MIT
 #
 # assign_xy.py
-# Enter X,Y tag locations.
+# Associate tag_ids with X,Y coordinates.
 # Turn on logging to save the data.
-# 2023-10-20 2025-02-21
+# 2023-10-20 2025-02-23
 
 import board
 import busio
 from digitalio import DigitalInOut
 from adafruit_pn532.spi import PN532_SPI
+
+data = {}
+#from tag_coords import data
+print("len(data)", len(data))
+
+#############################################################################
 
 class TidReader:
 
@@ -25,6 +31,7 @@ class TidReader:
 
         self.pn532.SAM_configuration()
 
+    # tag readings can be jittery; read several times to ensure stability.
     def read(self):
         prev = None
         tid = None
@@ -38,50 +45,36 @@ class TidReader:
                 continue
 
             tid = "".join("{:02x}".format(i) for i in tid)
-#            print("#", tid)
+
+            # if reading is not stable, reset.
             if tid != prev:
                 prev = None
                 count = 0
                 continue
 
+            # have we read the same value several times?
             count += 1
             if count > 5:
                 return tid
 
-
-def test():
-    "Simple exerciser for TidReader"
-    reader = TidReader()
-    while True:
-        print(reader.read())
-
 #############################################################################
-
-def is_valid(tid):
-    xy = input("enter X,Y: ")
-    if xy != '':
-        xy = eval(xy)
-        tid = repr(tid)
-        print("data[", tid, "] = ", xy)
 
 def main():
     reader = TidReader()
     x = eval(input("starting X: "))
     y = eval(input("starting Y: "))
-    data = {}
 
-    while True:
-        xy = (x,y)
-
-        while True:
+    while True:                 # forever: assign the next coordinate
+        while True:             # reader is returning a tag_id
             tid = reader.read()
             if tid not in data:
+                # add a new tid
                 print(x, y, tid)
-                data[tid] = xy
+                data[tid] = (x,y)
                 y+=2
                 break
             else:
+                # tid already defined: show its coord
                 print("#",tid,data[tid])
-
 
 # vim: set sw=4 ts=8 et ic ai:
