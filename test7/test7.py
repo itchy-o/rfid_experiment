@@ -126,7 +126,16 @@ class Sensor:
     def read(self):
         "Read the sensor, try to detect a tag, and lookup in table"
         leds[self._i] = WHITE           # sensor is reading
-        id = self.pn532.read_passive_target(timeout=self._rfid_timeout)
+
+        try:
+            id = self.pn532.read_passive_target(timeout=self._rfid_timeout)
+        except:
+            pm.sendINFO(85, "Sensor %d error" % _i)
+            reboot()
+            # TODO rebooting seems drastic:
+            # could we ignore the error, or disable the sensor, or etc?
+            return      # just in case the reboot() is stubbed out
+
         leds[self._i] = BLACK           # sensor is idle
         self.coord = None
 
