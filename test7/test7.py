@@ -149,7 +149,8 @@ class Sensor:
                 % (self._i, tag_id, tag_data))
 
         if tag_data is None:
-            leds[self._i] = MAGENTA     # rogue tag that not in table
+            # unrecognized tag_id: probably just be a bad read, ignore it
+            leds[self._i] = MAGENTA
             return
 
         # Does this tag indicate a special command?
