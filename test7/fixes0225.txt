@@ -1,186 +1,56 @@
-=~=~=~=~=~=~=~=~=~=~=~= PuTTY log 2025.02.25 12:43:07 =~=~=~=~=~=~=~=~=~=~=~=
-]0;🐍Wi-Fi: off | code.py | 9.2.1\Traceback (most recent call last):
-  File "code.py", line 2, in <module>
-  File "assign_xy.py", line 64, in main
-KeyboardInterrupt: 
-]0;🐍Wi-Fi: off | 64@assign_xy.py KeyboardInterrupt | 9.2.1\
-Code done running.
-
-Press any key to enter the REPL. Use CTRL-D to reload.
-soft reboot
 
 [2K[0GAuto-reload is on. Simply save files over USB to run them or enter REPL to disable.
 [2K[0Gcode.py output:
+]0;🐍Wi-Fi: off | 128@adafruit_pn532/spi.py KeyboardInterrupt | 9.2.1\
+]0;🐍Wi-Fi: off | 64@assign_xy.py KeyboardInterrupt | 9.2.1\
+]0;🐍Wi-Fi: off | code.py | 9.2.1\Traceback (most recent call last):
 ]0;🐍Wi-Fi: off | code.py | 9.2.1\len(data) 0
-PN532 firmware: 1.6 ic: 50 support: 7
-
-starting X: 20
-starting Y: 11
-20 11 0434506a7b1d90
-# 0434506a7b1d90 (20, 11)
-# 0434506a7b1d90 (20, 11)
-# 0434506a7b1d90 (20, 11)
-# 0434506a7b1d90 (20, 11)
-# 0434506a7b1d90 (20, 11)
-# 0434506a7b1d90 (20, 11)
-# 0434506a7b1d90 (20, 11)
-# 0434506a7b1d90 (20, 11)
-20 13 04a64b6a7b1d90
-# 04a64b6a7b1d90 (20, 13)
-# 04a64b6a7b1d90 (20, 13)
-# 04a64b6a7b1d90 (20, 13)
-# 04a64b6a7b1d90 (20, 13)
-# 04a64b6a7b1d90 (20, 13)
-# 04a64b6a7b1d90 (20, 13)
-20 15 04284f6a7b1d91
-# 04284f6a7b1d91 (20, 15)
-# 04284f6a7b1d91 (20, 15)
-# 04284f6a7b1d91 (20, 15)
-# 04284f6a7b1d91 (20, 15)
-# 04284f6a7b1d91 (20, 15)
-# 04284f6a7b1d91 (20, 15)
-20 17 04274f6a7b1d91
-# 04274f6a7b1d91 (20, 17)
-# 04274f6a7b1d91 (20, 17)
-# 04274f6a7b1d91 (20, 17)
-# 04274f6a7b1d91 (20, 17)
-# 04274f6a7b1d91 (20, 17)
-# 04274f6a7b1d91 (20, 17)
-20 19 04264f6a7b1d91
-# 04264f6a7b1d91 (20, 19)
-# 04264f6a7b1d91 (20, 19)
-# 04264f6a7b1d91 (20, 19)
-# 04264f6a7b1d91 (20, 19)
-# 04264f6a7b1d91 (20, 19)
-# 04264f6a7b1d91 (20, 19)
-Traceback (most recent call last):
-  File "code.py", line 2, in <module>
-  File "assign_xy.py", line 69, in main
-  File "assign_xy.py", line 41, in read
+  File "adafruit_pn532/adafruit_pn532.py", line 330, in process_response
   File "adafruit_pn532/adafruit_pn532.py", line 387, in read_passive_target
   File "adafruit_pn532/adafruit_pn532.py", line 419, in get_passive_target
-  File "adafruit_pn532/adafruit_pn532.py", line 330, in process_response
   File "adafruit_pn532/spi.py", line 128, in _wait_ready
-KeyboardInterrupt: 
-]0;🐍Wi-Fi: off | 128@adafruit_pn532/spi.py KeyboardInterrupt | 9.2.1\
-Code done running.
-
-Press any key to enter the REPL. Use CTRL-D to reload.
-soft reboot
-
-[2K[0GAuto-reload is on. Simply save files over USB to run them or enter REPL to disable.
-[2K[0Gcode.py output:
-]0;🐍Wi-Fi: off | code.py | 9.2.1\len(data) 0
-PN532 firmware: 1.6 ic: 50 support: 7
-
-starting X: Traceback (most recent call last):
-  File "code.py", line 2, in <module>
+  File "assign_xy.py", line 41, in read
   File "assign_xy.py", line 64, in main
-KeyboardInterrupt: 
-]0;🐍Wi-Fi: off | 64@assign_xy.py KeyboardInterrupt | 9.2.1\
-Code done running.
-
-Press any key to enter the REPL. Use CTRL-D to reload.
-soft reboot
-
-[2K[0GAuto-reload is on. Simply save files over USB to run them or enter REPL to disable.
-[2K[0Gcode.py output:
-]0;🐍Wi-Fi: off | code.py | 9.2.1\len(data) 0
-PN532 firmware: 1.6 ic: 50 support: 7
-
-starting X: 10
-starting Y: 11
+  File "assign_xy.py", line 69, in main
+  File "code.py", line 2, in <module>
+# 04164d6a7b1d91 (10, 29)
+# 04264f6a7b1d91 (20, 19)
+# 04274f6a7b1d91 (20, 17)
+# 04284f6a7b1d91 (20, 15)
+# 0434506a7b1d90 (20, 11)
+# 04494e6a7b1d91 (10, 15)
+# 044a4e6a7b1d91 (10, 17)
+# 046b4d6a7b1d90 (10, 19)
+# 0495526a7b1d90 (10, 21)
+# 0496526a7b1d90 (10, 23)
+# 0497526a7b1d90 (10, 25)
+# 0499526a7b1d90 (10, 27)
+# 04a64b6a7b1d90 (20, 13)
+# 04bc506a7b1d90 (10, 13)
+# 04bd506a7b1d90 (10, 11)
 10 11 04bd506a7b1d90
-# 04bd506a7b1d90 (10, 11)
-# 04bd506a7b1d90 (10, 11)
-# 04bd506a7b1d90 (10, 11)
-# 04bd506a7b1d90 (10, 11)
-# 04bd506a7b1d90 (10, 11)
-# 04bd506a7b1d90 (10, 11)
-# 04bd506a7b1d90 (10, 11)
-# 04bd506a7b1d90 (10, 11)
-# 04bd506a7b1d90 (10, 11)
-# 04bd506a7b1d90 (10, 11)
 10 13 04bc506a7b1d90
-# 04bc506a7b1d90 (10, 13)
-# 04bc506a7b1d90 (10, 13)
-# 04bc506a7b1d90 (10, 13)
-# 04bc506a7b1d90 (10, 13)
-# 04bc506a7b1d90 (10, 13)
-# 04bc506a7b1d90 (10, 13)
-# 04bc506a7b1d90 (10, 13)
-# 04bc506a7b1d90 (10, 13)
-# 04bc506a7b1d90 (10, 13)
 10 15 04494e6a7b1d91
-# 04494e6a7b1d91 (10, 15)
-# 04494e6a7b1d91 (10, 15)
-# 04494e6a7b1d91 (10, 15)
-# 04494e6a7b1d91 (10, 15)
-# 04494e6a7b1d91 (10, 15)
-# 04494e6a7b1d91 (10, 15)
-# 04494e6a7b1d91 (10, 15)
-# 04494e6a7b1d91 (10, 15)
 10 17 044a4e6a7b1d91
-# 044a4e6a7b1d91 (10, 17)
-# 044a4e6a7b1d91 (10, 17)
-# 044a4e6a7b1d91 (10, 17)
-# 044a4e6a7b1d91 (10, 17)
-# 044a4e6a7b1d91 (10, 17)
-# 044a4e6a7b1d91 (10, 17)
-# 044a4e6a7b1d91 (10, 17)
-# 044a4e6a7b1d91 (10, 17)
 10 19 046b4d6a7b1d90
-# 046b4d6a7b1d90 (10, 19)
-# 046b4d6a7b1d90 (10, 19)
-# 046b4d6a7b1d90 (10, 19)
-# 046b4d6a7b1d90 (10, 19)
-# 046b4d6a7b1d90 (10, 19)
-# 046b4d6a7b1d90 (10, 19)
-# 046b4d6a7b1d90 (10, 19)
-# 046b4d6a7b1d90 (10, 19)
 10 21 0495526a7b1d90
-# 0495526a7b1d90 (10, 21)
-# 0495526a7b1d90 (10, 21)
-# 0495526a7b1d90 (10, 21)
-# 0495526a7b1d90 (10, 21)
-# 0495526a7b1d90 (10, 21)
-# 0495526a7b1d90 (10, 21)
 10 23 0496526a7b1d90
-# 0496526a7b1d90 (10, 23)
-# 0496526a7b1d90 (10, 23)
-# 0496526a7b1d90 (10, 23)
-# 0496526a7b1d90 (10, 23)
-# 0496526a7b1d90 (10, 23)
-# 0496526a7b1d90 (10, 23)
-# 0496526a7b1d90 (10, 23)
-# 0496526a7b1d90 (10, 23)
-# 0496526a7b1d90 (10, 23)
 10 25 0497526a7b1d90
-# 0497526a7b1d90 (10, 25)
-# 0497526a7b1d90 (10, 25)
-# 0497526a7b1d90 (10, 25)
-# 0497526a7b1d90 (10, 25)
-# 0497526a7b1d90 (10, 25)
-# 0497526a7b1d90 (10, 25)
-# 0497526a7b1d90 (10, 25)
-# 0497526a7b1d90 (10, 25)
-# 0497526a7b1d90 (10, 25)
-# 0497526a7b1d90 (10, 25)
 10 27 0499526a7b1d90
-# 0499526a7b1d90 (10, 27)
-# 0499526a7b1d90 (10, 27)
-# 0499526a7b1d90 (10, 27)
-# 0499526a7b1d90 (10, 27)
-# 0499526a7b1d90 (10, 27)
-# 0499526a7b1d90 (10, 27)
-# 0499526a7b1d90 (10, 27)
-# 0499526a7b1d90 (10, 27)
 10 29 04164d6a7b1d91
-# 04164d6a7b1d91 (10, 29)
-# 04164d6a7b1d91 (10, 29)
-# 04164d6a7b1d91 (10, 29)
-# 04164d6a7b1d91 (10, 29)
-# 04164d6a7b1d91 (10, 29)
-# 04164d6a7b1d91 (10, 29)
-# 04164d6a7b1d91 (10, 29)
-
+20 11 0434506a7b1d90
+20 13 04a64b6a7b1d90
+20 15 04284f6a7b1d91
+20 17 04274f6a7b1d91
+20 19 04264f6a7b1d91
+=~=~=~=~=~=~=~=~=~=~=~= PuTTY log 2025.02.25 12:43:07 =~=~=~=~=~=~=~=~=~=~=~=
+Code done running.
+KeyboardInterrupt: 
+PN532 firmware: 1.6 ic: 50 support: 7
+Press any key to enter the REPL. Use CTRL-D to reload.
+Traceback (most recent call last):
+soft reboot
+starting X: 10
+starting X: 20
+starting X: Traceback (most recent call last):
+starting Y: 11
