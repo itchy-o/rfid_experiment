@@ -1,3 +1,3 @@
-#from assign_xy import main
-from test7 import main
-main()
+data = {}
+from t66 import data
+print("len(data)", len(data))
