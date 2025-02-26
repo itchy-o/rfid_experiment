@@ -1,6 +1,15 @@
-# tag_coords.py
+# tag_coords.py : dictionary to map tag_ids to coords or special commands.
 
 data = {
+
+# Special command tags
+'5980e718' : "!REBOOT! blue fob 1",
+'63cf3efa' : "!REBOOT! blue fob 2",
+'e5eb3500' : "!REBOOT! white card 3",
+'1a603100' : "!REBOOT! white card 4",
+'33f23900' : "!REBOOT! white card 5",
+'04efa7423f3c80' : "!REBOOT! red tag",
+
 # The "6x6 foot panel" on plywood (actually three 2x6 foot panels)
 # 70mm spacing, 765 tags, 2025-02-25
 '04e8516a7b1d90':(1,2),
