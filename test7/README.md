@@ -5,6 +5,11 @@ new 6x6 floor panel with approximately (25+26)*5*3=765 tags in 7cm triangles.
 This configuration is scheduled for test at HQ 2025-03-02, and first public
 appearance during Som Saptalahn at Fiske Planetarium 2025-03-15.
 
+IMPORTANT: Due to the huge number of tags in tag_coords.py causing memory
+exhaustion errors, this code uses a different syntax to initialize the tag
+mapping dictionary.  It is probably worth further optimizing that file by
+precompiling to a binary .mpy file using the mpy-cross utility.
+
 ## Summary of pod hardware
 Each Sono Chapel pod consists of:
 - A [Raspberry Pi Pico W](https://www.raspberrypi.com/products/raspberry-pi-pico/)
