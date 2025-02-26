@@ -1,3 +1,8 @@
+# tag_coords.py
+
+data = {
+# The "6x6 foot panel" on plywood (actually three 2x6 foot panels)
+# 70mm spacing, 765 tags, 2025-02-25
 '04e8516a7b1d90':(1,2),
 '04e7516a7b1d90':(1,4),
 '04e6516a7b1d90':(1,6),
@@ -763,3 +768,4 @@
 '04d84d6a7b1d90':(30,47),
 '041e516a7b1d91':(30,49),
 '04d04d6a7b1d90':(30,51),
+}
