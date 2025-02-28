@@ -10,6 +10,9 @@ exhaustion errors, this code uses a different syntax to initialize the tag
 mapping dictionary.  It is probably worth further optimizing that file by
 precompiling to a binary .mpy file using the mpy-cross utility.
 
+The coordinate values returned from the pods on the 6x6 panel:
+X = 1 to 30, Y = 1 to 51
+
 ## Summary of pod hardware
 Each Sono Chapel pod consists of:
 - A [Raspberry Pi Pico W](https://www.raspberrypi.com/products/raspberry-pi-pico/)
