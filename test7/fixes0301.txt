@@ -1,27 +1,3 @@
-
-[2K[0GAuto-reload is on. Simply save files over USB to run them or enter REPL to disable.
-[2K[0Gcode.py output:
-]0;🐍Wi-Fi: off | 128@adafruit_pn532/spi.py KeyboardInterrupt | 9.2.1\
-]0;🐍Wi-Fi: off | 43@adafruit_pn532/spi.py KeyboardInterrupt | 9.2.1\
-]0;🐍Wi-Fi: off | 46@adafruit_pn532/spi.py KeyboardInterrupt | 9.2.1\
-]0;🐍Wi-Fi: off | Done | 9.2.1\soft reboot
-]0;🐍Wi-Fi: off | REPL | 9.2.1\
-]0;🐍Wi-Fi: off | code.py | 9.2.1\len(data) 0
-  File "<stdin>", line 1
-  File "adafruit_pn532/adafruit_pn532.py", line 314, in send_command
-  File "adafruit_pn532/adafruit_pn532.py", line 330, in process_response
-  File "adafruit_pn532/adafruit_pn532.py", line 383, in read_passive_target
-  File "adafruit_pn532/adafruit_pn532.py", line 387, in read_passive_target
-  File "adafruit_pn532/adafruit_pn532.py", line 401, in listen_for_passive_target
-  File "adafruit_pn532/adafruit_pn532.py", line 419, in get_passive_target
-  File "adafruit_pn532/spi.py", line 118, in _wait_ready
-  File "adafruit_pn532/spi.py", line 126, in _wait_ready
-  File "adafruit_pn532/spi.py", line 128, in _wait_ready
-  File "adafruit_pn532/spi.py", line 43, in reverse_bit
-  File "adafruit_pn532/spi.py", line 46, in reverse_bit
-  File "assign_xy.py", line 41, in read
-  File "assign_xy.py", line 69, in main
-  File "code.py", line 2, in <module>
 # 041a4f6a7b1d91 (24, 1)
 # 041b4f6a7b1d91 (22, 1)
 # 041c4f6a7b1d91 (20, 51)
@@ -82,18 +58,3 @@
 6 51 047d4c6a7b1d90
 8 1 043a4f6a7b1d91
 8 51 04a14b6a7b1d90
->>> 
-Adafruit CircuitPython 9.2.1 on 2024-11-20; Raspberry Pi Pico W with rp2040
-Code done running.
-KeyboardInterrupt: 
-PN532 firmware: 1.6 ic: 50 support: 7
-Press any key to enter the REPL. Use CTRL-D to reload.
-SyntaxError: invalid syntax
-Traceback (most recent call last):
-soft reboot
-starting X: 12
-starting X: 2
-starting X: 22
-starting X: \[K12
-starting Y: 1
-starting Y: 51
