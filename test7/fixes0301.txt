@@ -1,285 +1,99 @@
-Traceback (most recent call last):
-  File "<stdin>", line 1
-SyntaxError: invalid syntax
->>> 
->>> 
->>> 
->>> 
-]0;🐍Wi-Fi: off | Done | 9.2.1\soft reboot
 
 [2K[0GAuto-reload is on. Simply save files over USB to run them or enter REPL to disable.
 [2K[0Gcode.py output:
-]0;🐍Wi-Fi: off | code.py | 9.2.1\len(data) 0
-PN532 firmware: 1.6 ic: 50 support: 7
-
-starting Y: 51
-starting X: 22
-22 51 041e4f6a7b1d91
-# 041e4f6a7b1d91 (22, 51)
-# 041e4f6a7b1d91 (22, 51)
-# 041e4f6a7b1d91 (22, 51)
-24 51 041d4f6a7b1d91
-# 041d4f6a7b1d91 (24, 51)
-# 041d4f6a7b1d91 (24, 51)
-# 041d4f6a7b1d91 (24, 51)
-26 51 047e4c6a7b1d90
-# 047e4c6a7b1d90 (26, 51)
-# 047e4c6a7b1d90 (26, 51)
-# 047e4c6a7b1d90 (26, 51)
-28 51 04b4506a7b1d90
-# 04b4506a7b1d90 (28, 51)
-# 04b4506a7b1d90 (28, 51)
-# 04b4506a7b1d90 (28, 51)
-30 51 04d04d6a7b1d90
-# 04d04d6a7b1d90 (30, 51)
-# 04d04d6a7b1d90 (30, 51)
-# 04d04d6a7b1d90 (30, 51)
-Traceback (most recent call last):
-  File "code.py", line 2, in <module>
-  File "assign_xy.py", line 69, in main
-  File "assign_xy.py", line 41, in read
-  File "adafruit_pn532/adafruit_pn532.py", line 387, in read_passive_target
-  File "adafruit_pn532/adafruit_pn532.py", line 419, in get_passive_target
-  File "adafruit_pn532/adafruit_pn532.py", line 330, in process_response
-  File "adafruit_pn532/spi.py", line 128, in _wait_ready
-KeyboardInterrupt: 
 ]0;🐍Wi-Fi: off | 128@adafruit_pn532/spi.py KeyboardInterrupt | 9.2.1\
-Code done running.
-
-Press any key to enter the REPL. Use CTRL-D to reload.
-soft reboot
-
-[2K[0GAuto-reload is on. Simply save files over USB to run them or enter REPL to disable.
-[2K[0Gcode.py output:
-]0;🐍Wi-Fi: off | code.py | 9.2.1\len(data) 0
-PN532 firmware: 1.6 ic: 50 support: 7
-
-starting Y: 1
-starting X: 22
-22 1 041b4f6a7b1d91
-# 041b4f6a7b1d91 (22, 1)
-# 041b4f6a7b1d91 (22, 1)
-24 1 041a4f6a7b1d91
-# 041a4f6a7b1d91 (24, 1)
-# 041a4f6a7b1d91 (24, 1)
-# 041a4f6a7b1d91 (24, 1)
-26 1 0482516a7b1d90
-# 0482516a7b1d90 (26, 1)
-# 0482516a7b1d90 (26, 1)
-# 0482516a7b1d90 (26, 1)
-28 1 0481516a7b1d90
-# 0481516a7b1d90 (28, 1)
-# 0481516a7b1d90 (28, 1)
-# 0481516a7b1d90 (28, 1)
-30 1 0470506a7b1d91
-# 0470506a7b1d91 (30, 1)
-# 0470506a7b1d91 (30, 1)
-# 0470506a7b1d91 (30, 1)
-# 0470506a7b1d91 (30, 1)
-Traceback (most recent call last):
-  File "code.py", line 2, in <module>
-  File "assign_xy.py", line 69, in main
-  File "assign_xy.py", line 41, in read
-  File "adafruit_pn532/adafruit_pn532.py", line 387, in read_passive_target
-  File "adafruit_pn532/adafruit_pn532.py", line 419, in get_passive_target
-  File "adafruit_pn532/adafruit_pn532.py", line 330, in process_response
-  File "adafruit_pn532/spi.py", line 126, in _wait_ready
-  File "adafruit_pn532/spi.py", line 46, in reverse_bit
-KeyboardInterrupt: 
-]0;🐍Wi-Fi: off | 46@adafruit_pn532/spi.py KeyboardInterrupt | 9.2.1\
-Code done running.
-
-Press any key to enter the REPL. Use CTRL-D to reload.
-]0;🐍Wi-Fi: off | REPL | 9.2.1\
-Adafruit CircuitPython 9.2.1 on 2024-11-20; Raspberry Pi Pico W with rp2040
->>> 
-]0;🐍Wi-Fi: off | Done | 9.2.1\soft reboot
-
-[2K[0GAuto-reload is on. Simply save files over USB to run them or enter REPL to disable.
-[2K[0Gcode.py output:
-]0;🐍Wi-Fi: off | code.py | 9.2.1\len(data) 0
-PN532 firmware: 1.6 ic: 50 support: 7
-
-starting Y: 1
-starting X: 12
-12 1 04914f6a7b1d90
-# 04914f6a7b1d90 (12, 1)
-# 04914f6a7b1d90 (12, 1)
-# 04914f6a7b1d90 (12, 1)
-# 04914f6a7b1d90 (12, 1)
-# 04914f6a7b1d90 (12, 1)
-14 1 043e4f6a7b1d91
-# 043e4f6a7b1d91 (14, 1)
-# 043e4f6a7b1d91 (14, 1)
-# 043e4f6a7b1d91 (14, 1)
-# 043e4f6a7b1d91 (14, 1)
-16 1 043d4f6a7b1d91
-# 043d4f6a7b1d91 (16, 1)
-# 043d4f6a7b1d91 (16, 1)
-# 043d4f6a7b1d91 (16, 1)
-18 1 043c4f6a7b1d91
-# 043c4f6a7b1d91 (18, 1)
-# 043c4f6a7b1d91 (18, 1)
-# 043c4f6a7b1d91 (18, 1)
-# 043c4f6a7b1d91 (18, 1)
-20 1 043b4f6a7b1d91
-# 043b4f6a7b1d91 (20, 1)
-# 043b4f6a7b1d91 (20, 1)
-# 043b4f6a7b1d91 (20, 1)
-# 043b4f6a7b1d91 (20, 1)
-# 043b4f6a7b1d91 (20, 1)
-Traceback (most recent call last):
-  File "code.py", line 2, in <module>
-  File "assign_xy.py", line 69, in main
-  File "assign_xy.py", line 41, in read
-  File "adafruit_pn532/adafruit_pn532.py", line 387, in read_passive_target
-  File "adafruit_pn532/adafruit_pn532.py", line 419, in get_passive_target
-  File "adafruit_pn532/adafruit_pn532.py", line 330, in process_response
-  File "adafruit_pn532/spi.py", line 128, in _wait_ready
-KeyboardInterrupt: 
-]0;🐍Wi-Fi: off | 128@adafruit_pn532/spi.py KeyboardInterrupt | 9.2.1\
-Code done running.
-
-Press any key to enter the REPL. Use CTRL-D to reload.
-soft reboot
-
-[2K[0GAuto-reload is on. Simply save files over USB to run them or enter REPL to disable.
-[2K[0Gcode.py output:
-]0;🐍Wi-Fi: off | code.py | 9.2.1\len(data) 0
-PN532 firmware: 1.6 ic: 50 support: 7
-
-starting Y: 51
-starting X: \[K12
-12 51 04924f6a7b1d90
-# 04924f6a7b1d90 (12, 51)
-14 51 04934f6a7b1d90
-# 04934f6a7b1d90 (14, 51)
-# 04934f6a7b1d90 (14, 51)
-# 04934f6a7b1d90 (14, 51)
-# 04924f6a7b1d90 (12, 51)
-# 04924f6a7b1d90 (12, 51)
-# 04924f6a7b1d90 (12, 51)
-16 51 04944f6a7b1d90
-# 04944f6a7b1d90 (16, 51)
-# 04944f6a7b1d90 (16, 51)
-# 04944f6a7b1d90 (16, 51)
-# 04944f6a7b1d90 (16, 51)
-# 04944f6a7b1d90 (16, 51)
-# 04944f6a7b1d90 (16, 51)
-# 04944f6a7b1d90 (16, 51)
-18 51 04954f6a7b1d90
-# 04954f6a7b1d90 (18, 51)
-# 04954f6a7b1d90 (18, 51)
-# 04954f6a7b1d90 (18, 51)
-# 04954f6a7b1d90 (18, 51)
-20 51 041c4f6a7b1d91
-# 041c4f6a7b1d91 (20, 51)
-# 041c4f6a7b1d91 (20, 51)
-# 041c4f6a7b1d91 (20, 51)
-# 041c4f6a7b1d91 (20, 51)
-# 041c4f6a7b1d91 (20, 51)
-# 041c4f6a7b1d91 (20, 51)
-Traceback (most recent call last):
-  File "code.py", line 2, in <module>
-  File "assign_xy.py", line 69, in main
-  File "assign_xy.py", line 41, in read
-  File "adafruit_pn532/adafruit_pn532.py", line 383, in read_passive_target
-  File "adafruit_pn532/adafruit_pn532.py", line 401, in listen_for_passive_target
-  File "adafruit_pn532/adafruit_pn532.py", line 314, in send_command
-  File "adafruit_pn532/spi.py", line 118, in _wait_ready
-  File "adafruit_pn532/spi.py", line 43, in reverse_bit
-KeyboardInterrupt: 
 ]0;🐍Wi-Fi: off | 43@adafruit_pn532/spi.py KeyboardInterrupt | 9.2.1\
-Code done running.
-
-Press any key to enter the REPL. Use CTRL-D to reload.
-soft reboot
-
-[2K[0GAuto-reload is on. Simply save files over USB to run them or enter REPL to disable.
-[2K[0Gcode.py output:
+]0;🐍Wi-Fi: off | 46@adafruit_pn532/spi.py KeyboardInterrupt | 9.2.1\
+]0;🐍Wi-Fi: off | Done | 9.2.1\soft reboot
+]0;🐍Wi-Fi: off | REPL | 9.2.1\
 ]0;🐍Wi-Fi: off | code.py | 9.2.1\len(data) 0
-PN532 firmware: 1.6 ic: 50 support: 7
-
-starting Y: 1
-starting X: 2
-2 1 047c4c6a7b1d90
+  File "<stdin>", line 1
+  File "adafruit_pn532/adafruit_pn532.py", line 314, in send_command
+  File "adafruit_pn532/adafruit_pn532.py", line 330, in process_response
+  File "adafruit_pn532/adafruit_pn532.py", line 383, in read_passive_target
+  File "adafruit_pn532/adafruit_pn532.py", line 387, in read_passive_target
+  File "adafruit_pn532/adafruit_pn532.py", line 401, in listen_for_passive_target
+  File "adafruit_pn532/adafruit_pn532.py", line 419, in get_passive_target
+  File "adafruit_pn532/spi.py", line 118, in _wait_ready
+  File "adafruit_pn532/spi.py", line 126, in _wait_ready
+  File "adafruit_pn532/spi.py", line 128, in _wait_ready
+  File "adafruit_pn532/spi.py", line 43, in reverse_bit
+  File "adafruit_pn532/spi.py", line 46, in reverse_bit
+  File "assign_xy.py", line 41, in read
+  File "assign_xy.py", line 69, in main
+  File "code.py", line 2, in <module>
+# 041a4f6a7b1d91 (24, 1)
+# 041b4f6a7b1d91 (22, 1)
+# 041c4f6a7b1d91 (20, 51)
+# 041d4f6a7b1d91 (24, 51)
+# 041e4f6a7b1d91 (22, 51)
+# 043a4f6a7b1d91 (8, 1)
+# 043b4f6a7b1d91 (20, 1)
+# 043c4f6a7b1d91 (18, 1)
+# 043d4f6a7b1d91 (16, 1)
+# 043e4f6a7b1d91 (14, 1)
+# 0470506a7b1d91 (30, 1)
 # 047c4c6a7b1d90 (2, 1)
-# 047c4c6a7b1d90 (2, 1)
-# 047c4c6a7b1d90 (2, 1)
-4 1 0483516a7b1d90
+# 047d4c6a7b1d90 (6, 51)
+# 047e4c6a7b1d90 (26, 51)
+# 0481516a7b1d90 (28, 1)
+# 0482516a7b1d90 (26, 1)
 # 0483516a7b1d90 (4, 1)
-# 0483516a7b1d90 (4, 1)
-# 0483516a7b1d90 (4, 1)
-# 0483516a7b1d90 (4, 1)
-6 1 0484516a7b1d90
 # 0484516a7b1d90 (6, 1)
-# 0484516a7b1d90 (6, 1)
-# 0484516a7b1d90 (6, 1)
-8 1 043a4f6a7b1d91
-# 043a4f6a7b1d91 (8, 1)
-# 043a4f6a7b1d91 (8, 1)
-# 043a4f6a7b1d91 (8, 1)
-# 043a4f6a7b1d91 (8, 1)
+# 04914f6a7b1d90 (12, 1)
+# 04924f6a7b1d90 (12, 51)
+# 04934f6a7b1d90 (14, 51)
+# 04944f6a7b1d90 (16, 51)
+# 04954f6a7b1d90 (18, 51)
+# 04a14b6a7b1d90 (8, 51)
+# 04b2506a7b1d90 (4, 51)
+# 04b4506a7b1d90 (28, 51)
+# 04ba4e6a7b1d90 (10, 1)
+# 04bb4e6a7b1d90 (10, 51)
+# 04cf4d6a7b1d90 (2, 51)
+# 04d04d6a7b1d90 (30, 51)
 10 1 04ba4e6a7b1d90
-# 04ba4e6a7b1d90 (10, 1)
-# 04ba4e6a7b1d90 (10, 1)
-# 04ba4e6a7b1d90 (10, 1)
-# 04ba4e6a7b1d90 (10, 1)
-# 04ba4e6a7b1d90 (10, 1)
-Traceback (most recent call last):
-  File "code.py", line 2, in <module>
-  File "assign_xy.py", line 69, in main
-  File "assign_xy.py", line 41, in read
-  File "adafruit_pn532/adafruit_pn532.py", line 387, in read_passive_target
-  File "adafruit_pn532/adafruit_pn532.py", line 419, in get_passive_target
-  File "adafruit_pn532/adafruit_pn532.py", line 330, in process_response
-  File "adafruit_pn532/spi.py", line 128, in _wait_ready
-KeyboardInterrupt: 
-]0;🐍Wi-Fi: off | 128@adafruit_pn532/spi.py KeyboardInterrupt | 9.2.1\
-Code done running.
-
-Press any key to enter the REPL. Use CTRL-D to reload.
-soft reboot
-
-[2K[0GAuto-reload is on. Simply save files over USB to run them or enter REPL to disable.
-[2K[0Gcode.py output:
-]0;🐍Wi-Fi: off | code.py | 9.2.1\len(data) 0
-PN532 firmware: 1.6 ic: 50 support: 7
-
-starting Y: 51
-starting X: 2
-2 51 04cf4d6a7b1d90
-# 04cf4d6a7b1d90 (2, 51)
-# 04cf4d6a7b1d90 (2, 51)
-4 51 04b2506a7b1d90
-# 04b2506a7b1d90 (4, 51)
-# 04b2506a7b1d90 (4, 51)
-# 04b2506a7b1d90 (4, 51)
-6 51 047d4c6a7b1d90
-# 047d4c6a7b1d90 (6, 51)
-# 047d4c6a7b1d90 (6, 51)
-# 047d4c6a7b1d90 (6, 51)
-# 047d4c6a7b1d90 (6, 51)
-8 51 04a14b6a7b1d90
-# 04a14b6a7b1d90 (8, 51)
-# 04a14b6a7b1d90 (8, 51)
-# 04a14b6a7b1d90 (8, 51)
 10 51 04bb4e6a7b1d90
-# 04bb4e6a7b1d90 (10, 51)
-# 04bb4e6a7b1d90 (10, 51)
-# 04bb4e6a7b1d90 (10, 51)
-# 04bb4e6a7b1d90 (10, 51)
-# 04bb4e6a7b1d90 (10, 51)
-Traceback (most recent call last):
-  File "code.py", line 2, in <module>
-  File "assign_xy.py", line 69, in main
-  File "assign_xy.py", line 41, in read
-  File "adafruit_pn532/adafruit_pn532.py", line 387, in read_passive_target
-  File "adafruit_pn532/adafruit_pn532.py", line 419, in get_passive_target
-  File "adafruit_pn532/adafruit_pn532.py", line 330, in process_response
-  File "adafruit_pn532/spi.py", line 128, in _wait_ready
-KeyboardInterrupt: 
-]0;🐍Wi-Fi: off | 128@adafruit_pn532/spi.py KeyboardInterrupt | 9.2.1\
+12 1 04914f6a7b1d90
+12 51 04924f6a7b1d90
+14 1 043e4f6a7b1d91
+14 51 04934f6a7b1d90
+16 1 043d4f6a7b1d91
+16 51 04944f6a7b1d90
+18 1 043c4f6a7b1d91
+18 51 04954f6a7b1d90
+2 1 047c4c6a7b1d90
+2 51 04cf4d6a7b1d90
+20 1 043b4f6a7b1d91
+20 51 041c4f6a7b1d91
+22 1 041b4f6a7b1d91
+22 51 041e4f6a7b1d91
+24 1 041a4f6a7b1d91
+24 51 041d4f6a7b1d91
+26 1 0482516a7b1d90
+26 51 047e4c6a7b1d90
+28 1 0481516a7b1d90
+28 51 04b4506a7b1d90
+30 1 0470506a7b1d91
+30 51 04d04d6a7b1d90
+4 1 0483516a7b1d90
+4 51 04b2506a7b1d90
+6 1 0484516a7b1d90
+6 51 047d4c6a7b1d90
+8 1 043a4f6a7b1d91
+8 51 04a14b6a7b1d90
+>>> 
+Adafruit CircuitPython 9.2.1 on 2024-11-20; Raspberry Pi Pico W with rp2040
 Code done running.
-
+KeyboardInterrupt: 
+PN532 firmware: 1.6 ic: 50 support: 7
 Press any key to enter the REPL. Use CTRL-D to reload.
+SyntaxError: invalid syntax
+Traceback (most recent call last):
+soft reboot
+starting X: 12
+starting X: 2
+starting X: 22
+starting X: \[K12
+starting Y: 1
+starting Y: 51
