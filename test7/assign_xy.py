@@ -61,8 +61,8 @@ class TidReader:
 
 def main():
     reader = TidReader()
-    x = eval(input("starting X: "))
     y = eval(input("starting Y: "))
+    x = eval(input("starting X: "))
 
     while True:                 # forever: assign the next coordinate
         while True:             # reader is returning a tag_id
@@ -71,7 +71,8 @@ def main():
                 # add a new tid
                 print(x, y, tid)
                 data[tid] = (x,y)
-                y+=2
+                #y+=2
+                x+=2
                 break
             else:
                 # tid already defined: show its coord
