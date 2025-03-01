@@ -1,15 +1,26 @@
-# Makefile
+# Makefile - for Linux
+# build a release
 
 TGT = RELEASE.txt
+MPY = tag_coords.mpy
 
-all: $(TGT)
+.PHONEY: all
+all: $(TGT) $(MPY)
 
-$(TGT):
-	date -Isec > $@
-	git remote -v >> $@
+$(TGT): FORCE
+	> $@
 	git describe --long --tags --dirty >> $@
+	git remote -v | awk '/ \(fetch\)$$/ {print $$2}' >> $@
+	date -Isec >> $@
 
+%.mpy : %.py
+	./mpy-cross-raspios-9.2.1 $<
+
+.PHONEY : clean clobber nuke
 clean clobber nuke:
-	-rm $(TGT)
+	-rm -f $(TGT) $(MPY)
+
+.PHONEY: FORCE
+FORCE:
 
 # vim: set sw=8 ts=8 noet ic ai:
