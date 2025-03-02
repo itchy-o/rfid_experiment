@@ -8,12 +8,12 @@
 # Read NTAG21x RFID tags using four PN532 sensor modules.
 # Indicate which sensors are detecting tags using an LED strip.
 # Part of the Sono Chapel position-sensing experiments.
-# 2025-02-20
+# 2025-03-01
 
 """Sono Chapel Pod firmware"""
 
 # About this code:
-__version__ = "0.6.1.1"
+__version__ = "0.6.1.2"
 __repo__ = "https://github.com/itchy-o/rfid_experiment.git"
 __impl_name__ = 'circuitpython'         # sys.implementation.name
 __impl_version__ = (9, 2, 1, '')        # sys.implementation.version
@@ -126,18 +126,17 @@ class Sensor:
     def read(self):
         "Read the sensor, try to detect a tag, and lookup in table"
         leds[self._i] = WHITE           # sensor is reading
+        id = None
+        self.coord = None
 
         try:
             id = self.pn532.read_passive_target(timeout=self._rfid_timeout)
         except:
             pm.sendINFO(85, "Sensor %d error" % _i)
-            reboot()
-            # TODO rebooting seems drastic:
-            # could we ignore the error, or disable the sensor, or etc?
-            return      # just in case the reboot() is stubbed out
+            # what to do: retry, ignore, reboot, disable sensor, etc?
+            return
 
         leds[self._i] = BLACK           # sensor is idle
-        self.coord = None
 
         if id is None:
             return      # no tag detected
@@ -149,7 +148,7 @@ class Sensor:
                 % (self._i, tag_id, tag_data))
 
         if tag_data is None:
-            # unrecognized tag_id: probably just be a bad read, ignore it
+            # unrecognized tag_id: probably just a bad read, ignore it
             leds[self._i] = MAGENTA
             return
 
@@ -157,10 +156,13 @@ class Sensor:
         if isinstance(tag_data, str):
             if tag_data.startswith("!REBOOT!"):
                 reboot()
-                return      # just in case the reboot() is stubbed out
-            # Other special commands could go here
+                return      # just in case reboot() is stubbed out
+            else:
+                # Other special commands could go here
+                return
 
-        # This tag has a valid x,y coordinate.
+        # Assuming data is 2-tuple with valid x,y coordinate.
+        # assert isinstance(tag_data, tuple) and len(tag_data)==2
         leds[self._i] = GREEN
         self.coord = tag_data
 
@@ -185,6 +187,7 @@ class SensorDeck:
         if num_sensors == 0:
             # no enabled sensors?!  try rebooting
             reboot()
+            # exit()?
 
         pm.sendINFO(90, "SensorDeck has %d enabled sensors" % num_sensors)
 
