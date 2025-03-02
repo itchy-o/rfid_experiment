@@ -2,7 +2,7 @@
 # build a release
 
 TGT = RELEASE.txt
-MPY = assign_xy.mpy tag_coords.mpy test7.mpy
+MPY = tag_coords.mpy
 
 .PHONEY: all
 all: $(TGT) $(MPY)
