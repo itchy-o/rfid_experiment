@@ -1,0 +1,222 @@
+Script started on 2025-03-01 15:19:01-07:00 [TERM="screen.putty-256color" TTY="/dev/pts/7" COLUMNS="178" LINES="47"]
+[?2004h[30;42mmew@pink:circuitpython !1 0 $[0m pwd
+[?2004l/md5/share/repos/gits/github.com/itchy-o/rfid_experiment/github/circuitpython
+[?2004h[30;42mmew@pink:circuitpython !2 0 $[0m g rv
+[?2004lorigin	https://github.com/adafruit/circuitpython.git (fetch)
+origin	https://github.com/adafruit/circuitpython.git (push)
+[?2004h[30;42mmew@pink:circuitpython !3 0 $[0m git checkout 9.2.1
+[?2004lUpdating files:  68% (639/929)Updating files:  69% (642/929)Updating files:  70% (651/929)Updating files:  71% (660/929)Updating files:  72% (669/929)Updating files:  73% (679/929)Updating files:  74% (688/929)Updating files:  75% (697/929)Updating files:  76% (707/929)Updating files:  77% (716/929)Updating files:  78% (725/929)Updating files:  79% (734/929)Updating files:  80% (744/929)Updating files:  81% (753/929)Updating files:  82% (762/929)Updating files:  83% (772/929)Updating files:  84% (781/929)Updating files:  85% (790/929)Updating files:  86% (799/929)Updating files:  87% (809/929)Updating files:  88% (818/929)Updating files:  89% (827/929)Updating files:  90% (837/929)Updating files:  91% (846/929)Updating files:  92% (855/929)Updating files:  93% (864/929)Updating files:  94% (874/929)Updating files:  95% (883/929)Updating files:  96% (892/929)Updating files:  97% (902/929)Updating files:  98% (911/929)Updating files:  99% (920/929)Updating files: 100% (929/929)Updating files: 100% (929/929), done.
+Note: switching to '9.2.1'.
+
+You are in 'detached HEAD' state. You can look around, make experimental
+changes and commit them, and you can discard any commits you make in this
+state without impacting any branches by switching back to a branch.
+
+If you want to create a new branch to retain commits you create, you may
+do so (now or later) by using -c with the switch command. Example:
+
+  git switch -c <new-branch-name>
+
+Or undo this operation with:
+
+  git switch -
+
+Turn off this advice by setting config variable advice.detachedHead to false
+
+HEAD is now at 254f8effb1 Merge pull request #9659 from timchinowsky/add-pio-background-read
+[?2004h[30;42mmew@pink:circuitpython !4 0 $[0m make fetch-all-submodules[4h [4lt[4h [4li[C[4h [4lm[4h [4le[4h [4l [C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C 
+[?2004lpython3 tools/ci_fetch_deps.py all
+::group::Sync submodule URLs
+git submodule sync --quiet (in /md5/share/repos/gits/github.com/itchy-o/rfid_experiment/github/circuitpython)
+::endgroup::
+Duration: 0.6342786541208625
+Target: all
+Submodules: . frozen
+::group::Init submodules (using filter)
+git submodule update --init --filter=blob:none . frozen (in /md5/share/repos/gits/github.com/itchy-o/rfid_experiment/github/circuitpython)
+Submodule path 'data/nvm.toml': checked out '6b678f15e378edce820f2ffdef3286b3e55449e7'
+Submodule path 'extmod/ulab': checked out '1d3ddd8f5228e2c7335dac71f4846e6abb0ec9f9'
+Submodule path 'frozen/Adafruit_CircuitPython_AHTx0': checked out 'd6e60adfae22a8d2bf94c2e207c4a4e9f0bfc7f8'
+Submodule path 'frozen/Adafruit_CircuitPython_APDS9960': checked out 'ebccbd6e8c927905d62bd0cc5832109920d413b2'
+Submodule path 'frozen/Adafruit_CircuitPython_BLE': checked out '9f2da7ce2ad6116ea97e1980bb55f0fed4774856'
+Submodule path 'frozen/Adafruit_CircuitPython_BLE_Apple_Notification_Center': checked out '7f5498803921b61168fe108b386653fa0a930ad1'
+Submodule path 'frozen/Adafruit_CircuitPython_Bitmap_Font': checked out '735d8167df6bffcda71b5338e7c6df0268a39b7e'
+Submodule path 'frozen/Adafruit_CircuitPython_BusDevice': checked out '88250a1e29a806dfc2a9dd9045bb0591a1178cca'
+Submodule path 'frozen/Adafruit_CircuitPython_CircuitPlayground': checked out '9c25878e0b7bf2ad2085190a3d8be78579006667'
+Submodule path 'frozen/Adafruit_CircuitPython_ConnectionManager': checked out '67d649b363cc3464b7959652a32cb62662ee60c3'
+Submodule path 'frozen/Adafruit_CircuitPython_Crickit': checked out '9aadbbd6e3cad460cbe49bf3c73792df66bf9fe5'
+Submodule path 'frozen/Adafruit_CircuitPython_DRV2605': checked out '90e9f4302225e9111afd394e5dcb174e96847b28'
+Submodule path 'frozen/Adafruit_CircuitPython_DS3231': checked out '7b99df2081e7b700d052ad9b455d41cbba43c302'
+Submodule path 'frozen/Adafruit_CircuitPython_DisplayIO_SSD1306': checked out '40d7b8eb7a7d8fc91a62414d4f764dd48283d86d'
+Submodule path 'frozen/Adafruit_CircuitPython_Display_Shapes': checked out '2742ae5025b0a9bcc853a8b89b293f8e46331498'
+Submodule path 'frozen/Adafruit_CircuitPython_Display_Text': checked out '535317831ffa667180902595daa666be153989eb'
+Submodule path 'frozen/Adafruit_CircuitPython_DotStar': checked out '1945d1aa9c5232287c490fbb6d637c92d866ed01'
+Submodule path 'frozen/Adafruit_CircuitPython_ESP32SPI': checked out 'e7e129aa6d9fec4e0844ec195c184073c8a1f5d3'
+Submodule path 'frozen/Adafruit_CircuitPython_FakeRequests': checked out '248d7b14134915883b4693fddf74bb77cca2ffd1'
+Submodule path 'frozen/Adafruit_CircuitPython_FocalTouch': checked out '6d3d68872179b3a2b681779dd1e73db92b9b8f5e'
+Submodule path 'frozen/Adafruit_CircuitPython_HID': checked out 'be6db4658d26902b6d5191d16de658adb92d018a'
+Submodule path 'frozen/Adafruit_CircuitPython_HTTPServer': checked out '9b16e16f5b1c1a346fb57ffcd0c6db9538a20803'
+Submodule path 'frozen/Adafruit_CircuitPython_IRRemote': checked out 'c4daaa7521a491f7045cf10007764e95e4e2c265'
+Submodule path 'frozen/Adafruit_CircuitPython_IS31FL3731': checked out '9f1202c3c6879c62d70058b0f43f21ef51c2ebe6'
+Submodule path 'frozen/Adafruit_CircuitPython_ImageLoad': checked out '72a7a4a0f6bb99cd0ab50d21988dea6d2321bf72'
+Submodule path 'frozen/Adafruit_CircuitPython_LC709203F': checked out '2809e03a16b53e0a131c37d4dbe2140d7412c402'
+Submodule path 'frozen/Adafruit_CircuitPython_LED_Animation': checked out '576a094602b099a1f211f126f68ff3cb07d32a05'
+Submodule path 'frozen/Adafruit_CircuitPython_LIS3DH': checked out '8591697e54f04711f2ed309753ddf4b334b05114'
+Submodule path 'frozen/Adafruit_CircuitPython_LSM6DS': checked out 'c4d6b88c5d537e0ba6b430987ccb2020475dc2e5'
+Submodule path 'frozen/Adafruit_CircuitPython_MIDI': checked out '36f8d5ab01dc82f41b6779683bd32130ad798848'
+Submodule path 'frozen/Adafruit_CircuitPython_MPU6050': checked out '58a9a05c0c4ada11ea9f18c953f62eab97b94c17'
+Submodule path 'frozen/Adafruit_CircuitPython_Motor': checked out '0c598f67c4688f0108b9671c2834ef343032906b'
+Submodule path 'frozen/Adafruit_CircuitPython_NeoPixel': checked out '310621f32839b73f892b227650c5d002a310e7c5'
+Submodule path 'frozen/Adafruit_CircuitPython_PCF8563': checked out 'cadd17904543d43c5ef19206ed8471b3476f119c'
+Submodule path 'frozen/Adafruit_CircuitPython_Pixel_Framebuf': checked out 'b09586b52dcfd51e8730a126899b4128df258a8c'
+Submodule path 'frozen/Adafruit_CircuitPython_PortalBase': checked out 'e23cc47d97a97a3dc65b951c0bfc085668c8d1b1'
+Submodule path 'frozen/Adafruit_CircuitPython_ProgressBar': checked out 'ac96488c8caaeb18eaed7a83289f81380eba2978'
+Submodule path 'frozen/Adafruit_CircuitPython_RFM69': checked out '5e050c4596fd639d91fbd63ae99617b75485c7af'
+Submodule path 'frozen/Adafruit_CircuitPython_RFM9x': checked out 'c5c3d629d42dc56bc34d892306582947385cf133'
+Submodule path 'frozen/Adafruit_CircuitPython_Register': checked out 'd37349183b82cd7d05af57a77eb3765e17e7be3f'
+Submodule path 'frozen/Adafruit_CircuitPython_Requests': checked out '6c56de79fb49ef16164148b68a63336d82b69f7a'
+Submodule path 'frozen/Adafruit_CircuitPython_SD': checked out '8688597c753b76beb8a834daef592294ffba216c'
+Submodule path 'frozen/Adafruit_CircuitPython_SHT4x': checked out 'a727b08bc7046a997d5f10e8b59a81bbe0f54da2'
+Submodule path 'frozen/Adafruit_CircuitPython_SSD1306': checked out 'a990c874389b6fd27636b21f9b831fc91781e925'
+Submodule path 'frozen/Adafruit_CircuitPython_SSD1680': checked out '5417f6225fb0573853972852ebdfa3aa080fed93'
+Submodule path 'frozen/Adafruit_CircuitPython_ST7789': checked out 'fd4c53e6b0ed4805362362837aa7dd71ae7fe1da'
+Submodule path 'frozen/Adafruit_CircuitPython_SimpleIO': checked out '967a12a68c4b82048cb5efe99847408215188561'
+Submodule path 'frozen/Adafruit_CircuitPython_SimpleMath': checked out '4bb3eb415019cb7c143dd6c467289e20409af788'
+Submodule path 'frozen/Adafruit_CircuitPython_Thermistor': checked out '09034b0fe5221faf8c2c01042e97a9d6334a1680'
+Submodule path 'frozen/Adafruit_CircuitPython_Ticks': checked out '527d90e91fa70d08399291229bdcb2e9a6605a6a'
+Submodule path 'frozen/Adafruit_CircuitPython_UC8151D': checked out 'a74fbafaecc5e44b462ef5ee2538e6a3ebf676e8'
+Submodule path 'frozen/Adafruit_CircuitPython_Wave': checked out '71f20ac457ba73d462c9851ce0d7c3c466efa3c3'
+Submodule path 'frozen/Adafruit_CircuitPython_Wiznet5k': checked out '6abacdf332602afb35fce0e68763c1b47e0c0297'
+Submodule path 'frozen/Adafruit_CircuitPython_asyncio': checked out '2ea2b06c7dcc41538790cc4cef5bc3e709b80762'
+Submodule path 'frozen/Adafruit_CircuitPython_framebuf': checked out 'dd4c4e927819f51ff1b1aa45ff11750581628d79'
+Submodule path 'frozen/Adafruit_CircuitPython_seesaw': checked out '3109848de6c7de1755ac2ccdcfc58460b7cc09bf'
+Submodule path 'frozen/CircuitPython_AXP2101': checked out 'f89fc3d6c47735279a6fd862b1a6aee2b44f4dcc'
+Submodule path 'frozen/CircuitPython_AXP313A': checked out '702d313bd2eaa6895924c7eeda7dea74c4e35c69'
+Submodule path 'frozen/CircuitPython_BMA423': checked out 'd6446c4daf13f19c6baafda8d24411c8d775f162'
+Submodule path 'frozen/circuitpython-pcf85063a': checked out '85aa931a14f46558233ef9bf1122ea68e2192958'
+Submodule path 'frozen/circuitpython-stage': checked out '25e35a8620bfab08ff4ec30bf89667dca0b05fcf'
+Submodule path 'frozen/circuitpython_ef_music': checked out '6e8eedb1475e2b91f8dea7bceebb20e44d70b171'
+Submodule path 'frozen/circuitpython_picoed': checked out '53f15602460329f69fef95498e6b8293aebb513a'
+Submodule path 'frozen/mixgo_cp_lib': checked out 'd5e3e809d7aa938b233b49526c55bfd2e314272c'
+Submodule path 'frozen/pew-pewpew-lcd': checked out '5ef39129207d5b9ad52b839f934ccdd0a8a7ed8a'
+Submodule path 'frozen/pew-pewpew-standalone-10.x': checked out '88b8be84b5dce7660f58c02a63263f1d2ff0709f'
+Submodule path 'lib/adafruit_floppy': checked out 'a20190fb04d14197dcc2b578d54ce0ba9223f525'
+Submodule path 'lib/axtls': checked out '531cab9c278c947d268bd4c94ecab9153a961b43'
+Submodule path 'lib/berkeley-db-1.xx': checked out '85373b548f1fb0119a463582570b44189dfb09ae'
+Submodule path 'lib/certificates': checked out 'ad28d2ee548bd55033f0a88df6f8902589c365a6'
+Submodule path 'lib/libffi': checked out 'e9de7e35f2339598b16cbb375f9992643ed81209'
+Submodule path 'lib/mbedtls': checked out '981743de6fcdbe672e482b6fd724d31d0a0d2476'
+Submodule path 'lib/micropython-lib': checked out '50ed36fbeb919753bcc26ce13a8cffd7691d06ef'
+Submodule path 'lib/mp3': checked out 'aac02afd9f24d2ee930f650156654ab9211a306a'
+Submodule path 'lib/nrfutil': checked out '9e7dfb28a5c6f3d7a19340971b32e0c2b4128ecf'
+Submodule path 'lib/protomatter': checked out '0bd9873153ab0a91d6737c392622159a4515a2e5'
+Submodule path 'lib/quirc': checked out '8c6ffa228a4c7643daed7039d3c51d38a43991b8'
+Submodule path 'lib/tinyusb': checked out '5217cee5de4cd555018da90f9f1bcc87fb1c1d3a'
+Submodule path 'lib/tlsf': checked out 'ea82911f4c7180f351bb17491b6bcb450e7ad812'
+Submodule path 'ports/atmel-samd/asf4': checked out '84f56af13292d8f32c40acbd949bde698ddd4507'
+Submodule path 'ports/atmel-samd/freetouch': checked out 'b6859a349efb79e2008d6f6a34e406e93a8e19c0'
+Submodule path 'ports/atmel-samd/peripherals': checked out '82e514b6e0d1a2b09dc73be9973663b6b837a817'
+Submodule path 'ports/broadcom/firmware': checked out 'bf96d0eda5952595d717fedb797aeb168483e9fa'
+Submodule path 'ports/broadcom/peripherals': checked out 'ec1043800fc987f7067fc07615193439843695d6'
+Submodule path 'ports/cxd56/spresense-exported-sdk': checked out 'c12296c5ffbd0779e630a653c76a78558b463271'
+Submodule path 'ports/espressif/esp-camera': checked out '243560e94997c262565ed537154b0578b8ce2197'
+Submodule path 'ports/espressif/esp-idf': checked out '3ecf6bafcf045e0d2705ef49524456801df4f754'
+Submodule path 'ports/espressif/esp-protocols': checked out '2f492c02289015ecbb36851dd1bd04e0eb0a9937'
+Submodule path 'ports/mimxrt10xx/sdk': checked out 'f6c93eeb2372410019006fbf16a667ed79e44d86'
+Submodule path 'ports/nordic/nrfx': checked out 'ab21106ea57b63d97b757a9f17201ddf298ffab0'
+Submodule path 'ports/raspberrypi/lib/Pico-PIO-USB': checked out 'fe9133fc513b82cc3dc62c67cb51f2339cf29ef7'
+Submodule path 'ports/raspberrypi/lib/PicoDVI': checked out '987cc88a70fc7d2280bdf32428f12d42b7ea7c43'
+Submodule path 'ports/raspberrypi/lib/cyw43-driver': checked out 'faf36381bad1f668a30172b6336c9a970966ef4c'
+Submodule path 'ports/raspberrypi/lib/lwip': checked out 'd26459c32c83aa14a6d4e30237d91cee36e0adbd'
+Submodule path 'ports/raspberrypi/sdk': checked out 'efe2103f9b28458a1615ff096054479743ade236'
+Submodule path 'ports/silabs/gecko_sdk': checked out '3fbadf9fb4e904fd8ed087642a41762b833ae0fe'
+Submodule path 'ports/silabs/tools/slc_cli_linux': checked out 'a2cef4434600379695bef23bfbdcc8e604f7f305'
+Submodule path 'ports/stm/st_driver/CMSIS_5': checked out '0b521765067ac87b142cd96b5f578ffb399090cc'
+Submodule path 'ports/stm/st_driver/cmsis_device_f0': checked out '8b86197c7ab77ad029c34dc73cf6d4a1e12327d8'
+Submodule path 'ports/stm/st_driver/cmsis_device_f1': checked out '71ad5b3bf5cbb4d35cf8c8726c1b343871f0df0a'
+Submodule path 'ports/stm/st_driver/cmsis_device_f2': checked out '694c49f696d359f57f23153ab7acf3ac1a43f663'
+Submodule path 'ports/stm/st_driver/cmsis_device_f3': checked out '167eefd811de90a58c41e0a32071cdfecede389a'
+Submodule path 'ports/stm/st_driver/cmsis_device_f4': checked out '6fe2c1f498feda34ee422720ff8b3bd1b4656145'
+Submodule path 'ports/stm/st_driver/cmsis_device_f7': checked out 'd29a89278dad0b89124c008be647f681d5253be4'
+Submodule path 'ports/stm/st_driver/cmsis_device_g0': checked out '4daf765de5c5956df1bb27139e624b5deba270c9'
+Submodule path 'ports/stm/st_driver/cmsis_device_g4': checked out '371d9ecec9acc4d8b4baad36c8dc60cb9895baf7'
+Submodule path 'ports/stm/st_driver/cmsis_device_h7': checked out 'f5e3a1d5e71e6b9278a6d580b7d5ca82c0debd9b'
+Submodule path 'ports/stm/st_driver/cmsis_device_l0': checked out '532d96973e7b2ae5546a2c88cb216429f74f5f5d'
+Submodule path 'ports/stm/st_driver/cmsis_device_l1': checked out '1827333a7f7822282a6a46e4169596b5fb58cf61'
+Submodule path 'ports/stm/st_driver/cmsis_device_l4': checked out 'aae7f4873380f77091ef62c461dc7a617b649d8e'
+Submodule path 'ports/stm/st_driver/cmsis_device_l5': checked out 'fcf61cd086e02c7a1cf7535ffe30622d1f5d36aa'
+Submodule path 'ports/stm/st_driver/stm32f0xx_hal_driver': checked out '79307a2f629b5959e67656564a8436e0a21e93d0'
+Submodule path 'ports/stm/st_driver/stm32f1xx_hal_driver': checked out 'fccac44e1859e1ad1a38353b46c9ed7587bdb4be'
+Submodule path 'ports/stm/st_driver/stm32f2xx_hal_driver': checked out 'cc54dd7a903220618b0487970b087f4e34973d1d'
+Submodule path 'ports/stm/st_driver/stm32f3xx_hal_driver': checked out '58a240b30676cb51ee0e09347c6b55a9fc4f7140'
+Submodule path 'ports/stm/st_driver/stm32f4xx_hal_driver': checked out 'abb4cd6a27ce4b95dd76d262a13d0e2c688b1f10'
+Submodule path 'ports/stm/st_driver/stm32f7xx_hal_driver': checked out '27458ea876aabd8fd568c5e2a8a3448f082e2817'
+Submodule path 'ports/stm/st_driver/stm32g0xx_hal_driver': checked out '36ae43958161cff572db2f88378e81895ec3a337'
+Submodule path 'ports/stm/st_driver/stm32g4xx_hal_driver': checked out '19bed7c9f84aa74aba98c6d1ea54bed39bd8e61a'
+Submodule path 'ports/stm/st_driver/stm32h7xx_hal_driver': checked out '2bfa1cae79926af47ff79a48757d29a38c9c8978'
+Submodule path 'ports/stm/st_driver/stm32l0xx_hal_driver': checked out 'ad9b9fbceb1427078000476dd4cd926603fd5b89'
+Submodule path 'ports/stm/st_driver/stm32l1xx_hal_driver': checked out '919c1714f0e605c96e312675d8a14c421881d2ec'
+Submodule path 'ports/stm/st_driver/stm32l4xx_hal_driver': checked out '49aacb861d9f2b4c43238989e7ba19d82c230641'
+Submodule path 'ports/stm/st_driver/stm32l5xx_hal_driver': checked out '4f89168f731596308eae3770a63518413f34cf3d'
+Submodule path 'tools/Tecate-bitmap-fonts': checked out '6f52a7ca0838967cc57e9a44d76c6e1f60e62842'
+Submodule path 'tools/adabot': checked out 'f879b24c5fcf759be3ecbd2ef6c5302b2acc8d28'
+Submodule path 'tools/bitmap_font': checked out '62dd78abdd0b823824fe15d1bab0611246145c23'
+Submodule path 'tools/huffman': checked out '27b1bba76198a0b343f694a6d680b5293d1c56aa'
+Submodule path 'tools/python-semver': checked out '2001c62d1a0361c44acc7076d8ce91e1d1c66141'
+Submodule path 'tools/uf2': checked out '27e322fcdcc6eee0642242638d4f2557efb32559'
+::endgroup::
+Duration: 267.27310652984306
+frozen_tags: True
+
+real	4m28.308s
+user	0m33.991s
+sys	0m38.574s
+[?2004h[30;42mmew@pink:circuitpython !5 0 $[0m time make fetch-all-submodules 
+[?2004lpython3 tools/ci_fetch_deps.py all
+::group::Sync submodule URLs
+git submodule sync --quiet (in /md5/share/repos/gits/github.com/itchy-o/rfid_experiment/github/circuitpython)
+::endgroup::
+Duration: 4.881860888097435
+Target: all
+Submodules: . frozen
+::group::Init submodules (using filter)
+git submodule update --init --filter=blob:none . frozen (in /md5/share/repos/gits/github.com/itchy-o/rfid_experiment/github/circuitpython)
+::endgroup::
+Duration: 1.548492968082428
+frozen_tags: True
+
+real	0m42.113s
+user	0m2.433s
+sys	0m1.798s
+[?2004h[30;42mmew@pink:circuitpython !5 0 $[0m time make -C mpy-cross/ ; date 
+[?2004lmake: Entering directory '/md5/share/repos/gits/github.com/itchy-o/rfid_experiment/github/circuitpython/mpy-cross'
+- Verbosity options: any combination of "steps commands rules", as `make V=...` or env var BUILD_VERBOSE
+GEN build/genhdr/mpversion.h
+QSTR updated
+GEN build/genhdr/qstrdefs.generated.h
+Module registrations updated
+GEN build/genhdr/moduledefs.h
+Root pointer registrations updated
+GEN build/genhdr/root_pointers.h
+LINK build/mpy-cross
+   text	   data	    bss	    dec	    hex	filename
+ 405125	  15400	    888	 421413	  66e25	build/mpy-cross
+make: Leaving directory '/md5/share/repos/gits/github.com/itchy-o/rfid_experiment/github/circuitpython/mpy-cross'
+
+real	5m1.019s
+user	1m9.379s
+sys	0m16.324s
+Sat Mar  1 03:32:38 PM MST 2025
+[?2004h[30;42mmew@pink:circuitpython !6 0 $[0m 
+[?2004l[?2004h[30;42mmew@pink:circuitpython !6 0 $[0m 
+[?2004l[?2004h[30;42mmew@pink:circuitpython !6 0 $[0m h
+[?2004l    1  pwd
+    2  g rv
+    3  git checkout 9.2.1
+    4  time make fetch-all-submodules 
+    5  time make -C mpy-cross/ ; date 
+    6  h
+[?2004h[30;42mmew@pink:circuitpython !7 0 $[0m [?2004l
+exit
+
+Script done on 2025-03-02 00:02:41-07:00 [COMMAND_EXIT_CODE="0"]
