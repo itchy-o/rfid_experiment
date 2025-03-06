@@ -8,7 +8,7 @@
 # Read NTAG21x RFID tags using four PN532 sensor modules.
 # Indicate which sensors are detecting tags using an LED strip.
 # Part of the Sono Chapel position-sensing experiments.
-# 2025-03-01
+# 2025-03-02
 
 """Sono Chapel Pod firmware"""
 
@@ -24,6 +24,7 @@ PROTOCOL_VERSION = const("0.1.0.3")
 
 #############################################################################
 
+import tag_coords
 import board
 import busio
 import time
@@ -32,7 +33,6 @@ import os
 import wifi
 import socketpool
 import supervisor
-import tag_coords
 from touchio import TouchIn
 from neopixel import NeoPixel
 from digitalio import DigitalInOut
@@ -247,6 +247,7 @@ pm = PodMessenger()
 def main():
     leds.fill(GREEN)
     print("\n\nSono Chapel version", __version__, "protocol", PROTOCOL_VERSION)
+    print("len(tag_coords.data)", len(tag_coords.data))
     pm.connect()
     leds.fill(BLUE)
     pm.sendBOOT()
