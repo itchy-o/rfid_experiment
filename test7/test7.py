@@ -41,8 +41,8 @@ from micropython import const
 
 #############################################################################
 
-def reboot():
-    "Soft restart of the microcontroller"
+def reboot(reason):
+    print("\nreboot() : soft restart of microcontroller, reason", reason)
     supervisor.reload()
 
 #############################################################################
@@ -135,7 +135,7 @@ class Sensor:
             pm.sendINFO(90, "Sensor %d error" % _i)
             leds[self._i] = YELLOW      # sensor error
             # what to do: retry, ignore, reboot, disable sensor, etc?
-            reboot()
+            reboot(5)
             return      # fallback in case reboot() is stubbed out
 
         leds[self._i] = BLACK           # sensor is idle
@@ -157,7 +157,7 @@ class Sensor:
         # Does this tag indicate a special command?
         if isinstance(tag_data, str):
             if tag_data.startswith("!REBOOT!"):
-                reboot()
+                reboot(1)
                 return      # fallback in case reboot() is stubbed out
             else:
                 # Other special commands could go here
@@ -189,8 +189,8 @@ class SensorDeck:
         pm.sendINFO(99, "SensorDeck has %d enabled sensors" % num_sensors)
         if num_sensors == 0:
             # no enabled sensors?!  try rebooting
-            reboot()
-            sys.exit(5) # fallback in case reboot() is stubbed out
+            reboot(10)
+            sys.exit(10)        # fallback in case reboot() is stubbed out
 
     def readAll(self):
         "A generator as infinite iterator that reads all sensors once."
