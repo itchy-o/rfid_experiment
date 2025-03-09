@@ -113,12 +113,12 @@ class Sensor:
         try:
             self.pn532 = PN532_SPI(spi=spi, cs_pin=cs_pin, debug=False)
         except:
-            pm.sendINFO(80, "Sensor %d not responding" % i)
+            pm.sendINFO(95, "Sensor %d not initializing" % i)
             leds[self._i] = RED         # sensor is disabled
             self.pn532 = None
             return
 
-        pm.sendINFO(80, "Sensor %d firmware_version %s"
+        pm.sendINFO(60, "Sensor %d firmware_version %s"
                 % (i, self.pn532.firmware_version))
         self.pn532.SAM_configuration()
         leds[self._i] = BLACK           # sensor is idle
@@ -132,7 +132,7 @@ class Sensor:
         try:
             id = self.pn532.read_passive_target(timeout=self._rfid_timeout)
         except:
-            pm.sendINFO(85, "Sensor %d error" % _i)
+            pm.sendINFO(90, "Sensor %d error" % _i)
             # what to do: retry, ignore, reboot, disable sensor, etc?
             return
 
@@ -184,12 +184,12 @@ class SensorDeck:
                 self._sensors.append(s)
 
         num_sensors = len(self._sensors)
+        pm.sendINFO(99, "SensorDeck has %d enabled sensors" % num_sensors)
         if num_sensors == 0:
             # no enabled sensors?!  try rebooting
             reboot()
             # exit()?
 
-        pm.sendINFO(90, "SensorDeck has %d enabled sensors" % num_sensors)
 
     def readAll(self):
         "A generator as infinite iterator that reads all sensors once."
