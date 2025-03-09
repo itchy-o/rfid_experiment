@@ -5,7 +5,7 @@
 # assign_xy.py
 # Associate tag_ids with X,Y coordinates.
 # Turn on logging to save the data.
-# 2023-10-20 2025-02-23
+# 2023-10-20 2025-02-28
 
 import board
 import busio
@@ -14,7 +14,7 @@ from adafruit_pn532.spi import PN532_SPI
 
 data = {}
 #from tag_coords import data
-print("len(data)", len(data))
+print("\n\nlen(data)", len(data))
 
 #############################################################################
 
@@ -52,7 +52,7 @@ class TidReader:
                 count = 0
                 continue
 
-            # have we read the same value several times?
+            # have we read the same value enough times to be confident?
             count += 1
             if count > 5:
                 return tid
