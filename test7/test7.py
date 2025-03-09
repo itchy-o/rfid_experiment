@@ -134,7 +134,8 @@ class Sensor:
         except:
             pm.sendINFO(90, "Sensor %d error" % _i)
             # what to do: retry, ignore, reboot, disable sensor, etc?
-            return
+            reboot()
+            return      # fallback in case reboot() is stubbed out
 
         leds[self._i] = BLACK           # sensor is idle
 
@@ -156,7 +157,7 @@ class Sensor:
         if isinstance(tag_data, str):
             if tag_data.startswith("!REBOOT!"):
                 reboot()
-                return      # just in case reboot() is stubbed out
+                return      # fallback in case reboot() is stubbed out
             else:
                 # Other special commands could go here
                 return
@@ -188,8 +189,7 @@ class SensorDeck:
         if num_sensors == 0:
             # no enabled sensors?!  try rebooting
             reboot()
-            # exit()?
-
+            sys.exit(5) # fallback in case reboot() is stubbed out
 
     def readAll(self):
         "A generator as infinite iterator that reads all sensors once."
