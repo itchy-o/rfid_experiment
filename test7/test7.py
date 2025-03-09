@@ -133,6 +133,7 @@ class Sensor:
             id = self.pn532.read_passive_target(timeout=self._rfid_timeout)
         except:
             pm.sendINFO(90, "Sensor %d error" % _i)
+            leds[self._i] = YELLOW      # sensor error
             # what to do: retry, ignore, reboot, disable sensor, etc?
             reboot()
             return      # fallback in case reboot() is stubbed out
