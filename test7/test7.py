@@ -129,6 +129,7 @@ class Sensor:
         id = None
         self.coord = None
 
+        # FUTURE self.pre_read_reset()
         try:
             id = self.pn532.read_passive_target(timeout=self._rfid_timeout)
         except:
@@ -136,6 +137,7 @@ class Sensor:
             leds[self._i] = YELLOW      # sensor error
             # what to do: retry, ignore, reboot, disable sensor, etc?
             reboot(5)
+            # FUTURE self.post_error_reset()
             return      # fallback in case reboot() is stubbed out
 
         leds[self._i] = BLACK           # sensor is idle
@@ -167,6 +169,22 @@ class Sensor:
         # assert isinstance(tag_data, tuple) and len(tag_data)==2
         leds[self._i] = GREEN
         self.coord = tag_data
+
+    def pre_read_reset(self):
+        # conditional, based on settings.toml
+        self.pn532.reset()
+        return
+
+    def post_error_reset(self):
+        # conditional, based on settings.toml
+        self.pn532.reset()
+        return
+
+    def power_down(self):
+        # conditional, based on settings.toml
+        # True if powered down successfully
+        result = self.pn532.power_down()
+        return
 
 #############################################################################
 
