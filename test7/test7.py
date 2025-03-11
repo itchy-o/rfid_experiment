@@ -24,7 +24,9 @@ PROTOCOL_VERSION = const("0.1.0.3")
 
 #############################################################################
 
+# put this big file first, to minimize memory fragmentation
 import tag_coords
+
 import board
 import busio
 import time
@@ -100,7 +102,7 @@ class PodMessenger:
 #############################################################################
 
 class Sensor:
-    """A single PN532 RFID sensor module"""
+    "A single PN532 RFID sensor module"
 
     def __init__(self, i, spi, chip_select):
         self._i = i
@@ -152,7 +154,7 @@ class Sensor:
                 % (self._i, tag_id, tag_data))
 
         if tag_data is None:
-            # unrecognized tag_id: probably just a bad read, ignore it
+            # unrecognized tag_id: bad read? ignore it
             leds[self._i] = MAGENTA
             return
 
@@ -189,7 +191,7 @@ class Sensor:
 #############################################################################
 
 class SensorDeck:
-    """The pod's collection of Sensors"""
+    "The pod's collection of Sensors"
 
     # Pins for each Sensor's SPI chip-select (CS) signal:
     CS_GPIOS = (board.GP10, board.GP11, board.GP12, board.GP13)
@@ -267,6 +269,7 @@ def main():
     leds.fill(GREEN)
     print("\n\nSono Chapel version", __version__, "protocol", PROTOCOL_VERSION)
     print("len(tag_coords.data)", len(tag_coords.data))
+
     pm.connect()
     leds.fill(BLUE)
     pm.sendBOOT()
