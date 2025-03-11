@@ -123,6 +123,8 @@ class Sensor:
         pm.sendINFO(60, "Sensor %d firmware_version %s"
                 % (i, self.pn532.firmware_version))
         self.pn532.SAM_configuration()
+
+        #FUTURE self.power_down()
         leds[self._i] = BLACK           # sensor is idle
 
     def read(self):
@@ -131,17 +133,18 @@ class Sensor:
         id = None
         self.coord = None
 
-        # FUTURE self.pre_read_reset()
+        #FUTURE self.reset_pre_read()
         try:
             id = self.pn532.read_passive_target(timeout=self._rfid_timeout)
         except:
-            pm.sendINFO(90, "Sensor %d error" % _i)
             leds[self._i] = YELLOW      # sensor error
+            pm.sendINFO(90, "Sensor %d error" % self._i)
             # what to do: retry, ignore, reboot, disable sensor, etc?
-            # FUTURE self.post_error_reset()
             reboot(reason=5)
+            #FUTURE self.reset_post_error()
             return      # fallback in case reboot() is stubbed out
 
+        #FUTURE self.power_down()
         leds[self._i] = BLACK           # sensor is idle
 
         if id is None:
@@ -172,21 +175,18 @@ class Sensor:
         leds[self._i] = GREEN
         self.coord = tag_data
 
-    def pre_read_reset(self):
-        # conditional, based on settings.toml
+    def reset_pre_read(self):
+        pm.sendINFO(41, "reset_pre_read")
         self.pn532.reset()
-        return
 
-    def post_error_reset(self):
-        # conditional, based on settings.toml
+    def reset_post_error(self):
+        pm.sendINFO(42, "reset_post_error")
         self.pn532.reset()
-        return
 
     def power_down(self):
-        # conditional, based on settings.toml
         # True if powered down successfully
         result = self.pn532.power_down()
-        return
+        pm.sendINFO(43, "power_down %s" % result)
 
 #############################################################################
 
