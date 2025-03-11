@@ -1,8 +1,11 @@
-# Makefile - for Linux
+# Makefile (for use on RaspberryPi)
 # build a release
 
 TGT = RELEASE.txt
-MPY = tag_coords.mpy
+MPY = tag_coords.mpy test7.mpy assign_xy.mpy
+
+MPY_CROSS = ./mpy-cross-raspios-9.2.1
+#MPY_CROSS = ./mpy-cross-windows-9.2.1.static.exe
 
 .PHONEY: all
 all: $(TGT) $(MPY)
@@ -14,7 +17,7 @@ $(TGT): FORCE
 	date -Isec >> $@
 
 %.mpy : %.py
-	./mpy-cross-raspios-9.2.1 $<
+	$(MPY_CROSS) $<
 
 .PHONEY : clean clobber nuke
 clean clobber nuke:
