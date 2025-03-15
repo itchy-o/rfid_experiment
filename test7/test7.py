@@ -35,7 +35,7 @@ import os
 import wifi
 import socketpool
 import supervisor
-from touchio import TouchIn
+#from touchio import TouchIn
 from neopixel import NeoPixel
 from digitalio import DigitalInOut
 from adafruit_pn532.spi import PN532_SPI
@@ -274,14 +274,14 @@ def main():
     leds.fill(BLUE)
     pm.sendBOOT()
 
-    touch1 = TouchIn(board.GP1)
+    # touch1 = TouchIn(board.GP1)
 
     leds.fill(BLACK)
     spi = busio.SPI(clock=board.GP18, MOSI=board.GP19, MISO=board.GP20)
     sd = SensorDeck(spi)
 
     for s in sd.readOne():
-        t1 = touch1.value
+        t1 = False   # touch1.value
         leds[4] = GREEN if t1 else BLACK
 
         num_tags, x, y = sd.coord()
