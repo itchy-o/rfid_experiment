@@ -124,7 +124,7 @@ class Sensor:
                 % (i, self.pn532.firmware_version))
         self.pn532.SAM_configuration()
 
-        #FUTURE self.power_down()
+        self.power_down()
         leds[self._i] = BLACK           # sensor is idle
 
     def read(self):
@@ -133,18 +133,17 @@ class Sensor:
         id = None
         self.coord = None
 
-        #FUTURE self.reset_pre_read()
+        self.reset_pre_read()
         try:
             id = self.pn532.read_passive_target(timeout=self._rfid_timeout)
         except:
             leds[self._i] = YELLOW      # sensor error
             pm.sendINFO(90, "Sensor %d error" % self._i)
             # what to do: retry, ignore, reboot, disable sensor, etc?
-            reboot(reason=5)
-            #FUTURE self.reset_post_error()
+            self.reset_post_error()
             return      # fallback in case reboot() is stubbed out
 
-        #FUTURE self.power_down()
+        self.power_down()
         leds[self._i] = BLACK           # sensor is idle
 
         if id is None:
@@ -176,7 +175,6 @@ class Sensor:
         self.coord = tag_data
 
     def reset_pre_read(self):
-        pm.sendINFO(41, "reset_pre_read")
         self.pn532.reset()
 
     def reset_post_error(self):
@@ -186,7 +184,6 @@ class Sensor:
     def power_down(self):
         # True if powered down successfully
         result = self.pn532.power_down()
-        pm.sendINFO(43, "power_down %s" % result)
 
 #############################################################################
 
