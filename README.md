@@ -1,3 +1,7 @@
+### With the unveiling of _SonoChapel_ during [itchy-O's](https://itchyo.com/) [SÖM SÂPTÂLAHN](https://alternativetentacles.com/blogs/news/itchy-o-som-saptalahn-transmission-is-now-live) [release event](https://www.kickstarter.com/projects/itchyo/som-saptalahn-album-release-vinyl-and-more/) at [Fiske Planetarium](https://www.colorado.edu/fiske/) on [2025-03-15](https://itchyo.com/som-saptalahn-album-release/) , this project exits its experimental phase.<br><br>Future development will occur in the [SonoChapel_v1](https://github.com/itchy-o/SonoChapel_v1) repo.
+
+-----
+
 # itchy-o/rfid_experiment/README.md
 
 ## Concept of operation
